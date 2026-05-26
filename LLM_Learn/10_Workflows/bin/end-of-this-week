@@ -1,0 +1,11 @@
+#!/bin/zsh
+set -euo pipefail
+
+ROOT_DIR="$(cd -- "$(dirname -- "$0")/../.." && pwd)"
+PROMPT='Use $end-of-this-week to scan this week'"'"'s notes, summarize this week, adjust the weekly plan, and draft next week'"'"'s plan.'
+
+if [[ $# -gt 0 ]]; then
+  PROMPT="$PROMPT Extra request: $*"
+fi
+
+exec codex exec --skip-git-repo-check -C "$ROOT_DIR" "$PROMPT"

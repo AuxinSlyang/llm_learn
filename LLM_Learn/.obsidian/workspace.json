@@ -1,0 +1,287 @@
+{
+  "main": {
+    "id": "b53c633abef12dd8",
+    "type": "split",
+    "children": [
+      {
+        "id": "4354dfe4572018cc",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "461621a9000c9c71",
+            "type": "leaf",
+            "pinned": true,
+            "state": {
+              "type": "terminal:terminal",
+              "state": {
+                "terminal:terminal": {
+                  "cwd": "/Users/bytedance/.openclaw/workspace/LLM_Learn",
+                  "focus": false,
+                  "profile": {
+                    "args": [
+                      "--login"
+                    ],
+                    "executable": "/bin/zsh",
+                    "followTheme": true,
+                    "name": "",
+                    "platforms": {
+                      "darwin": true
+                    },
+                    "pythonExecutable": "python3",
+                    "restoreHistory": false,
+                    "rightClickAction": "copyPaste",
+                    "successExitCodes": [
+                      "0",
+                      "SIGINT",
+                      "SIGTERM"
+                    ],
+                    "terminalOptions": {
+                      "documentOverride": null
+                    },
+                    "type": "integrated",
+                    "useWin32Conhost": true
+                  },
+                  "serial": null
+                }
+              },
+              "pinned": true,
+              "icon": "terminal",
+              "title": "终端：bytedance@MVF5J436KX:~/.openclaw/workspace/LLM_Learn"
+            }
+          }
+        ]
+      },
+      {
+        "id": "1d177c60ca26145e",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "6f7aaa9668c930fe",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "01_DailyNotes/2026/2026-03/2026-03-29.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "2026-03-29"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "fd4a8db815ff7642",
+    "type": "split",
+    "children": [
+      {
+        "id": "0e2a979050fdd641",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "c33fa05cd5b7fd6a",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical",
+                "autoReveal": false
+              },
+              "icon": "lucide-folder-closed",
+              "title": "文件列表"
+            }
+          },
+          {
+            "id": "866b105ffb844c3e",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              },
+              "icon": "lucide-search",
+              "title": "Search"
+            }
+          },
+          {
+            "id": "4ff20f30a09b661b",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {},
+              "icon": "lucide-bookmark",
+              "title": "Bookmarks"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "179ad5b89cd1e453",
+    "type": "split",
+    "children": [
+      {
+        "id": "b621514a1346c0f9",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "f46b3fba7f383c1c",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-coming-in",
+              "title": "Backlinks"
+            }
+          },
+          {
+            "id": "31a2b4978ac42a7f",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-going-out",
+              "title": "Outgoing links"
+            }
+          },
+          {
+            "id": "2dc655834db79a89",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-tags",
+              "title": "Tags"
+            }
+          },
+          {
+            "id": "4d279a00d95b3e91",
+            "type": "leaf",
+            "state": {
+              "type": "all-properties",
+              "state": {
+                "sortOrder": "frequency",
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-archive",
+              "title": "All properties"
+            }
+          },
+          {
+            "id": "1acc78ef6229c764",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "followCursor": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-list",
+              "title": "Outline"
+            }
+          },
+          {
+            "id": "3420ea99388e0aab",
+            "type": "leaf",
+            "state": {
+              "type": "calendar",
+              "state": {},
+              "icon": "calendar-with-checkmark",
+              "title": "Calendar"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:打开快速切换": false,
+      "graph:查看关系图谱": false,
+      "canvas:新建白板": false,
+      "templates:插入模板": false,
+      "command-palette:打开命令面板": false,
+      "bases:新建数据库": false,
+      "templater-obsidian:Templater": false,
+      "obsidian-kanban:Create new board": false,
+      "terminal:Open terminal": false,
+      "obsidian42-brat:BRAT": false,
+      "periodic-notes:Open today": false
+    }
+  },
+  "active": "461621a9000c9c71",
+  "lastOpenFiles": [
+    "01_DailyNotes/2026/2026-03/2026-03-29.md",
+    "01_DailyNotes/2026/2026-03/2026-03-24.md",
+    "01_DailyNotes/2026/2026-03/2026-03-26.md",
+    "01_DailyNotes/2026/2026-03/2026-03-25.md",
+    "06_AI/Week_01_LLM全链路认知/micrograd/micrograd-part1_2026-03-24.md",
+    "06_AI/Week_01_LLM全链路认知/micrograd",
+    "01_DailyNotes/2026/2026-03/2026-03-23.md",
+    "01_DailyNotes/2026/2026-03/2026-03-22.md",
+    "03_Projects/8. makemore/01. Bigram_统计建模与采样生成/makemore-1-summary_2026-03-23.md",
+    "03_Projects/8. makemore/01. Bigram_统计建模与采样生成/makemore-1-firsthalf_2026-03-22.md",
+    "10_Workflows/start-my-day_command_spec.md",
+    "10_Workflows/skills/start-my-day/SKILL.md",
+    "02_WeeklyNotes/2026/2026-03/2026-W13.md",
+    "10_Workflows/skills/end-of-this-week/SKILL.md",
+    "02_WeeklyNotes/2026/2026-03/2026-W14.md",
+    "02_WeeklyNotes/2026/2026-04/2026-W16.md",
+    "02_WeeklyNotes/2026/2026-04/2026-W15.md",
+    "02_WeeklyNotes/2026/2026-03/2026-W12.md",
+    "02_WeeklyNotes/2026/2026-03/2026-W11.md",
+    "02_WeeklyNotes/2026/2026-03/2026-W10.md",
+    "03_Projects/8. makemore/01. Bigram_统计建模与采样生成",
+    "03_Projects/8. makemore",
+    "06_AI/Week_01_LLM全链路认知/makemore-1-firsthalf_2026-03-22.md",
+    "01_DailyNotes/2026/2026-03/2026-03-18.md",
+    "10_Workflows/skills/end-of-this-week/agents/openai.yaml",
+    "10_Workflows/skills/end-of-this-week/agents",
+    "10_Workflows/bin/install-codex-skills",
+    "end-of-this-week",
+    "10_Workflows/bin/end-of-this-week",
+    "10_Workflows/skills/end-of-this-week",
+    "10_Workflows/skills/start-my-day/agents/openai.yaml",
+    "01_DailyNotes/2026/262026-03/2026-03-22.md",
+    "01_DailyNotes/2026-03-22.md",
+    "07_MonthlyPlans/00_JD1月计划导航.md",
+    "08_Insights/README.md",
+    "10_Workflows/Workspace_Layout.md",
+    "Pasted image 20260302225326.png",
+    "Untitled 1.canvas",
+    "Untitled.canvas"
+  ]
+}

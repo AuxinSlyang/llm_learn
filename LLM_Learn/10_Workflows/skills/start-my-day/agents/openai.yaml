@@ -1,0 +1,7 @@
+interface:
+  display_name: "Start My Day"
+  short_description: "Build today's plan from notes"
+  default_prompt: "Use $start-my-day to read today's notes, synthesize a focused plan, and update the Daily Note if needed."
+
+policy:
+  allow_implicit_invocation: true

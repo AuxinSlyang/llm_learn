@@ -1,0 +1,40 @@
+#!/bin/zsh
+set -euo pipefail
+
+ROOT_DIR="$(cd -- "$(dirname -- "$0")/../.." && pwd)"
+TARGET_DIR="${HOME}/.codex/skills"
+
+install_skill() {
+  local name="$1"
+  local src="$ROOT_DIR/10_Workflows/skills/$name"
+  local dst="$TARGET_DIR/$name"
+
+  mkdir -p "$dst/agents"
+  cp "$src/SKILL.md" "$dst/SKILL.md"
+}
+
+mkdir -p "$TARGET_DIR"
+
+install_skill "start-my-day"
+cat > "$TARGET_DIR/start-my-day/agents/openai.yaml" <<'EOF'
+interface:
+  display_name: "Start My Day"
+  short_description: "Build today's plan from notes"
+  default_prompt: "Use $start-my-day to read today's notes, synthesize a focused plan, and update the Daily Note if needed."
+
+policy:
+  allow_implicit_invocation: true
+EOF
+
+install_skill "end-of-this-week"
+cat > "$TARGET_DIR/end-of-this-week/agents/openai.yaml" <<'EOF'
+interface:
+  display_name: "End Of This Week"
+  short_description: "Close this week and plan next week"
+  default_prompt: "Use $end-of-this-week to scan this week's notes, summarize the week, adjust the weekly plan, and draft next week's plan."
+
+policy:
+  allow_implicit_invocation: true
+EOF
+
+printf 'Installed skills into %s\n' "$TARGET_DIR"

@@ -1,0 +1,7 @@
+interface:
+  display_name: "End Of This Week"
+  short_description: "Close this week and plan next week"
+  default_prompt: "Use $end-of-this-week to scan this week's notes, summarize the week, adjust the weekly plan, and draft next week's plan."
+
+policy:
+  allow_implicit_invocation: true

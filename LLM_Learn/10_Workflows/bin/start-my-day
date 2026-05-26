@@ -1,0 +1,26 @@
+#!/bin/zsh
+set -euo pipefail
+
+ROOT_DIR="$(cd -- "$(dirname -- "$0")/../.." && pwd)"
+PROMPT='Use $start-my-day to read today'\''s notes, synthesize a focused plan, and update the Daily Note if needed.'
+
+if [[ $# -gt 0 ]]; then
+  PROMPT="$PROMPT Extra request: $*"
+fi
+
+USE_SCRIPT=0
+for arg in "$@"; do
+  if [[ "$arg" == "--dry-run" || "$arg" == "--date" || "$arg" == --date=* ]]; then
+    USE_SCRIPT=1
+  fi
+done
+
+if [[ "$USE_SCRIPT" -eq 0 ]] && command -v codex >/dev/null 2>&1; then
+  if codex exec --skip-git-repo-check -C "$ROOT_DIR" "$PROMPT"; then
+    exit 0
+  fi
+  echo "codex exec failed; falling back to deterministic start_my_day.py" >&2
+fi
+
+SCRIPT_DIR="$(cd -- "$(dirname -- "$0")" && pwd)"
+exec python3 "$SCRIPT_DIR/../scripts/start_my_day.py" "$@"
