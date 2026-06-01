@@ -5,12 +5,12 @@
 
 ## 一句话定位
 
-成为通用具身智能领域有真实影响力的系统构建者——既能动手把一个机器人系统从零搭起来，也能在 robot learning / AI 方法上有自己的判断与产出，并通过开源 + 真实部署在物理世界产生可见的 impact。
+成为通用具身智能领域有真实影响力的机器人全栈工程师 / roboticist——既能动手把一个机器人系统从零搭起来，也能在 robot learning / AI 方法上有自己的判断与产出，并通过开源 + 真实部署在物理世界产生可见的 impact。
 
 ## 10 年长期能力画像
 
 5-10 年后我希望自己是这样的人：
-- **能力面**：跨 Classical Robotics + AI Fundamentals + Robot Learning 三条腿都站得稳的具身智能系统构建者
+- **能力面**：跨 Classical Robotics + AI Fundamentals + Robot Learning + Runtime/Data Loop 都站得稳的机器人全栈工程师 / roboticist
 - **工程面**：能从硬件抽象 → 控制 → 规划 → 感知 → 学习 → 部署打通完整 stack
 - **研究面**：能识别真问题、提方法、独立推进 / 复现 / 改进 SOTA
 - **影响力面**：通过开源系统 + 真实部署在领域内被看见——而不是以 paper 数为标尺
@@ -26,12 +26,11 @@
 
 | Anchor | 角色 | 时间窗 |
 |---|---|---|
-| **机器人足球（11v11 长期愿景）** | 主 anchor：multi-agent + locomotion + perception + 实时闭环 | 长期 |
 | **Manipulation（pick-place / dexterous）** | 验证 Robot Learning + 精细控制 | 中期 |
 | **Mobile navigation in unknown env** | 验证感知 + 规划 + 自主性 | 中期 |
 | **Multi-robot coordination** | 验证多智能体 + 通信 + 协作 | 长期 |
 
-机器人足球是长期最高优先级 anchor，但不再是唯一目标——通用具身智能的全集 > 足球能 stress 到的部分。
+不再绑定单一长期场景 anchor。后续根据职业机会和项目可行性，在 manipulation、mobile navigation、multi-robot coordination、VLA / robot runtime 等方向中选择最能形成能力证据的场景。
 
 ## 我已有的底子（差异化资产）
 
@@ -60,4 +59,4 @@
 
 ## 一句话回锚
 
-> 成为具身智能领域真正能从硬件到 AI 都看得懂、都做得了的人，并通过我建造的开源系统 + 真实部署的机器人在物理世界产生可见的 impact。
+> 成为具身智能领域真正能从硬件到 AI 都看得懂、都做得了的机器人全栈工程师 / roboticist，并通过我建造的开源系统 + 真实部署的机器人在物理世界产生可见的 impact。

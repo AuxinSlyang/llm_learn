@@ -1,9 +1,10 @@
 ---
 type: annual_plan
 year: 2026
-target_role: Embodied AI / Robotics Systems Builder
-scenario_anchor: Robot Soccer (long-term) + Manipulation (2026 H2 first demo)
+target_role: Embodied AI Systems Builder / Robot Full-Stack Engineer -> Roboticist
+scenario_anchor: Robot Learning Full-Stack + Robot Runtime + LLM/AI Infra support
 time_budget: 8-14h/week (32-56h/month)
+active_roadmap: "[[09_One_Year_Robot_Learning_Full_Stack_Roadmap]]"
 linked_files:
   - "[[00_North_Star]]"
   - "[[01_Learning_Philosophy]]"
@@ -12,220 +13,128 @@ linked_files:
   - "[[05_Career_Strategy_2026_2030]]"
   - "[[06_Embodied_AI_Software_Engineer_Learning_Curve]]"
   - "[[07_One_Year_Interview_Roadmap_Embodied_AI_Software]]"
+  - "[[08_One_Year_Roadmap_LLM_Inference_to_Robot_Runtime]]"
+  - "[[09_One_Year_Robot_Learning_Full_Stack_Roadmap]]"
 ---
 
 # 2026 Annual Plan
 
-> 这份文件回答的问题：**今年我具体怎么走？**
-> 更新频率：月级（每月复盘后微调下个月 Phase 细节）；写于 2026-05-17。
+> 这份文件回答的问题：**2026 年我具体怎么走？**
+> 更新频率：月级；当前权威修订时间：2026-06-01。
 
-## 2026 年定位（一句话）
+## 2026 年定位
 
-> 把通用机器人 + AI + Robot Learning 三大 Pillar 都推到 **L1 概念深度**，至少 1-2 条到 **L2 实现层**，并在仿真里跑出至少一个 anchor 项目原型作为整合验证。
+短期职业目标：
 
-## 上半年（H1）实际回顾
+```text
+具身智能系统构建者
+-> 具身智能软件 / Robot Learning Infra / Policy Runtime / 机器人全栈工程入口
+```
 
-| 阶段 | 时间 | 实际做了什么 | Level 变化 |
+长期能力目标：
+
+```text
+机器人全栈工程师 / roboticist
+-> 机器人本体 + 感知 + 控制 + 学习 + runtime + 数据闭环 + 语言智能
+```
+
+当前执行主线：
+
+```text
+Robot Learning Full-Stack 主线
++ LLM / AI Infra / Runtime 支撑线
+```
+
+执行含义：
+
+- `Robot Learning Full-Stack` 是 2026-06 起的上位主线。
+- `具身智能软件 / Robot Learning Infra / Policy Runtime` 是最现实第一跳。
+- `深度强化学习算法 / Robot Learning` 是长期算法目标，需要通过仿真、控制、RL/IL、runtime 和项目证据逐步逼近。
+- `LLM / 多模态 / AI Infra` 不再作为独立转岗主叙事，而是作为 VLA、policy runtime、edge inference、语言任务分解和多机器人协作的支撑能力。
+
+## 学习执行原则
+
+- 每个阶段只有一个主课程或主实验，不同时完整刷多门课。
+- 每周至少留下一个可检查证据：笔记、代码、曲线、实验表、失败分析或 JD mapping。
+- 论文只作为当前阶段解释器，不随机追热点。
+- 实验优先形成闭环：`sim/task -> obs/action -> policy -> train/eval -> log/replay -> runtime -> failure analysis`。
+- 月末复盘必须对照月计划，决定下月是继续、降难还是换入口。
+
+## 上半年实际回顾
+
+| 阶段 | 时间 | 实际做了什么 | 结论 |
 |---|---|---|---|
-| 早期 | 2026-03 ~ 2026-04 | 在原 LLM / AI Infra 学习框架下推进 micrograd / makemore 基础线 | autograd / 训练 loop: L0 → L1 |
-| 中期 | 2026-04 ~ 2026-05 | nanoGPT 主线推进；attention / transformer 收口中 | Transformer: L0 → L1 |
-| 转向 | 2026-04-27 | 目标升级：从单一 LLM 工程线叙事 → 具身智能主线 | 方向重定义 |
-| 收敛 | 2026-05-17 | 仓库梳理 + 目标再确认：通用机器人 + 三大 Pillar | Roadmap reframe |
+| LLM 基础 | 2026-03 ~ 2026-04 | micrograd / makemore / Transformer 基础线推进 | autograd、训练 loop、token 概念有了底座 |
+| nanoGPT | 2026-04 ~ 2026-05 | attention、Transformer block、训练/生成主线推进 | LLM 主链路接近收口，但还需要结构化总结 |
+| 方向重定义 | 2026-04-27 | 从单一 LLM 工程叙事转向具身智能 / 机器人系统 | 长期目标升级 |
+| 职业路径试探 | 2026-05-27 | 曾把 LLM Inference Infra 设为职业第一跳 | 该路径现实但会弱化机器人主线 |
+| Unitree JD 校准 | 2026-06-01 | 重新对齐具身智能软件 / Robot Learning Infra / Policy Runtime | 当前权威路线切回 Robot Learning Full-Stack |
 
-**H1 实际投入**：节奏不稳，过去几周低于预算。H2 起回到 8-14h/周稳定节奏。
+H1 的价值不是“已经学完”，而是把语言模型基础、系统工程背景和机器人长期目标重新放到同一条路线里。
 
-## 下半年（H2）：Phase A-F 总览
+## 2026 H2 月度路线
 
-| Phase | 时间窗 | 主推 | 副推 | Month-end Deliverable |
+| 月份 | 主模块 | 主资源 | 阶段产出 | 对短期职业目标的帮助 |
 |---|---|---|---|---|
-| **A** | 5/18 - 5/31 | LLM 收口（nanoGPT） | CS336 结构对照 | nanoGPT 总结 + GPT 到 runtime 桥接 |
-| **B** | 6/1 - 7/31 | Modern Robotics 大部分内容（Ch.1-6） | CS231n/CV 入口 + MuJoCo step loop + CS336 runtime awareness | MR 笔记 + 机器人系统图 + MuJoCo 最小循环 |
-| **C** | 8/1 - 8/31 | MR 动力学 / 控制入口 | RL 基本概念 + trajectory schema | 控制闭环 + RL/IL 概念地图 |
-| **D** | 9/1 - 10/31 | IL 概念 + MuJoCo 仿真闭环 + BC 第一次动手 | ACT/Diffusion paper + eval harness | classic-control demo + BC train/eval |
-| **E** | 11/1 - 11/30 | 算法产品化 + runtime / TensorRT / 量化入口 | VLA awareness + robustness | policy runtime + latency report + fault tests |
-| **F** | 12/1 - 12/31 | 作品化 + 年终复盘 | 多传感器融合入口 + 2027 真机/edge plan | mini-stack README + Capability Map v1 + 2027 plan |
+| 2026-06 | M1：路线切换 + 最小 RL 闭环 | nanoGPT、Gymnasium、Stable-Baselines3 | `nanoGPT 主链路总结 v0`、`Robot Learning Full-Stack 路线 v0`、`MuJoCo PPO report v0` | 证明能把 LLM 基础收口，并启动 policy 训练-评估闭环 |
+| 2026-07 | M2：机器人本体语言 I | Modern Robotics Ch.1-3 | `frame / SO(3) / SE(3) / configuration notes`、`state-action schema v0` | 看懂机器人状态、坐标系和动作表达 |
+| 2026-08 | M3：机器人本体语言 II | Modern Robotics Ch.4-6 | `FK/IK/Jacobian demo`、`MR notes v0` | 具备和机器人算法/控制同学沟通的基础语言 |
+| 2026-09 | M4：控制 / 动力学入口 | MIT Underactuated 精选、MuJoCo control | `control baseline note`、`latency/jitter/robustness note` | 支撑 policy runtime 的稳定性、低延迟和故障分析 |
+| 2026-10 | M5：视觉感知入口 | CS231n 精选 | `robot perception map`、`vision data pipeline note` | 理解视觉 observation 如何进入决策和 policy |
+| 2026-11 | M6：感知到 runtime 桥接 | CS231n 精选、policy runtime notes | `perception-to-policy runtime bridge`、`dataset schema v0` | 把感知、数据格式、推理延迟和机器人系统连接起来 |
+| 2026-12 | M7：Robot Learning 入口 + 年终作品化 | CS285 精选、BC/PPO/DAgger | `BC/PPO experiment v0`、`policy runtime mini-stack draft`、`2027 plan` | 形成可展示的 robot learning infra / policy runtime 证据 |
 
-## 每个 Phase 详细
+## 2026 年度关键产出
 
-### Phase A（5/18 - 5/31，2 周）—— LLM 收口
+- [ ] `nanoGPT 主链路总结 v0`：讲清 `token -> embedding -> attention -> block -> logits -> loss/generate`。
+- [ ] `Robot Learning Full-Stack 路线 v0`：明确课程、论文、硬件、实验和 JD 映射。
+- [ ] `MuJoCo/Gymnasium + PPO 最小闭环 report v0`：包含训练脚本、reward 曲线、eval 和失败样例。
+- [ ] `state/action/trajectory schema v0`：用机器人系统语言描述 obs/action/reward/log。
+- [ ] `Modern Robotics notes v0`：frame、pose、twist、FK、IK、Jacobian。
+- [ ] `control baseline note`：PD/LQR/MPC awareness、latency、jitter、stability。
+- [ ] `robot perception map`：camera/depth、CNN/ViT、detection/segmentation、数据格式和延迟。
+- [ ] `dataset schema + eval harness v0`：episode metadata、seed、metrics、replay、failure category。
+- [ ] `BC/PPO experiment v0`：至少一个可复现实验和对比报告。
+- [ ] `policy runtime mini-stack draft`：policy load、obs preprocessing、action clipping、timeout、logging、replay。
+- [ ] `JD mapping v1`：把具身智能软件 / Robot Learning Infra / Policy Runtime 要求映射到项目证据。
+- [ ] `2027 plan`：决定是否进入更强 Robot Learning、ROS2/real robot、Isaac Lab/VLA 或岗位测试阶段。
 
-**主推：LLM phase 1 收口到 5 月底**
-- W21（5/18-24）：Zero-to-Hero 收口（nanoGPT + tokenizer + GPT-2），写 nanoGPT 第一轮总结
-- W22（5/25-31）：写 `makemore → nanoGPT → inference/runtime` 映射；确认 Modern Robotics / CS231n / CS336 的进入边界
+## 2026 年终自检标准
 
-**副推：CS336 只做结构对照**（tokenization / Transformer / training loop / deployment 的位置）
+到 2026-12-31，如果下面这些基本成立，说明 2026 走得稳：
 
-**Deliverable**：
-- `LLM phase 1 总结.md`（nanogpt-from-scratch/ 下）
-- `makemore -> nanoGPT -> inference_runtime 映射`
-- `具身智能软件岗位能力图`
-
-**Level 目标**：Transformer L1→L2 / LLM runtime awareness L0→L1
-
-### Phase B（6 月 - 7 月，8 周）—— MR 大部分内容 + AI fundamentals / perception 入口
-
-**主推：Modern Robotics Ch.1-6**
-- 6 月：Ch.1-3，configuration space、刚体运动、SO(3) / SE(3)
-- 7 月：Ch.4-6，FK / Jacobian / IK
-- 第一轮不追完整证明，先建立机器人系统底层语言
-
-**副推 1：MuJoCo 最小软件循环**
-- 安装 + hello-world
-- Python step loop
-- 读 `qpos/qvel`
-- 写 `state/action schema v0`
-- 写 `episode_logger v0`
-
-**副推 2：CS231n / CV 入口**
-- 只看视觉任务形态：classification / detection / segmentation
-- OpenCV 读图、相机、简单检测
-- 目标是理解视觉 observation 如何进入机器人系统，不完整刷 CS231n
-
-**副推 3：CS336 runtime awareness**
-- deployment / inference / runtime 概念位置
-- 不做完整 assignment，不做 distributed training project
-
-**Deliverable**：MR Ch.1-6 笔记 + 机器人系统图 v0 + MuJoCo step loop + CV hello-world
-
-**Level 目标**：刚体表示 / FK / IK / Jacobian L0→L1+ / MuJoCo L0→L1 / OpenCV L0→L1
-
-### Phase C（8 月，4 周）—— MR 动力学/控制 + RL 概念
-
-**主推**：MR 动力学 / 轨迹 / 控制入口
-
-**副推 1**：MuJoCo 控制闭环
-- joint PD control
-- optional simple IK
-- `trajectory schema v1`
-- `metrics v0`
-
-**副推 2**：RL / IL 概念地图
-- MDP / policy / reward / value
-- Q-learning / PPO 的位置
-- BC / DAgger / covariate shift 预热
-
-**Deliverable**：控制入口笔记 + MuJoCo 控制实验 + RL/IL 概念地图 + trajectory schema
-
-**Level 目标**：动力学/控制 L0→L1 / RL&IL 概念 L0→L1 / data schema L0→L1
-
-### Phase D（9 月 - 10 月，8 周）—— IL + MuJoCo 仿真闭环
-
-**主推 1：classic-control demo**
-- reach / push / pick-place 三选一，默认从 reach 或 push 起步
-- 一键跑 N 个 episode
-- 输出 eval report、failure categories、sample videos
-- replay 失败 episode
-
-**主推 2：Behavior Cloning 第一次动手**
-- scripted policy 或 teleop 采数据
-- `BC dataset v0`
-- train/eval pipeline
-- `policy_runner v0`
-- 同一套 eval harness 对比 classic-control baseline 和 BC policy
-
-**副推**：ACT / Diffusion Policy 论文精读，只看 observation / action / data / eval / system structure
-
-**Deliverable**：classic-control demo + eval harness + BC train/eval + Robot Learning 第一次动手总结
-
-**Level 目标**：MuJoCo L1→L2- / BC L0→L1+ / eval harness L0→L1+
-
-### Phase E（11 月，4 周）—— 算法产品化 + Runtime / TensorRT / 量化入口
-
-**主推：policy runtime**
-- `policy_runtime v0`
-- latency report：inference latency / simulation step latency / end-to-end latency / jitter
-- timeout / action clipping / fallback / watchdog
-
-**副推 1：模型部署与优化 awareness**
-- ONNX export
-- TensorRT 基础概念
-- quantization awareness：FP16 / INT8
-- 如果环境允许，做一个最小 ONNX/TensorRT latency demo；如果环境不允许，写清理论路径和缺口
-
-**副推 2：VLA awareness**
-- RT-2 / OpenVLA / PI-0 / Octo 中选 2-3 个建立地图
-- 不做完整 VLA 训练
-
-**Deliverable**：policy runtime + latency report + fault injection tests + VLA 概念笔记
-
-**Level 目标**：runtime L0→L1+ / TensorRT&量化 awareness L0→L1 / robustness L0→L1
-
-### Phase F（12 月，4 周）—— 作品化 + 多传感器融合入口 + 年终复盘
-
-**主推：Embodied AI mini-stack 作品化**
-- README
-- 架构图
-- demo video
-- eval report
-- failure analysis
-- JD mapping
-
-**副推：多传感器融合入口**
-- 今年不追完整 SLAM / EKF / factor graph
-- 只建立软件系统视角：time synchronization、coordinate frames、calibration、noise、missing data
-- 最小实践：camera frame + qpos/qvel 同步记录，在 replay 中同时展示视觉帧和 robot state
-
-**Deliverable**：Embodied AI mini-stack README + Capability Map v1 + sensor fusion note v0 + 2027 real-robot / edge-deployment plan
-
-**Level 目标**：mini-stack L1+ / sensor fusion awareness L0→L1 / career readiness 进入 2027 H1
-
-
-## 年度产出清单（年底应该有的可见证据）
-
-- [ ] nanoGPT 第一轮总结（Phase A）
-- [ ] `makemore -> nanoGPT -> inference_runtime` 映射（Phase A）
-- [ ] Modern Robotics Ch.1-6 + 动力学/控制入口笔记（Phase B-C）
-- [ ] 机器人系统图：`sensor -> state -> perception -> decision -> action -> log -> train -> eval`（Phase B）
-- [ ] MuJoCo step loop + `episode_logger v0` + `state/action schema v0`（Phase B）
-- [ ] CV / CS231n perception 入口笔记（Phase B）
-- [ ] RL / IL 能力地图（Phase C）
-- [ ] `trajectory schema v1` + `metrics v0`（Phase C）
-- [ ] 1 篇 ACT / Diffusion Policy 精读笔记（Phase D）
-- [ ] reach / push / pick-place classic-control demo + eval harness（Phase D）
-- [ ] BC 训练 + eval 完整 pipeline + `policy_runner v0`（Phase D）
-- [ ] `policy_runtime v0` + latency report + fault injection tests（Phase E）
-- [ ] ONNX / TensorRT / 量化 awareness 笔记或最小验证（Phase E）
-- [ ] VLA Models 概念笔记（Phase E）
-- [ ] 多传感器融合入口笔记：time sync / frame / calibration / missing data（Phase F）
-- [ ] Embodied AI mini-stack README + demo video + JD mapping（Phase F）
-- [ ] Capability Map v1（Phase F）
-- [ ] 年终复盘 + 2027 real-robot / edge-deployment plan（Phase F）
-
-## 年终自检标准
-
-到 2026-12-31，如果下面这些基本成立，说明这一年走得稳：
-
-- [ ] 三大 Pillar 都至少到 L1（概念深度）
-- [ ] 至少 1-2 条 Pillar 子方向到 L2-（实现层），重点候选：MuJoCo / BC / data loop / eval harness
-- [ ] 有一个端到端 `Embodied AI mini-stack` 能 demo 给别人看
-- [ ] 我能讲清"通用机器人由哪些能力组成、我当前在哪、下一年要去哪"
-- [ ] 我能讲清具身智能软件工程师 JD 四块：算法产品化、模型部署优化、数据闭环、鲁棒性可靠性
-- [ ] 对 2027 方向有清楚选择（不是泛泛"继续学"）
-- [ ] 实物平台是否入手有明确决定
+- [ ] 能讲清 robot learning 闭环：`obs -> action -> reward -> policy -> eval -> log/replay -> data loop`。
+- [ ] 能讲清机器人状态、坐标系、FK/IK/Jacobian 在系统中的作用。
+- [ ] 能跑通至少一个 Gymnasium/MuJoCo policy 训练-评估闭环，并解释 reward 曲线和失败样例。
+- [ ] 能解释视觉 observation 如何变成 policy 输入，以及 camera/depth/calibration/data format 的位置。
+- [ ] 能解释 policy runtime 的关键工程问题：latency、timeout、action clipping、fallback、watchdog、logging。
+- [ ] 能说明 LLM / VLA / 多模态能力如何作为机器人语言智能和高层任务分解模块接入，而不是替代机器人系统。
+- [ ] 有一套可展示材料：README、实验脚本、指标图、失败分析、JD mapping。
 
 ## 风险与降难策略
 
 | 风险 | 降难策略 |
 |---|---|
-| MR 卡在 SE(3) / 李代数推导 | 第一遍不死磕证明，先建直觉；Ch.4-6 卡的地方留 issue，第二遍再补 |
-| MuJoCo 环境问题 | 本地 Mac + CPU server 双备份；不要等到 Phase B 才装 |
-| Phase D classic-control demo 做不出 | 降难：从 reach 起步，不急着 pick-place |
-| Phase D BC 训不出来 | 降难：从 LeRobot 的现成 example 改一改先跑通 |
-| TensorRT / 量化环境卡住 | 降难：先做 ONNX export + latency measurement，TensorRT 写清理论路径和环境缺口 |
-| 多传感器融合扩散成 SLAM 主线 | 降难：今年只做 time sync / frame / calibration / missing data awareness |
-| Phase F mini-stack 包装不完整 | 砍掉真机，只保留 sim + data + eval + runtime + replay |
-| 时间预算长期低于 50% | 触发月计划复审，砍副推线 |
-| LLM 分心想继续深 | 6 月起 LLM 降为副推；不再主导日程 |
+| 课程开太多 | 每月只保一个主课程，其他只做支撑材料 |
+| nanoGPT 收尾拖太久 | 只保主链路总结，不继续展开大规模 LLM 论文 |
+| MuJoCo/PPO 环境卡住 | 先用 Gymnasium classic-control 或 CPU MuJoCo，留下最小可跑证据 |
+| Modern Robotics 数学推导卡住 | 第一遍不死磕证明，先建立系统直觉和代码 demo |
+| CS231n 扩散成纯 CV 路线 | 只看机器人 observation 需要的视觉表示、数据格式和延迟问题 |
+| Robot Learning 论文读散 | 每篇只回答 task、obs/action、policy/data/loss/reward、eval/runtime |
+| AI Infra 抢回主线 | 只保留与 VLA / policy runtime / edge inference 相关的部分 |
+| 机器人目标变成口号 | 每月必须留下一个机器人系统或 robot learning 证据 |
 
 ## 与 Roadmap 其他文件的关系
 
-- [[00_North_Star]]：解释**为什么**走这条路
-- [[01_Learning_Philosophy]]：解释**怎么学**
-- [[02_Capability_Map]]：解释**学什么 / 当前 Level**
-- [[05_Career_Strategy_2026_2030]]：解释**职业上怎么在 3-5 年内决策**
-- [[06_Embodied_AI_Software_Engineer_Learning_Curve]]：解释**按具身智能软件工程师岗位画像怎么安排学习曲线**
-- [[07_One_Year_Interview_Roadmap_Embodied_AI_Software]]：解释**一年内怎么准备到可以认真聊相关岗位**
-- 本文件：解释**今年怎么排时间**
-- `07_MonthlyPlans/2026/`：每月细节（按 Phase 拆解）
-- `02_WeeklyNotes/`：每周执行
-- `01_DailyNotes/`：每日执行
+- [[00_North_Star]]：解释**为什么**走机器人全栈 / roboticist 方向。
+- [[01_Learning_Philosophy]]：解释**怎么学**。
+- [[02_Capability_Map]]：解释**学什么 / 当前 Level**。
+- [[05_Career_Strategy_2026_2030]]：解释**职业上怎么在 3-5 年内决策**。
+- [[06_Embodied_AI_Software_Engineer_Learning_Curve]]：保留具身智能软件工程师能力曲线。
+- [[07_One_Year_Interview_Roadmap_Embodied_AI_Software]]：保留岗位准备材料。
+- [[08_One_Year_Roadmap_LLM_Inference_to_Robot_Runtime]]：作为 LLM / AI Infra / runtime 支撑线，不作为当前上位主线。
+- [[09_One_Year_Robot_Learning_Full_Stack_Roadmap]]：当前权威的一年 Robot Learning Full-Stack 路线。
+- 本文件：解释**2026 年怎么排时间和验收产出**。
+- `07_MonthlyPlans/2026/`：每月执行细节。
+- `02_WeeklyNotes/`：每周执行。
+- `01_DailyNotes/`：每日执行。

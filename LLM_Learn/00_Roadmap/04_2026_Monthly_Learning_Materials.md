@@ -1,203 +1,122 @@
 ---
 type: roadmap_material_index
-year: 2026
-target_role: Embodied AI / Robotics Systems Builder
+date_range: 2026-06 ~ 2027-05
+target_role: Robot Learning Full-Stack -> Robot Full-Stack Engineer / Roboticist
 linked_roadmap: [[03_Annual_Plan_2026]]
-updated: 2026-05-18
+active_roadmap: [[09_One_Year_Robot_Learning_Full_Stack_Roadmap]]
+updated: 2026-06-01
 ---
 
-# 2026 Monthly Learning Materials
+# 2026-2027 Monthly Learning Materials
 
-> 这份文件回答的问题：**2026 年剩余每个月具体学什么、看什么材料、产出什么？**
-> 使用方式：每月计划负责节奏；本文件负责把课程、文档、论文和项目内容展开成可执行学习清单。
+> 这份文件回答的问题：**每个月具体学什么、看什么材料、产出什么？**
+> 使用方式：月计划负责节奏；本文件负责把课程、文档、论文和项目内容展开成可执行学习清单。
 
 ## 总原则
 
-- 2026 H2 主线不是“同时完整学完多门课”，而是围绕一个可见 demo 建能力：`Modern Robotics -> MuJoCo -> Robot Learning -> manipulation demo`。
-- `CS231n` 是视觉辅助线，只取与机器人视觉相关的核心内容。
-- `CS336` 是语言智能 / runtime 支撑线，只做精选，不完整做 project。
-- 每个月都必须有可见产物：笔记、代码、实验记录、视频、demo 或决策文档。
+- 当前主线是 `Robot Learning Full-Stack / Policy Runtime / Robot Learning Infra`。
+- `LLM / AI Infra / Runtime` 是 VLA、policy runtime、edge inference、语言任务分解和多机器人协作的支撑线。
+- 每个月只保一个主课程或主实验，不同时完整刷多门课。
+- 每个月必须有一个可见产物：笔记、代码、曲线、实验报告、failure analysis、demo 或 JD mapping。
+- 论文只作为当前阶段解释器，必须回答 task、obs/action、policy/data/loss/reward、eval/runtime。
 
-## 材料池
+## 月度材料优先级
 
-| 材料 | 用途 | 今年使用方式 |
-|---|---|---|
-| [Karpathy nn-zero-to-hero](https://github.com/karpathy/nn-zero-to-hero) | GPT / training loop / tokenizer / nanoGPT 收口 | 5-6 月收口，不再无限延展 |
-| [Stanford CS336: Language Modeling from Scratch](https://cs336.stanford.edu/) | 语言模型从数据、tokenizer、Transformer、训练到评估的系统视角 | 6 月和 11 月精选；不完整做作业 |
-| [Modern Robotics official materials](https://hades.mech.northwestern.edu/index.php/Modern_Robotics) | Classical Robotics 主教材与视频入口 | 6-8 月主教材 |
-| [Modern Robotics video supplements](https://modernrobotics.northwestern.edu/) | 配合 MR 章节建立运动学 / 动力学直觉 | 6-8 月配套看 |
-| [MuJoCo](https://mujoco.org/) / [MuJoCo Python docs](https://mujoco.readthedocs.io/en/stable/python.html) | 仿真与控制主环境 | 7-11 月主实验环境 |
-| [Stanford CS231n 2026](https://cs231n.stanford.edu/2026/index.html) | 深度视觉基础、分类、检测、训练工程直觉 | 7-10 月精选视觉相关内容 |
-| [OpenCV Get Started](https://opencv.org/get-started/) | 图像读取、相机、tracking、pose 入口 | 7-10 月工具线 |
-| [Sutton & Barto: Reinforcement Learning](https://incompleteideas.net/book/the-book-2nd.html) | RL 概念底座 | 8 月只读 MDP / value / policy 基本章节 |
-| [OpenAI Spinning Up](https://spinningup.openai.com/en/latest/spinningup/spinningup.html) | Deep RL 术语、算法地图、debug 直觉 | 8 月精选概念，不完整跑算法 |
-| [LeRobot GitHub](https://github.com/huggingface/lerobot) / [LeRobot docs](https://huggingface.co/docs/lerobot) | Robot Learning 数据、训练、eval pipeline | 10-12 月主框架候选 |
-| [LeRobot SO-100 docs](https://huggingface.co/docs/lerobot/so100) | 低成本实物机械臂入口 | 11-12 月做采购 / 实物决策参考 |
-| [Diffusion Policy](https://diffusion-policy.cs.columbia.edu/) | 现代 visuomotor policy 范式 | 9 月精读候选 |
-| [ACT paper: Learning Fine-Grained Bimanual Manipulation](https://arxiv.org/abs/2304.13705) | Imitation Learning / action chunking 入口 | 9 月精读候选 |
-| [OpenVLA GitHub](https://github.com/openvla/openvla) | VLA 概念与系统规模认知 | 11 月 awareness |
-| [PI-0 paper](https://www.physicalintelligence.company/download/pi0.pdf) | robot foundation model 概念 | 11 月 awareness |
+| 月份      | 主模块                  | 主材料                                  | 论文 / 文档                                      | 阶段产出                                                      |
+| ------- | -------------------- | ------------------------------------ | -------------------------------------------- | --------------------------------------------------------- |
+| 2026-06 | M1：路线切换 + 最小 RL 闭环   | nanoGPT、Gymnasium、Stable-Baselines3  | PPO / DAgger 轻读                              | `nanoGPT 主链路总结 v0`、`MuJoCo PPO report v0`                 |
+| 2026-07 | M2：机器人本体语言 I         | Modern Robotics Ch.1-3               | MR video / book notes                        | `frame/SO(3)/SE(3) notes`、`state-action schema v0`        |
+| 2026-08 | M3：机器人本体语言 II        | Modern Robotics Ch.4-6               | kinematics / Jacobian examples               | `FK/IK/Jacobian demo`、`MR notes v0`                       |
+| 2026-09 | M4：控制 / 动力学入口        | MIT Underactuated 精选、MuJoCo control  | LQR / MPC / legged control overview          | `control baseline note`、`latency/jitter/robustness note`  |
+| 2026-10 | M5：视觉感知入口            | CS231n 精选、OpenCV                     | ResNet / ViT / detection / segmentation      | `robot perception map`、`vision data pipeline note`        |
+| 2026-11 | M6：感知到 runtime 桥接    | CS231n 精选、policy runtime notes       | CLIP / representation / VLA runtime overview | `perception-to-policy runtime bridge`、`dataset schema v0` |
+| 2026-12 | M7：Robot Learning 入口 | CS285 精选、BC/PPO/DAgger               | BC、DAgger、PPO、Diffusion Policy 轻读            | `BC/PPO experiment v0`、`policy runtime mini-stack draft`  |
+| 2027-01 | M8：Robot Learning 深化 | CS285 精选、SAC / offline RL            | SAC / offline RL / RMA                       | `BC/PPO/SAC experiment report`                            |
+| 2027-02 | M9：ROS2 / Runtime    | ROS2 官方教程、tf2、rosbag                 | policy deployment / runtime notes            | `policy runtime mini-stack v0`                            |
+| 2027-03 | M10：高保真仿真可行性         | Isaac Lab 官方入门、RTX/cloud feasibility | sim2real / domain randomization              | `Isaac Lab feasibility report`                            |
+| 2027-04 | M11：VLA / 具身智能       | MIT Robotic Manipulation 精选          | RT-1、RT-2、OpenVLA、ACT、Octo、π0                | `VLA -> policy runtime mapping`                           |
+| 2027-05 | M12：作品化 / JD 对齐      | 项目 README、benchmark、复现脚本             | 只补缺口论文                                       | `portfolio + JD mapping`                                  |
 
-## 本月目标：2026-05
-
-### 本月定位
-
-5 月是转向前的收口月：不急着全面切机器人，先把 `nanoGPT / GPT 基础理解` 压成自己的解释，再把 6-8 月机器人入口排稳。
-
-### 5/18-5/31 最低完成线
-
-- 完成 `nanoGPT 第一轮总结`。
-- 写出 `tokenizer / nanoGPT / GPT-2 主线映射`。
-- 写出 `makemore -> nanoGPT -> inference / runtime` 过渡说明。
-- 建立 `机器人 + CV + LLM` 并存路线说明。
-- 完成 `Modern Robotics` 入口材料确认，写出 6-8 月进入顺序草案。
-
-### 5 月学习材料
-
-- Karpathy `nn-zero-to-hero`：`nanogpt from scratch`、`tokenizer`、`GPT-2` 相关内容。
-- 本地已有项目笔记：`03_Projects/nanogpt-from-scratch/`、`03_Projects/makemore/`。
-- Modern Robotics：先只看目录、Ch.1-3 的问题域、视频入口。
-- CS336：只作为对照材料，看课程总结构和 tokenizer / Transformer / training loop 的位置，不做作业。
-
-### 5 月学习内容
-
-- GPT 最小训练闭环：`token ids -> embedding -> attention -> block -> logits -> loss`。
-- 生成闭环：`prompt -> tokenization -> model forward -> decode`。
-- 从 `makemore` 到 `nanoGPT` 的升级：从字符模型 / MLP 直觉升级到 Transformer block。
-- 从 `nanoGPT` 到 runtime 的桥：为什么未来会出现 KV cache、decode latency、inference/runtime 问题。
-- 机器人入口：MR、MuJoCo、CV、Robot Learning 各自解决什么问题。
-
-### 5 月不做
-
-- 不展开 vLLM / SGLang。
-- 不完整学 CS336。
-- 不提前做 MuJoCo 复杂 demo。
-- 不同时开太多机器人细分方向。
-
-## 2026-06：Phase B Robotics + AI Fundamentals 入口
+## 2026-06：M1 / 路线切换 + 最小 RL 闭环
 
 | 项 | 内容 |
 |---|---|
-| 月主题 | `nanoGPT 收口 + Modern Robotics Ch.1-3 入门` |
-| 主材料 | Karpathy nn-zero-to-hero；Modern Robotics Ch.1-3；MR video supplements；CS336 tokenizer / Transformer / training loop 结构对照 |
-| 学习内容 | nanoGPT 主链路；tokenizer 位置；configuration space；刚体运动；SO(3) / SE(3) / se(3) 直觉 |
-| 实验内容 | nanoGPT 只补小验证；MR 以推导、图解和 Python 小函数为主 |
-| 关键产出 | `LLM phase 1 总结`；`makemore -> nanoGPT -> inference_runtime 映射`；`Modern Robotics 学习地图`；`机器人系统总图 v0` |
-| 月末自检 | 能不用资料讲清 nanoGPT 训练 / 生成链路；能解释为什么刚体运动表示是机器人底层语言 |
+| 月主题 | `nanoGPT 收口 + Robot Learning Full-Stack 路线 + Gymnasium/MuJoCo PPO 最小闭环` |
+| 主材料 | nanoGPT 本地笔记；Gymnasium docs；Stable-Baselines3 PPO docs |
+| 学习内容 | LLM 主链路、obs/action/reward/policy/eval、训练曲线、seed、eval |
+| 实验内容 | `Pendulum` / `InvertedPendulum` PPO 训练；固定 seed eval；保存 reward 曲线 |
+| 关键产出 | `nanoGPT 主链路总结 v0`；`Robot Learning Full-Stack 路线 v0`；`MuJoCo PPO report v0` |
+| 月末自检 | 能讲清 LLM training/generate 主链路，也能讲清 robot learning 最小闭环 |
 
-## 2026-07：Phase B 运动学 + 仿真启动
+## 2026-07：M2 / Modern Robotics Ch.1-3
 
-| 项 | 内容 |
-|---|---|
-| 月主题 | `Modern Robotics 运动学 + MuJoCo 入门 + CV hello-world` |
-| 主材料 | Modern Robotics Ch.4-6；MR Course 2 / video supplements；MuJoCo docs；CS231n 视觉任务 overview；OpenCV Get Started |
-| 学习内容 | Forward Kinematics；PoE 公式；space/body frame；Jacobian；Inverse Kinematics；MuJoCo model/data/step loop；OpenCV 读图 / 相机 / 简单检测 |
-| 实验内容 | MuJoCo hello-world；加载机械臂模型；读取关节状态；简单 joint target / PD 控制；OpenCV hello-world |
-| 关键产出 | `MR Ch4-6 运动学笔记`；`PoE/Jacobian/IK 最小解释`；`MuJoCo Python hello-world 记录`；`机械臂关节控制最小实验` |
-| 月末自检 | 能讲清末端位姿如何由关节角决定；能在 MuJoCo 里跑 step loop 并控制一个关节 |
+| 项    | 内容                                                                               |
+| ---- | -------------------------------------------------------------------------------- |
+| 月主题  | `机器人本体语言：frame / pose / SO(3) / SE(3) / configuration`                           |
+| 主材料  | Modern Robotics Ch.1-3；Lynch videos                                              |
+| 学习内容 | coordinate frame、rotation、rigid motion、homogeneous transform、configuration space |
+| 实验内容 | 用 Python 写最小 SE(3) transform demo；记录 state/action schema                         |
+| 关键产出 | `frame/SO(3)/SE(3) notes`；`state-action schema v0`                               |
+| 月末自检 | 能看懂机器人状态和坐标系，不再把 action 当成抽象 label                                               |
 
-## 2026-08：Phase C 动力学 / 控制 + Robot Learning 地图
-
-| 项 | 内容 |
-|---|---|
-| 月主题 | `MR 动力学 / 控制入口 + MuJoCo 单臂控制 + RL 概念地图` |
-| 主材料 | Modern Robotics Ch.8/9/11 选读；MuJoCo Python docs；Sutton & Barto Ch.3-6 选读；OpenAI Spinning Up overview |
-| 学习内容 | 动力学直觉；轨迹生成；控制器边界；MDP / value / policy；Q-learning / policy gradient / PPO 的位置 |
-| 实验内容 | MuJoCo 关节 PD 控制；末端目标控制；FK / IK / controller / simulation step loop 关系图 |
-| 关键产出 | `MR 动力学 / 控制入口笔记`；`MuJoCo 单臂控制最小实验`；`Robot Learning 概念地图 v1`；`9 月 demo 任务定义` |
-| 月末自检 | 能讲清运动学、动力学、控制的边界；能定义 9 月 classic-control demo 的最小闭环 |
-
-## 2026-09：Phase D 仿真闭环 v1 + IL 概念
+## 2026-08：M3 / Modern Robotics Ch.4-6
 
 | 项 | 内容 |
 |---|---|
-| 月主题 | `MuJoCo pick-place / reach 经典控制 demo + Imitation Learning 概念入口` |
-| 主材料 | MuJoCo docs；Modern Robotics Ch.11/12 选读；ACT paper；Diffusion Policy project/paper；OpenCV tracking / pose 入口 |
-| 学习内容 | classic control demo 系统拆解；状态、目标、控制、成功判据、失败模式；BC / DAgger；data collection；eval；ACT / Diffusion Policy 的问题定义 |
-| 实验内容 | MuJoCo 机械臂 + 桌面 + 物体；reach / push / pick-place 三选一；目标位置 -> IK -> 控制器 -> 仿真结果 |
-| 关键产出 | `MuJoCo pick-place/reach 经典控制 demo`；`demo 系统拆解与失败模式记录`；`IL 概念笔记`；`ACT 或 Diffusion Policy 精读笔记` |
-| 月末自检 | 有一个可复现仿真 demo；能说清 classic control demo 和后续 BC demo 的边界 |
+| 月主题 | `FK / IK / Jacobian` |
+| 主材料 | Modern Robotics Ch.4-6；MR code examples |
+| 学习内容 | product of exponentials、forward kinematics、Jacobian、inverse kinematics |
+| 实验内容 | 做一个简化机械臂 FK/IK/Jacobian demo |
+| 关键产出 | `FK/IK/Jacobian demo`；`MR notes v0` |
+| 月末自检 | 能解释 policy 输出的动作如何作用到机器人关节/末端执行器 |
 
-## 2026-10：Phase D Robot Learning 第一次动手
-
-| 项 | 内容 |
-|---|---|
-| 月主题 | `Behavior Cloning 最小项目（LeRobot + MuJoCo）` |
-| 主材料 | LeRobot docs / examples；MuJoCo docs；CS231n 训练工程与视觉模型精选；OpenCV camera / tracking / pose |
-| 学习内容 | dataset format；teleop / scripted policy；Behavior Cloning；policy train/eval；success rate；failure mode；视觉输入与状态输入的取舍 |
-| 实验内容 | 选定 reach / push / pick-place；scripted 或 teleop 采少量数据；训练 BC policy；仿真 eval；保存视频和 metrics |
-| 关键产出 | `BC 数据采集记录`；`BC 训练脚本/配置`；`BC eval 记录与视频`；`LeRobot/MuJoCo pipeline 笔记` |
-| 月末自检 | 跑通第一个 Robot Learning 训练 / eval 闭环；能解释 BC 为什么失败以及数据分布如何影响 policy |
-
-## 2026-11：Phase E 算法产品化 + runtime / TensorRT / 量化入口
+## 2026-09：M4 / 控制与动力学入口
 
 | 项 | 内容 |
 |---|---|
-| 月主题 | `policy runtime + latency / fallback + ONNX / TensorRT / 量化入口` |
-| 主材料 | LeRobot；MuJoCo；ONNX / TensorRT 入门材料；OpenVLA；PI-0；RT-2；CS336 deployment/inference/runtime 精选 |
-| 学习内容 | policy runtime；latency budget；TTFT / TPOT；ONNX export；TensorRT 基础概念；FP16 / INT8 量化 awareness；VLM / VLA / LLM 的边界 |
-| 实验内容 | 基于 10 月 pipeline 写 `policy_runtime v0`；记录 inference / sim step / end-to-end latency；做最小 ONNX export + latency measurement；实现 observation missing / policy timeout / action out-of-bound 处理 |
-| 关键产出 | `policy_runtime v0`；`latency_report v0`；`fault_injection_tests v0`；`ONNX / TensorRT / quantization awareness note`；`VLA 概念笔记` |
-| 月末自检 | 能把 Robot Learning demo 讲成可部署软件组件；能解释 TensorRT / 量化解决什么问题、不解决什么问题；知道 VLA 今年只需要 awareness 到什么程度 |
+| 月主题 | `control baseline + runtime stability` |
+| 主材料 | MIT Underactuated 精选；MuJoCo control docs |
+| 学习内容 | PD、LQR、MPC awareness、stability、latency、jitter、action clipping |
+| 实验内容 | MuJoCo 简单控制 baseline；记录 latency/jitter/failure case |
+| 关键产出 | `control baseline note`；`latency/jitter/robustness note` |
+| 月末自检 | 能解释为什么 policy runtime 不能只看 reward，还要看稳定性和故障处理 |
 
-## 2026-12：Phase F 作品化 + 多传感器融合入口 + 2027 决策
+## 2026-10：M5 / 视觉感知入口
 
 | 项 | 内容 |
 |---|---|
-| 月主题 | `Embodied AI mini-stack README + 多传感器融合入口 + Capability Map v1` |
-| 主材料 | 全年笔记、demo、代码、视频、实验记录；LeRobot SO-100/SO-101 文档；2027 候选材料清单 |
-| 学习内容 | 能力地图重打 Level；全年 deliverable 索引；JD mapping；多传感器融合基本问题：time sync、coordinate frame、calibration、noise、missing data；2027 真机 / ROS2 / edge deployment 计划 |
-| 实验内容 | 补齐最小 demo 复现实验；整理视频和 metrics；整理 replay / eval / failure analysis；如有 camera 数据，做 camera frame + qpos/qvel 同步记录 |
-| 关键产出 | `Embodied AI mini-stack README`；`Capability Map v1`；`2026 年终复盘`；`2026 deliverable 索引`；`sensor_fusion_note v0`；`JD mapping`；`2027 方向草案`；`实物平台决策记录` |
-| 月末自检 | 能用 mini-stack 解释具身智能软件工程师 JD 四块能力；能讲清多传感器融合的基本问题但不扩散成完整 SLAM 主线；2027 不是泛泛继续学，而是有明确主攻方向 |
+| 月主题 | `robot perception map` |
+| 主材料 | CS231n 精选；OpenCV；PyTorch vision examples |
+| 学习内容 | CNN、detection、segmentation、ViT、camera/depth、calibration、数据格式 |
+| 实验内容 | OpenCV 读图/视频；整理 vision observation 到 policy input 的数据结构 |
+| 关键产出 | `robot perception map`；`vision data pipeline note` |
+| 月末自检 | 能说明视觉模型输出如何进入机器人决策，而不是只会讲分类准确率 |
 
-## 课程取舍规则
+## 2026-11：M6 / 感知到 runtime 桥接
 
-### CS231n
+| 项 | 内容 |
+|---|---|
+| 月主题 | `perception-to-policy runtime bridge` |
+| 主材料 | CS231n 精选；CLIP / representation materials；policy runtime notes |
+| 学习内容 | representation、multi-modal input、preprocess、batch/latency、dataset schema |
+| 实验内容 | 设计 observation schema；记录 episode metadata；写 eval harness 草稿 |
+| 关键产出 | `perception-to-policy runtime bridge`；`dataset schema v0` |
+| 月末自检 | 能把感知、数据格式、推理延迟和 policy runtime 连起来 |
 
-今年使用方式：`精选 + 工具化`。
+## 2026-12：M7 / Robot Learning 入口 + 年终作品化
 
-- 必看：视觉任务总览、classification / detection / segmentation 的基本问题形态、CNN / ViT 直觉、训练与 fine-tuning 工程经验。
-- 可跳：完整大作业、无关视觉方向的深挖、和机器人 demo 无关的长尾 topic。
-- 落点：OpenCV / camera / detection / pose / tracking 能服务 manipulation demo。
+| 项 | 内容 |
+|---|---|
+| 月主题 | `BC/PPO experiment + policy runtime mini-stack draft` |
+| 主材料 | CS285 精选；Stable-Baselines3；LeRobot / robot learning examples |
+| 学习内容 | BC、DAgger、PPO、SAC 位置；eval harness；failure analysis |
+| 实验内容 | 至少一个 BC/PPO 小实验；保存 eval 表、失败样例和 replay |
+| 关键产出 | `BC/PPO experiment v0`；`policy runtime mini-stack draft`；`2027 plan` |
+| 月末自检 | 能用作品证明自己理解 robot learning infra / policy runtime，而不只是读过论文 |
 
-### CS336
+## 使用边界
 
-今年使用方式：`精选 + 桥接`。
-
-- 必看：tokenization、Transformer architecture、training loop、optimizer / eval / scaling 的基本结构。
-- 选看：inference / deployment / systems / distributed training。
-- 不做：完整 assignment、大规模训练、Triton / FlashAttention / 多机多卡 project。
-- 落点：帮助理解机器人语言智能未来需要的 runtime / inference / agent 底座。
-
-### Modern Robotics
-
-今年使用方式：`主教材 + 章节制推进`。
-
-- 6 月：Ch.1-3，系统总图与刚体运动表示。
-- 7 月：Ch.4-6，FK / Jacobian / IK。
-- 8 月：Ch.8/9/11 选读，动力学 / 轨迹 / 控制入口。
-- 9 月之后：按 demo 卡点回查，不再整本线性推进。
-
-### MuJoCo / LeRobot
-
-今年使用方式：`以 demo 驱动`。
-
-- MuJoCo：先本地 GUI + 远端 headless rollout，逐步从 step loop 到 control demo。
-- LeRobot：先作为 BC pipeline 框架候选，10 月开始真正使用。
-- 实物平台：11-12 月决策，只有仿真 demo 和 pipeline 跑通后再进入。
-
-## 年底量化目标
-
-最低目标：
-
-- 一个可复现的 MuJoCo manipulation demo。
-- 一个 Behavior Cloning 训练 / eval pipeline。
-- 一组可展示的视频 / metrics / 失败模式记录。
-- 一份 `Capability Map v1` 和 2027 方向草案。
-
-拉伸目标：
-
-- 用 SO-100 / SO-101 或等价低成本硬件完成一个最小实物 robot learning demo。
-- 任务不追复杂：`reach` / `push` / `pick-place` 三选一。
-- 重点不是成功率多高，而是完成 `采集 -> 训练 -> eval -> 部署/复现 -> 记录` 的闭环。
+- 不因为材料表存在就同时开所有课程；每月只执行当前月主线。
+- 不把 CS336 / vLLM / TensorRT-LLM 完全删除；它们进入 `LLM / AI Infra / Runtime 支撑线`，在 VLA、edge inference、policy runtime 需要时调用。
+- 不在第一月直接上 Isaac Lab；现有 V100 不适合作为现代 Isaac Sim/Lab 主力环境。
+- 不追论文数量；论文必须服务当前课程或实验。

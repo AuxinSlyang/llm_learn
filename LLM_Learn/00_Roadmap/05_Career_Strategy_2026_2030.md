@@ -2,8 +2,8 @@
 type: career_strategy
 time_window: 2026-2030
 current_role: DB / Storage Kernel Engineer
-target_direction: Embodied AI Software / Physical AI Systems / Robot Learning Infra
-updated: 2026-05-18
+target_direction: Embodied AI Systems Builder / Robot Full-Stack Engineer -> Roboticist
+updated: 2026-06-01
 linked_files:
   - "[[00_North_Star]]"
   - "[[02_Capability_Map]]"
@@ -11,6 +11,8 @@ linked_files:
   - "[[04_2026_Monthly_Learning_Materials]]"
   - "[[06_Embodied_AI_Software_Engineer_Learning_Curve]]"
   - "[[07_One_Year_Interview_Roadmap_Embodied_AI_Software]]"
+  - "[[08_One_Year_Roadmap_LLM_Inference_to_Robot_Runtime]]"
+  - "[[09_One_Year_Robot_Learning_Full_Stack_Roadmap]]"
 ---
 
 # Career Strategy 2026-2030
@@ -21,7 +23,7 @@ linked_files:
 
 ### 一句话结论
 
-当前不应该裸辞或立刻大跨度跳到纯机器人算法岗位；应该保留字节 DB / 存储内核岗位作为基本盘，同时用 2026-2028 年系统建立 `Embodied AI Software / Physical AI Systems / Robot Learning Infra` 方向的职业期权。
+当前不应该裸辞或立刻大跨度跳到纯机器人算法岗位；应该保留字节 DB / 存储内核岗位作为基本盘，同时用未来一年优先建立 `Robot Learning Full-Stack / Policy Runtime / Robot Learning Infra` 的作品证据。`LLM / AI Infra / Runtime` 继续保留，但定位为 VLA / robot policy runtime / edge inference 的支撑线。
 
 ### 当前状态
 
@@ -33,17 +35,20 @@ linked_files:
 
 ### 职业定位
 
-目标不是把自己清零成“纯机器人算法研究员”，而是迁移成：
+目标不是把自己清零成“纯机器人算法研究员”，也不是永久停在通用 LLM Infra，而是分两层迁移：
 
-> 懂 DB / 存储 / 分布式系统，理解 LLM / AI Infra，也能做 Robotics / Robot Learning demo 的 Physical AI Systems Builder。
+> 短期成为懂系统工程、机器人软件闭环和 policy runtime 的具身智能系统构建者；长期成长为能打通机器人本体、感知、控制、学习、runtime 和数据闭环的机器人全栈工程师 / roboticist。
 
 更具体的目标角色：
 
-- Robot Data Infra Engineer
-- Robot Learning Infra Engineer
-- Simulation / Evaluation Infra Engineer
-- AI Infra for Robotics Engineer
 - Embodied AI Software Engineer
+- Robot Full-Stack Engineer
+- Robot Learning Infra Engineer
+- Policy Runtime Engineer
+- Simulation / Evaluation Infra Engineer
+- Robot Data Infra Engineer
+- AI Infra for Robotics Engineer
+- GPU Performance / Model Runtime Engineer
 - Edge-Cloud Robotics Systems Engineer
 - Robotics Runtime / Observability Engineer
 - Physical AI Systems Engineer
@@ -83,9 +88,9 @@ linked_files:
 
 ### 核心策略
 
-> Robotics-first, Infra-shaped.
+> Robotics-first, systems-backed.
 
-学习上以 Robotics / Robot Learning 为主，因为这是当前最大认知缺口；职业上以 AI Infra / Robot Infra 作为切入点，因为这是当前 DB / 存储背景最能迁移的位置。
+未来一年以 Robot Learning Full-Stack 为上位主线，因为它最贴近长期目标和 Unitree JD；DB / 存储 / 系统工程背景不丢弃，而是迁移到 policy runtime、robot data/eval infra、低延迟链路、日志回放、可靠性和 edge inference 这些工程问题上。
 
 ### 时间预算
 
@@ -96,32 +101,42 @@ linked_files:
 - 每半年做一次职业路线复审。
 - 2028 年底前做第一次明确职业方向决策。
 
-## 2026：建立方向证据
+## 2026：建立 Robot Learning Full-Stack 职业证据
 
 ### 年度定位
 
-2026 年不做跳槽决策，做方向验证和能力打底。
+2026 年不做裸辞或激进跳槽决策，先用 H2 建立具身智能软件 / Robot Learning Infra / Policy Runtime 的能力和作品证据。
 
 核心问题：
 
-- 我是不是真的愿意长期学 Robotics，而不是只喜欢机器人叙事？
-- 我能否把 DB / 系统能力迁移到 Robot Learning / Robot Infra demo 中？
-- 我能否做出一个可展示、可复现的机器人学习闭环？
+- 我能否把 DB / 系统能力迁移到机器人中的 runtime、数据闭环、评测、日志、回放、可靠性和性能问题？
+- 我能否跑通最小 Gymnasium/MuJoCo policy 训练-评估闭环，而不是只读 robot learning 论文？
+- 我能否讲清机器人状态、动作、感知、policy、eval、runtime 的完整链路？
+- 我能否说明 LLM / VLA / AI Infra 如何支撑机器人语言智能和 policy runtime，而不是偏离机器人主线？
 
 ### 学习主线
 
-- Modern Robotics：建立机器人系统底层语言。
-- MuJoCo：建立仿真和控制直觉。
-- LeRobot / Robot Learning：跑通数据采集、训练、评测闭环。
-- AI Infra / LLM Infra：只学 inference / runtime / data / eval 中对机器人有用的部分。
+- nanoGPT 收口：保留语言智能基础，建立 `training -> generate -> runtime` 的系统直觉。
+- Gymnasium/MuJoCo + PPO：建立最小 policy 训练-评估闭环。
+- Modern Robotics：建立机器人本体、坐标系、运动学和控制语言。
+- CS231n / perception：理解视觉 observation 如何进入 policy。
+- CS285 / Robot Learning：进入 BC、DAgger、PPO、SAC 和 eval harness。
+- LLM / AI Infra / Runtime：只保留 VLA / policy runtime / edge inference 需要的支撑能力。
+- latency / throughput / jitter / resource usage：建立 policy runtime 与模型 runtime 的性能诊断语言。
+- GPU profiling / quantization / compile awareness：作为端侧模型 runtime 优化入口，不扩散成纯云端 LLM serving 主线。
 
 ### 关键产物
 
 - `nanoGPT 第一轮总结`
-- `Modern Robotics 学习地图`
-- `MuJoCo classic-control demo`
-- `Behavior Cloning train/eval pipeline`
-- `Robot Learning Infra demo v0`
+- `Robot Learning Full-Stack 路线 v0`
+- `MuJoCo/Gymnasium + PPO 最小闭环 report v0`
+- `state/action/trajectory schema v0`
+- `Modern Robotics notes v0`
+- `control baseline note`
+- `robot perception map`
+- `dataset schema + eval harness v0`
+- `BC/PPO experiment v0`
+- `policy runtime mini-stack draft`
 - `Capability Map v1`
 - `2027 方向草案`
 
@@ -129,10 +144,11 @@ linked_files:
 
 到 2026-12-31，满足以下条件则继续强化 Physical AI 方向：
 
-- 有一个可复现的 MuJoCo manipulation demo。
-- 有一个 BC 训练 / eval pipeline。
-- 能讲清机器人系统、Robot Learning、AI Infra 的关系。
-- 仍然对 Robotics 的慢反馈、工程现实和系统复杂性感兴趣。
+- 有一个可复现的 robot learning / policy runtime 小闭环。
+- 能讲清 obs/action/reward/policy/eval/log/replay/data loop 的主链路。
+- 能把 DB / 存储经验迁移到机器人 runtime、数据闭环、评测、可靠性和性能诊断。
+- 能讲清 LLM / VLA / AI Infra 如何支撑 robot policy runtime，而不是替代机器人系统。
+- 仍然愿意把机器人作为 3-5 年长期目标，而不是被通用 LLM Infra 完全吸走。
 
 如果没有满足：
 
@@ -140,15 +156,27 @@ linked_files:
 - 2027 上半年补一轮，但砍掉过多分支。
 - 保持 DB / AI Infra 方向作为主职业安全线。
 
-## 2027：做出交叉型作品
+## 2027：深化 Robot Learning / Runtime，并测试职业第一跳
 
 ### 年度定位
 
-2027 年从“学习型 demo”升级到“职业证据型项目”。
+2027 年的第一目标是拿到或至少认真测试具身智能软件 / Robot Learning Infra / Policy Runtime 方向机会；第二目标是根据作品证据决定是否继续强化 Robot Learning 算法、ROS2/real robot、Isaac Lab/VLA，或保留 AI Infra 作为工程支撑线。
 
-目标不是证明自己会一点机器人，而是证明自己能做：
+### 2027-03 第一轮硬检查点
 
-> Robot Data / Simulation / Evaluation / Learning Infra。
+2027-03 设为职业转向的第一轮硬检查点。
+
+到 2027-03，不要求已经完成转岗，但必须达到：
+
+- 有可展示的 `policy runtime mini-stack`、`robot learning infra` 或等价机器人系统作品。
+- 能把 Unitree / 具身智能软件 / Robot Learning Infra JD 映射到自己的项目证据和系统经验。
+- 已经准备好面试叙事：DB / 存储系统经验如何迁移到机器人数据闭环、runtime、eval、logging、replay、可靠性和性能诊断。
+- 开始真实市场测试：内部机会沟通、外部岗位调研、机器人 / AI Infra / Robot Learning 工程师交流。
+- 判断是否在 2027-Q2 继续冲具身智能软件 / Robot Learning Infra，还是先通过 AI Infra / Runtime 岗位过渡。
+
+目标不是证明自己会一点机器人，也不是只做通用模型服务，而是证明自己能做：
+
+> policy runtime + robot data / simulation / evaluation / learning infra + VLA/LLM runtime support 的交叉系统。
 
 ### 项目方向
 
@@ -156,17 +184,18 @@ linked_files:
 
 候选项目：
 
+- VLA / policy inference latency benchmark
 - Robot trajectory 数据格式与回放系统
 - MuJoCo / LeRobot eval harness
 - Robot episode logging + metrics + failure case index
 - Simulation dataset generation pipeline
 - Teleop 数据采集、版本管理与质量分析工具
-- VLA / policy inference latency benchmark
 - Edge-cloud robot data sync prototype
 
 ### 关键产物
 
 - 一个公开或半公开的 `robot-learning-infra` 项目。
+- 一个可展示的 `policy-runtime-mini-stack` 或 robot learning infra 项目总结。
 - 至少 3 篇结构化技术文章：
   - Robot data lifecycle
   - Simulation / eval pipeline
@@ -240,9 +269,9 @@ linked_files:
 
 | 年份 | 主能力 | 副能力 | 关键证据 |
 |---|---|---|---|
-| 2026 | Robotics foundations + MuJoCo + BC | LLM inference / runtime awareness | 可复现 demo |
-| 2027 | Robot Data / Eval / Simulation Infra | VLA / policy runtime | 职业证据型项目 |
-| 2028 | AI Infra 或 Robot Infra 真实岗位匹配 | networking / interview / market test | 职业切换决策 |
+| 2026 | Robot Learning Full-Stack + policy runtime | LLM / AI Infra runtime 支撑 | MuJoCo PPO report + robot learning infra evidence |
+| 2027 | 具身智能软件 / Robot Learning Infra 岗位匹配 | VLA / policy runtime / Robot Data-Eval Infra | 职业第一跳 + 深化计划 |
+| 2028 | AI Infra 到 Robot Infra / Physical AI Systems 的硬决策 | networking / interview / market test | 职业切换决策 |
 | 2029 | 深入一个核心系统方向 | robotics product / deployment understanding | 系统 owner 能力 |
 | 2030 | Physical AI Systems 身份成型 | open-source / community / impact | 长期定位 |
 
@@ -261,7 +290,8 @@ linked_files:
 - 不把自己定位成纯机器人算法新人。
 - 不为了追热点去低质量机器人团队。
 - 不在没有作品和行业反馈前做大跨度职业跳跃。
-- 不把 AI Infra 学成新的无边界主线。
+- 不把 AI Infra 学成新的无边界主线；未来一年只围绕 inference serving / runtime / GPU profiling / scheduling 建立职业踏板。
+- 不因为推理系统更现实，就把机器人长期目标从路线中删掉。
 
 ## 一句话回锚
 

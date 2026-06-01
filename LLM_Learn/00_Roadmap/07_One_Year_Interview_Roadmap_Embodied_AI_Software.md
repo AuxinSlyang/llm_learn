@@ -3,17 +3,30 @@ type: one_year_interview_roadmap
 time_window: 2026-05-18_to_2027-05-31
 target_role: Embodied AI Software Engineer / Robot Learning Infra / Physical AI Systems
 current_role: DB / Storage Kernel Engineer
-updated: 2026-05-18
+updated: 2026-06-01
 linked_files:
   - "[[03_Annual_Plan_2026]]"
   - "[[04_2026_Monthly_Learning_Materials]]"
   - "[[05_Career_Strategy_2026_2030]]"
   - "[[06_Embodied_AI_Software_Engineer_Learning_Curve]]"
+  - "[[08_One_Year_Roadmap_LLM_Inference_to_Robot_Runtime]]"
 ---
 
 # One-Year Interview Roadmap: Embodied AI Software
 
 > 这份文件回答的问题：**从 2026-05-18 开始，用一年时间如何达到可以去和具身智能软件 / Robot Learning Infra 岗位认真聊机会的水平？**
+
+## 2026-06-01 修订说明
+
+当前一年执行主线已重新调整为：以 `Robot Learning Full-Stack / Policy Runtime / Robot Learning Infra` 为上位主线，`LLM / AI Infra / Runtime` 作为 VLA / edge inference / policy runtime 的支撑线。
+
+因此，本文件重新作为具身智能软件 / robot learning infra 岗位准备参考；未来一年执行入口见：[[09_One_Year_Robot_Learning_Full_Stack_Roadmap]]。
+
+保留本文件的原因：
+
+- 具身智能 / 机器人系统是当前上位主线。
+- `policy runtime / latency / fallback / eval / replay` 是短期第一跳的核心证据。
+- MuJoCo / LeRobot / Robot Learning mini-stack 是未来一年需要逐步形成的作品线。
 
 ## JD Anchor
 

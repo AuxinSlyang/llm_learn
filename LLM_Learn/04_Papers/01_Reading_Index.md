@@ -5,6 +5,13 @@
 > `start-my-day` 默认从这里挑选 paper slot。完成后手动打勾或移动顺序。
 > 如果 `04_Papers/99_Overrides/YYYY-MM-DD.md` 存在，指定日期优先读 override，不使用本队列。
 
+### 2026-W23：LLM 经典论文收口队列
+
+- [ ] Scaling Instruction-Finetuned Language Models (FLAN): 多任务 instruction tuning 与未见任务泛化
+- [ ] LLM 经典论文 takeaways 汇总：Scaling Laws / Chinchilla / InstructGPT / CoT / FLAN
+
+### 2026-W24 起：Robot Learning 队列
+
 - [ ] DAgger: dataset aggregation and covariate shift
 - [ ] ACT: action chunking for fine-grained manipulation
 - [ ] Diffusion Policy: action generation as conditional denoising
@@ -27,6 +34,14 @@
 | Sequence to Sequence Learning with Neural Networks | 理解 Transformer 前的 encoder-decoder seq2seq 框架 | Transformer 前传 |
 | Neural Machine Translation by Jointly Learning to Align and Translate | 理解 attention 如何解决 fixed-length vector 瓶颈 | Transformer 前传 |
 | Attention Is All You Need | Transformer / attention 基础 | nanoGPT 收口后可回看 |
+| GPT-1: Improving Language Understanding by Generative Pre-Training | 理解 decoder-only Transformer 如何变成通用预训练语言模型 | GPT 演化 |
+| GPT-2: Language Models are Unsupervised Multitask Learners | 理解规模化 LM 如何出现 zero-shot / 无监督多任务能力 | GPT 演化 |
+| GPT-3: Language Models are Few-Shot Learners | 理解 in-context learning / few-shot prompting 如何成为新范式 | GPT 演化 |
+| Scaling Laws for Neural Language Models | 理解参数量 / 数据量 / compute 和 loss 的可预测关系 | 2026-05-29 快速通读 |
+| Training Compute-Optimal Large Language Models (Chinchilla) | 理解固定 compute 下参数和 token 如何配平 | 2026-05-29 快速通读 |
+| InstructGPT / RLHF | 理解 base LM 如何通过 SFT + RM + RLHF 变得更会跟随指令 | 2026-05-29 快速通读 |
+| Chain-of-Thought Prompting | 理解中间推理步骤如何释放大模型复杂任务能力 | 2026-05-29 快速通读 |
+| Scaling Instruction-Finetuned Language Models (FLAN) | 理解多任务 instruction tuning 如何提升未见任务泛化 | 2026-05-29 快速通读 |
 | ResNet / ViT | CV 表征基础 | CS231n/CV 入口阶段选读 |
 
 ### 20 Robot Learning

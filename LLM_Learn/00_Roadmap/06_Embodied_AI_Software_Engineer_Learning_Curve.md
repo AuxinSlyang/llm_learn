@@ -2,17 +2,33 @@
 type: role_learning_curve
 target_role: Embodied AI Software Engineer / Physical AI Systems Engineer
 time_window: 2026-2028
-updated: 2026-05-18
+updated: 2026-06-01
 linked_files:
   - "[[03_Annual_Plan_2026]]"
   - "[[04_2026_Monthly_Learning_Materials]]"
   - "[[05_Career_Strategy_2026_2030]]"
   - "[[07_One_Year_Interview_Roadmap_Embodied_AI_Software]]"
+  - "[[08_One_Year_Roadmap_LLM_Inference_to_Robot_Runtime]]"
 ---
 
 # Embodied AI Software Engineer Learning Curve
 
 > 这份文件回答的问题：**如果目标岗位是“具身智能软件工程师”，学习曲线应该怎么设计？**
+
+## 2026-06-01 修订说明
+
+未来一年执行主线已重新调整为 `Robot Learning Full-Stack / Policy Runtime / Robot Learning Infra`，本文件重新成为当前机器人全栈学习曲线的关键参考。
+
+新的执行顺序是：
+
+```text
+DB / Storage Kernel
+-> Robot Learning Full-Stack / Simulation / Evaluation
+-> Policy Runtime / Robot Data Loop / Embodied AI Software
+-> Robot Full-Stack Engineer / Roboticist
+```
+
+因此，下方 Robotics-first 学习比例和 2026 H2 机器人 demo 节奏重新进入当前执行依据；LLM / AI Infra 只作为 VLA、policy runtime 和 edge inference 的支撑线。
 
 ## 目标岗位画像
 
