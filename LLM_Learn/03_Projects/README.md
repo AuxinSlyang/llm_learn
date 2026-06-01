@@ -14,7 +14,7 @@
 
 ### 机器人 / 具身智能基础线
 
-- `robotics-foundations/`：机器人系统、控制、仿真、ROS2、机器人足球场景的总入口
+- `robotics-foundations/`：机器人系统、控制、仿真、ROS2、具身智能系统的总入口
 - `modern-robotics/`：《Modern Robotics》教材和配套课程的专题学习入口
 - `embodied-ai-mini-stack/`：面向具身智能软件工程师 JD 的一年作品主线，覆盖仿真、数据闭环、Robot Learning、runtime、eval、replay 和 failure analysis
 

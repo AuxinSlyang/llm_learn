@@ -64,6 +64,170 @@ On the WMT 2014 English-to-French translation task, our model establishes a new 
 - Encoder / Decoder Stack
 - Residual Connection + Layer Normalization
 
+## 通读算法流程
+
+### 0. 任务视角
+
+原始 Transformer 面向的是 sequence transduction，典型例子是机器翻译：
+
+```text
+source: I love cats
+target: Ich liebe Katzen
+```
+
+它把翻译任务拆成三个能力：
+
+- source sentence 的上下文理解：Encoder Self-Attention
+- target language 的自回归生成：Decoder Masked Self-Attention
+- target 对 source 的动态读取 / 对齐：Cross-Attention
+
+### 1. Encoder
+
+输入 source tokens：
+
+```text
+I love cats
+```
+
+先变成向量：
+
+```text
+X = token_embedding(source) + positional_encoding
+```
+
+每一层 Encoder 做：
+
+```text
+Q = XW_Q
+K = XW_K
+V = XW_V
+
+scores = QK^T / sqrt(d_k)
+weights = softmax(scores)
+attention_out = weights V
+
+X = LayerNorm(X + MultiHead(attention_out))
+X = LayerNorm(X + FFN(X))
+```
+
+其中 FFN 是 position-wise 的两层 MLP：
+
+```text
+d_model -> d_ff -> activation -> d_model
+```
+
+Encoder 最终输出不是一个 fixed vector，而是一组 source hidden states：
+
+```text
+H: [source_len, d_model]
+```
+
+### 2. Decoder 训练输入
+
+训练时 target 会 shift right：
+
+```text
+decoder input: <BOS> Ich liebe Katzen
+labels:        Ich   liebe Katzen <EOS>
+```
+
+这使得每个位置的 hidden state 用来预测下一个 token。
+
+### 3. Decoder Masked Self-Attention
+
+Decoder 先处理 target prefix：
+
+```text
+Y = token_embedding(decoder_input) + positional_encoding
+```
+
+然后做 masked self-attention：
+
+```text
+Q = YW_Q
+K = YW_K
+V = YW_V
+
+scores = QK^T / sqrt(d_k)
+scores = causal_mask(scores)
+weights = softmax(scores)
+self_attn_out = weights V
+
+Y = LayerNorm(Y + MultiHead(self_attn_out))
+```
+
+causal mask 的作用是让第 `t` 个位置只能看自己和之前的位置，不能看未来 target token。训练时虽然一次性输入完整 target sequence，但 mask 保证每个位置仍然是在做 next-token prediction。
+
+### 4. Cross-Attention
+
+Cross-Attention 连接 Decoder 和 Encoder：
+
+```text
+Q = decoder_hidden W_Q
+K = encoder_outputs W_K
+V = encoder_outputs W_V
+```
+
+然后：
+
+```text
+scores = QK^T / sqrt(d_k)      # [target_len, source_len]
+weights = softmax(scores)
+cross_attn_out = weights V
+
+Y = LayerNorm(Y + MultiHead(cross_attn_out))
+```
+
+这里不需要 causal mask，因为 source sentence 在推理时本来就是完整已知输入；mask 只用于防止 target 端偷看未来答案。
+
+### 5. Decoder FFN 和输出层
+
+Cross-Attention 之后，每个 target position 经过 FFN：
+
+```text
+Y = LayerNorm(Y + FFN(Y))
+```
+
+最后映射到词表：
+
+```text
+logits = Linear(Y)             # [target_len, vocab_size]
+probs = softmax(logits)
+```
+
+训练 loss 是每个位置的 cross entropy：
+
+```text
+position 0: predict Ich
+position 1: predict liebe
+position 2: predict Katzen
+position 3: predict <EOS>
+```
+
+整体 loss 对这些位置求和或平均，然后反向传播。
+
+### 6. 推理过程
+
+推理时没有完整 target answer，只能自回归生成：
+
+```text
+<BOS> -> Ich
+<BOS> Ich -> liebe
+<BOS> Ich liebe -> Katzen
+<BOS> Ich liebe Katzen -> <EOS>
+```
+
+每一步都可以看完整 source，但只能看已经生成的 target prefix。
+
+### 7. 核心 Takeaway
+
+- Attention 的本质是可微的动态信息路由：`QK^T` 决定从哪里读，`weights V` 决定读出什么。
+- Encoder self-attention 负责 source 内部理解。
+- Decoder masked self-attention 负责 target 语言自回归生成。
+- Cross-attention 负责 target 对 source 的动态对齐和读取。
+- Transformer 的关键思想是把序列建模从 RNN 的递推状态，改成 token 之间直接的并行可微信息路由。
+- GPT 后续继承的是 decoder-only 的 causal self-attention 路径，去掉了 Encoder 和 Cross-Attention。
+
 ## 系统 / 工程启发
 
 - attention 把序列建模改成可并行的矩阵计算路径，是后续 GPU 友好训练和推理优化的基础。

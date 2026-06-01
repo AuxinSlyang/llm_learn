@@ -1,0 +1,7 @@
+interface:
+  display_name: "End Of This Month"
+  short_description: "Close the month and plan next month"
+  default_prompt: "Use $end-of-this-month to compare this month's actual progress with the monthly plan and draft next month's adjustments."
+
+policy:
+  allow_implicit_invocation: true

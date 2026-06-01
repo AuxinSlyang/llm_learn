@@ -1,6 +1,6 @@
 ---
 name: start-my-day
-description: Analyze the current workspace's daily, weekly, monthly, and annual notes to produce a concrete "start my day" plan, then optionally write it back into today's Daily Note. Use when the user asks what to do today, wants to start the day, wants a daily plan generated from notes, asks to align today's work with this week or current learning goals, or explicitly mentions start-my-day.
+description: Analyze the current workspace's daily, weekly, monthly, roadmap, and recent carry-over notes to produce a concrete "start my day" plan, then optionally write it back into today's Daily Note. Use when the user asks what to do today, wants to start the day, wants a daily plan generated from notes, asks to align today's work with this week/month/year or current learning goals, or explicitly mentions start-my-day.
 ---
 
 # Start My Day
@@ -8,6 +8,8 @@ description: Analyze the current workspace's daily, weekly, monthly, and annual 
 ## Overview
 
 Read the note system first, then synthesize today's minimum viable plan. Prefer the existing Daily Note and Weekly Note structure over inventing a new format.
+
+The workflow must preserve direction sense. Before planning tasks, build a compact `方向锚点` from yesterday, this week, this month, and the active roadmap. Do not plan a day that feels detached from the user's current phase.
 
 This file is a historical / workflow-local copy. The maintained workspace skill lives at `skills/start-my-day/SKILL.md`.
 
@@ -18,26 +20,34 @@ For this workspace, Codex-driven synthesis is the primary implementation of `sta
 When the user mentions "today", "this week", "start my day", or similar relative timing, inspect notes in this order:
 
 1. Today's Daily Note: `01_DailyNotes/YYYY/YYYY-MM/YYYY-MM-DD.md`
-2. Yesterday's Daily Note when it exists
+2. Yesterday's Daily Note when it exists; if it is thin or missing, scan the previous 2-3 Daily Notes for carry-over
 3. This week's Weekly Note in `02_WeeklyNotes/`
 4. Relevant monthly plan in `07_MonthlyPlans/`
-5. Paper override for today: `04_Papers/99_Overrides/YYYY-MM-DD.md`
-6. Classic paper queue in `04_Papers/01_Reading_Index.md`
-7. Relevant annual or roadmap files in `00_Roadmap/`
+5. Annual plan and active roadmap files in `00_Roadmap/`; for this workspace, include `03_Annual_Plan_2026.md`, `09_One_Year_Robot_Learning_Full_Stack_Roadmap.md`, and keep `08_One_Year_Roadmap_LLM_Inference_to_Robot_Runtime.md` as the runtime support line
+6. Automation memory when available: `$CODEX_HOME/automations/daily-start-my-day/memory.md`
+7. Paper override for today: `04_Papers/99_Overrides/YYYY-MM-DD.md`
+8. Classic paper queue in `04_Papers/01_Reading_Index.md`
 
 If the needed Daily or Weekly note is missing, create it by extending the matching template in `99_Templates/` instead of inventing a new shape.
 
 ## Extract
 
-Collect only the facts that should influence today's execution:
+Collect facts in two layers.
 
-- Yesterday's carry-over: unfinished items, blockers, and any `明天唯一主线`
-- This week's main line, minimum completion line, and explicit deliverables
+### Direction Layer
+
+- Current North Star and active role target
+- Current 12-month route and this month's phase
+- This week's single main line and minimum completion line
+- Yesterday's carry-over, blockers, and any `明天唯一主线`
+- Recent spoken correction from the user if it overrides stale notes
+
+### Execution Layer
+
 - Today's paper override if present; otherwise this week's or current phase's paper queue, only enough to select one paper slot
-- Monthly or annual constraints only if they materially change today
-- The user's current spoken goal if it conflicts with existing notes
+- Concrete files, commands, experiments, or note outputs that can move the day forward
 
-Do not spend tokens on a broad summary of all notes. Pull only the facts that determine today's plan.
+Do not paste a broad recap of all notes. Produce a short `方向锚点` first, then a concrete day plan.
 
 ## Decide
 
@@ -45,12 +55,13 @@ Construct the day around execution, not around reading more notes.
 
 Always produce these in priority order:
 
-1. Minimum completion line
-2. Recommended execution order
-3. Today's Top 3
-4. Today's paper slot
-5. Time slices matched to the available time budget
-6. Concrete commands, files, or note edits when they help
+1. Direction anchor
+2. Minimum completion line
+3. Recommended execution order
+4. Today's Top 3
+5. Today's paper slot
+6. Time slices matched to the available time budget
+7. Concrete commands, files, or note edits when they help
 
 Apply these rules:
 
@@ -58,7 +69,9 @@ Apply these rules:
 - Prefer one main line plus at most two supporting tasks
 - If time is tight, aggressively cut scope instead of making a crowded plan
 - Prefer output tasks over more planning tasks
-- For this workspace, stay aligned with the current monthly and weekly main line. `LLM / AI Infra` is a support line for the broader robotics and embodied AI goal, not the only default track.
+- For this workspace, stay aligned with `Robot Learning Full-Stack` as the active upper route. `LLM / AI Infra` is a support line for VLA / policy runtime / edge inference, not the only default track.
+- If today is Friday, Sunday, or the last day of a month, reserve a small review slice or explicitly suggest `end-my-day` / `end-of-this-week` / `end-of-this-month` at close.
+- If the previous calendar days include an unclosed week or month because no session was active on a rest day, run a missed-boundary check before today's plan: close the previous week/month first, or explicitly add a catch-up review slice.
 - On Monday to Thursday, include one `paper slot` from `04_Papers/01_Reading_Index.md`: 20-40 minutes, one takeaway, one mini-stack connection. On Friday, prefer paper catch-up and takeaway consolidation. On weekends, paper reading is optional unless it is the week's main line.
 - If `04_Papers/99_Overrides/YYYY-MM-DD.md` exists, it takes priority over the default queue. Preserve the specified paper, arXiv ID/URL, reason, and output path in `今日论文槽位`.
 - Do not let the paper slot consume the evening main study block. Default weekday rhythm is daytime paper slot plus 90 minutes evening execution.
@@ -73,12 +86,29 @@ When the user says they want to read a specific paper tomorrow or on a specific 
 4. If the paper is identified, create or update the corresponding paper note under `04_Papers/`.
 5. Do not change the evening main study plan unless the user explicitly asks.
 
+## Missed Boundary Catch-Up
+
+Rest days can skip Daily Notes and close-out sessions. Therefore `start-my-day` must detect missed weekly/monthly close-outs on the next active day.
+
+Check:
+
+- If today is Monday and the previous week has no `本周复盘` / weekly close result, run or schedule `end-of-this-week` for the previous week before planning new work.
+- If today is the first active day of a new month and the previous month has no `月末复盘` / monthly close result, run or schedule `end-of-this-month` for the previous month before planning new work.
+- If multiple rest days were skipped, do not create fake Daily Notes for each rest day unless the user asks. Instead create one compact catch-up block in today's Daily Note.
+
+Output a compact `补复盘提醒` section when a missed close-out is detected:
+
+- `需补周复盘：YYYY-Www`
+- `需补月复盘：YYYY-MM`
+- `今天先做：补复盘 / 正常启动 / 两者都做`
+
 ## Output Shape
 
 Unless the user requests a different format, answer in Chinese and keep it practical.
 
 Default response structure:
 
+- `方向锚点`
 - `最低完成线`
 - `建议顺序`
 - `今日 Top 3`
@@ -96,6 +126,7 @@ When writing back:
 
 - Reuse the current Daily template sections if they already exist
 - Update only the sections that the workflow owns, such as `今日锚点`, `今日 Top 3`, `今日论文槽位`, `今日时间切片`, `今日输入`, `今日代码 / 实验任务`, and `今日总结`
+- Prefer adding or updating `方向锚点`, `昨日承接`, and `明日唯一主线` when those sections exist or the Daily Note is otherwise context-poor
 - Keep existing experiment records or personal notes unless they directly conflict
 - If the spoken goal and the notes conflict, preserve the spoken goal and reflect that into the Daily or Weekly note
 

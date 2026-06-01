@@ -102,3 +102,83 @@ nanogpt-from-scratch/
 这个项目的目标不是机械抄代码，而是：
 
 > 通过 `bigram -> transformer` 这条路径，把 `nanoGPT from scratch` 的最小语言模型主线真正讲清楚。
+
+---
+
+## 2026-05-28 项目核心总结
+
+今天把 `GPT-1/2/3` 的演化和 `nanoGPT from scratch` 代码主线对齐后，当前项目可以收口成一句话：
+
+> `nanoGPT from scratch` 是 GPT pretraining 主链路的最小可运行版本：`text -> token ids -> batch x/y -> embedding -> decoder-only transformer blocks -> lm_head -> next-token loss -> AdamW -> generate`。
+
+### 1. 这个项目到底在学什么
+
+不是在学“一个玩具字符模型”，而是在学 GPT 系列最核心的训练范式：
+
+```text
+给前文 tokens
+-> 预测下一个 token 的概率分布
+-> 用 cross entropy 逼近真实下一个 token
+-> 通过反向传播更新 embedding / transformer blocks / lm_head
+```
+
+字符级 tokenizer、Tiny Shakespeare、小模型参数只是教学降维；主链路和 GPT-1/2/3 的 autoregressive LM 是同构的。
+
+### 2. bigram 到 transformer 升级了什么
+
+`bigram` 阶段建立的是最小训练闭环：
+
+```text
+current token -> lookup logits -> next-token loss -> generate
+```
+
+`transformer` 阶段升级的是上下文建模能力：
+
+```text
+token + position
+-> masked self-attention 聚合历史上下文
+-> FFN 做逐位置非线性变换
+-> residual + layernorm 稳定深层堆叠
+-> 多层 block 反复加工 hidden state
+```
+
+核心差异不是 loss 变了，而是 hidden state 从“当前 token 查表”变成了“上下文条件表示”。
+
+### 3. 当前已经讲清的代码主链路
+
+- `batch_size`：一次并行训练多少段独立序列。
+- `block_size`：每个位置最多能利用的上下文窗口，也是 position embedding / causal mask 的最大长度。
+- `n_embd`：主干 hidden state 宽度；block 与 block 之间传递的 shape 固定为 `(B, T, n_embd)`。
+- `n_head`：把 `n_embd` 拆成多个 attention head 并行读上下文，最后 concat + projection 回 `n_embd`。
+- `n_layer`：重复堆叠多少个 transformer block。
+- `get_batch`：构造 `x` 和右移一位的 `y`，把语言模型训练变成监督学习。
+- `Head`：`Q/K` 决定看谁，`V` 决定拿什么，`wei @ V` 完成上下文聚合。
+- `Block`：采用 pre-norm residual 形式 `x + module(LN(x))`，保持 shape 不变并稳定训练。
+- `lm_head`：把最后 hidden state 从 `n_embd` 映射到 `vocab_size`，得到每个位置的 next-token logits。
+- `generate`：不更新参数，只反复取最后位置 logits，softmax 后采样下一个 token 并拼回上下文。
+
+### 4. 当前最重要的理解
+
+Transformer block 内部可以临时改变维度，例如：
+
+```text
+FFN: n_embd -> 4 * n_embd -> n_embd
+attention: n_embd -> heads * head_size -> n_embd
+```
+
+但每个 block 的入口和出口通常必须保持 `n_embd`，因为 residual add 要求 shape 一致：
+
+```text
+x = x + self_attention(LayerNorm(x))
+x = x + feed_forward(LayerNorm(x))
+```
+
+所以 `n_embd` 是主干表示宽度，`lm_head` 才是把这个主干表示翻译回词表输出空间的出口。
+
+### 5. 和 GPT-1/2/3 的连接
+
+- GPT-1：`nanoGPT` 对应它的 pretraining 主链路；GPT-1 额外讨论 task head / supervised fine-tuning。
+- GPT-2：`generate` 路径对应 zero-shot task framing 的底层机制，本质仍然是续写。
+- GPT-3：in-context learning 仍然建立在同一个 autoregressive LM 机制上，只是 prompt 中包含任务说明和示例。
+
+当前阶段先不追更多论文，下一步优先把本项目的 transformer code path 真正写清楚。

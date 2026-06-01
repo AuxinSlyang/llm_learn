@@ -55,7 +55,8 @@ Unrecognized command '/start-my-day'
 
 每天启动后，只调用一次 `/start-my-day`，系统完成：
 
-- 读取昨天、本周、本月、本年上下文
+- 读取昨天、本周、本月、本年和当前 active roadmap 上下文
+- 先生成 `方向锚点`，再生成今日计划，避免 Daily Note 脱离长期路线
 - 生成今天的学习与实验 / 阅读安排
 - 给出今天建议阅读的材料，以及一个轻量 classic paper slot
 - 回写今日 Daily Note
@@ -69,6 +70,8 @@ Unrecognized command '/start-my-day'
 - 本周 Weekly Note
 - 本月 Monthly Plan
 - 年度 / 路线图：`00_Roadmap/`
+- 当前 active route：`00_Roadmap/09_One_Year_Robot_Learning_Full_Stack_Roadmap.md`
+- runtime support route：`00_Roadmap/08_One_Year_Roadmap_LLM_Inference_to_Robot_Runtime.md`
 - 今日论文指定：`04_Papers/99_Overrides/YYYY-MM-DD.md`
 - 经典论文队列：`04_Papers/01_Reading_Index.md`
 - 最近未完成事项
@@ -83,6 +86,7 @@ Unrecognized command '/start-my-day'
 ## 输出内容
 
 - 今日主题
+- 方向锚点
 - 今日 Top 3
 - 今日论文槽位
 - 今日时间切片
@@ -113,9 +117,10 @@ Unrecognized command '/start-my-day'
 2. 定位昨天的 Daily Note
 3. 定位本周 Weekly Note
 4. 定位本月 Monthly Plan
-5. 定位年度 / 路线图
+5. 定位年度 / 路线图 / active route
 6. 抽取：
-   - 未完成项
+- 方向锚点：North Star、12 个月路线、本月阶段、本周唯一主线
+- 未完成项
 - 当前主线
 - 当前阻塞
 - 当前可用时间

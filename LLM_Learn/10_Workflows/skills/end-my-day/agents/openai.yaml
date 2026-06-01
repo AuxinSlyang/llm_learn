@@ -1,0 +1,7 @@
+interface:
+  display_name: "End My Day"
+  short_description: "Close today and prepare tomorrow"
+  default_prompt: "Use $end-my-day to summarize today's actual progress, update the Daily Note, and write tomorrow's handoff."
+
+policy:
+  allow_implicit_invocation: true

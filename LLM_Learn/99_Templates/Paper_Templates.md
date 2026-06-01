@@ -5,9 +5,12 @@ category:
 status: queue
 read_mode: Scan
 phase:
-linked_project: [[embodied-ai-mini-stack]]
+linked_project: [[09_One_Year_Robot_Learning_Full_Stack_Roadmap]]
 source_url:
+pdf_url:
 code_url:
+venue:
+published:
 ---
 
 # {{paper_title}}
@@ -19,6 +22,30 @@ code_url:
 ## 为什么现在读
 
 -
+
+## Metadata
+
+- Title:
+- Authors:
+- Venue / Date:
+- Source URL:
+- PDF URL:
+- Code / Project:
+- Reading mode:
+
+## Abstract + Introduction 理解
+
+- 问题：
+- 旧方法为什么不够：
+- 核心 insight：
+- 贡献：
+- 后续要验证的 claim：
+
+## 章节地图
+
+| Section | 作用 | 首轮是否精读 |
+|---|---|---|
+| | | |
 
 ## 8 问
 
@@ -35,11 +62,19 @@ code_url:
 
 -
 
+## 实验与证据
+
+- Baselines:
+- Metrics:
+- Main results:
+- Ablations:
+- Failure / limitations:
+
 ## 系统 / 工程启发
 
 -
 
-## 和 Embodied AI Mini-Stack 的连接
+## 和 Robot Learning / Runtime 的连接
 
 -
 
@@ -56,4 +91,3 @@ code_url:
 | 日期 | 阅读模式 | 进度 | 产出 |
 |---|---|---|---|
 | | | | |
-

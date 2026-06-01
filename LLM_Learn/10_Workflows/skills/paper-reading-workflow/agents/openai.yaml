@@ -1,0 +1,7 @@
+interface:
+  display_name: "Paper Reading Workflow"
+  short_description: "Read papers in structured passes"
+  default_prompt: "Use $paper-reading-workflow to guide a paper from metadata through abstract, method, experiments, and takeaways."
+
+policy:
+  allow_implicit_invocation: true

@@ -24,7 +24,7 @@ When the user asks for "end of this week", "weekly review", "wrap up this week",
 1. This week's Weekly Note: `02_WeeklyNotes/YYYY/YYYY-MM/YYYY-Www.md`
 2. All Daily Notes for this week in `01_DailyNotes/YYYY/YYYY-MM/`
 3. Relevant monthly plan in `07_MonthlyPlans/`
-4. Relevant annual or roadmap files in `00_Roadmap/`
+4. Relevant annual or roadmap files in `00_Roadmap/`, especially the active route `09_One_Year_Robot_Learning_Full_Stack_Roadmap.md`
 5. Next week's Weekly Note if it already exists
 
 If this week's or next week's Weekly Note is missing, create it from `99_Templates/Weekly_Templates.md`.
@@ -60,7 +60,17 @@ Apply these rules:
 - Prefer one weekly main line plus at most two supporting lines
 - Distinguish clearly between `本周计划` and `实际完成`
 - If the week was overloaded, reduce scope for next week instead of rolling everything forward unchanged
-- Keep alignment with the current monthly and weekly main line. `LLM / AI Infra` should be framed as support for the broader robotics and embodied AI direction, not as the only default track.
+- Keep alignment with `Robot Learning Full-Stack` as the active upper route; frame `LLM / AI Infra` work as runtime support for VLA / policy runtime rather than a detached track.
+- If the week also closes the month, call out that `end-of-this-month` should be run or produce a compact month-close section.
+
+## Retroactive Close
+
+If this skill is invoked after the target week already ended, determine the target week before writing:
+
+- Use the week explicitly requested by the user if present.
+- Otherwise, if invoked by `start-my-day` missed-boundary catch-up on Monday or the first active day after a rest period, target the previous completed week.
+- Write the close-out into that target week's Weekly Note, not the new current week's planning area.
+- Use the target week in the commit message: `weekly: YYYY-Www`.
 
 ## Output Shape
 
@@ -107,6 +117,26 @@ If `下周入口` is missing from the current template, add a compact block near
 - `下周最低完成线`
 - `下周建议顺序`
 - `下周 Top 3`
+
+## Git Maintenance
+
+If the workspace is a Git repository and the user has not explicitly disabled commits, commit workflow-owned weekly close changes after write-back.
+
+Rules:
+
+- Always inspect `git status --short` before staging.
+- Stage only this week's Weekly Note, next week's Weekly Note, directly related Daily summaries, and monthly-plan handoff edits made by this run.
+- Do not stage unrelated working-tree changes.
+- If unrelated changes already exist, leave them unstaged and mention them briefly.
+- If there are no staged changes, do not create an empty commit.
+
+Commit message:
+
+- `weekly: YYYY-Www`
+
+Example:
+
+- `weekly: 2026-W23`
 
 ## Fallback
 

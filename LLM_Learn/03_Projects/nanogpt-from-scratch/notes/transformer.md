@@ -133,3 +133,142 @@ out = wei @ V
 后续 `nanogpt-from-scratch` 真正最值得深挖的，不是 `bigram` 本身，而是：
 
 > `transformer` 如何在同样的 next-token prediction 框架下，把模型从“查表式预测”升级成“上下文建模”。
+
+---
+
+## 2026-05-28：nanoGPT transformer 代码主链路收口
+
+今天把 Karpathy 风格的 `nanoGPT` transformer 实现从训练角度过了一遍，当前先抓主链路，不急着补完整源码。
+
+### 1. 数据与 batch
+
+字符级 tokenizer 做的是：
+
+```text
+text <-> char ids
+```
+
+`get_batch(split)` 构造的是 next-token prediction 的监督样本：
+
+```text
+x = [t1, t2, ..., t256]
+y = [t2, t3, ..., t257]
+```
+
+所以 `block_size` 可以理解为每次训练的 sequence length / context window。
+
+### 2. GPTLanguageModel.forward
+
+主链路：
+
+```text
+idx: (B, T)
+-> token_embedding_table(idx): (B, T, n_embd)
+-> position_embedding_table(arange(T)): (T, n_embd)
+-> x = tok_emb + pos_emb: (B, T, n_embd)
+-> blocks(x): (B, T, n_embd)
+-> ln_f(x): (B, T, n_embd)
+-> lm_head(x): (B, T, vocab_size)
+-> cross_entropy(logits.view(B*T, C), targets.view(B*T))
+```
+
+这里的 `lm_head` 是语言模型输出头：把每个位置的 hidden state 映射成整个词表的 logits，用于预测下一个字符。
+
+### 3. Attention Head
+
+单头 attention 的代码主线：
+
+```text
+k = key(x)
+q = query(x)
+v = value(x)
+wei = q @ k.T / sqrt(head_size)
+wei = causal mask
+wei = softmax(wei)
+out = wei @ v
+```
+
+当前理解：
+
+- `Q/K` 决定当前位置应该看哪些历史位置。
+- `V` 是历史位置能提供的内容。
+- causal mask 用下三角矩阵保证当前位置不能看到未来。
+- softmax 不是 `-log`，而是 `exp / sum(exp)` 的归一化；`-log` 出现在 cross entropy 中。
+- dropout 会随机置零部分 attention weight / projection 输出，用于正则化。
+
+### 4. Multi-head / FFN / Block
+
+Multi-head 是多个 head 并行读上下文：
+
+```text
+6 个 head * 64 维 = 384 维
+concat 后 projection 回 n_embd
+```
+
+FFN 是逐 token 的非线性变换：
+
+```text
+n_embd -> 4 * n_embd -> n_embd
+```
+
+Block 是 pre-norm residual：
+
+```text
+x = x + self_attention(LayerNorm(x))
+x = x + feed_forward(LayerNorm(x))
+```
+
+`LayerNorm` 不是作为参数“传入 attention”，而是先把 `x` 归一化，再送进子模块；原始 `x` 通过 residual 直连加回去。
+
+### 5. 为什么主干维度保持 n_embd
+
+每个 block 的输入输出都保持 `(B, T, n_embd)`，核心原因是 residual add 要求 shape 一致。
+
+内部可以临时扩维或拆 head，但子模块输出前必须回到 `n_embd`：
+
+```text
+attention: n_embd -> heads/head_size -> n_embd
+FFN: n_embd -> 4*n_embd -> n_embd
+```
+
+所以 `n_embd` 是主干 hidden state 宽度，`vocab_size` 只在最后 `lm_head` 出现。
+
+### 6. Train / Generate
+
+训练：
+
+```text
+get_batch
+-> model(x, y)
+-> loss
+-> optimizer.zero_grad
+-> loss.backward
+-> optimizer.step
+```
+
+生成：
+
+```text
+context
+-> crop to last block_size
+-> forward
+-> take last-step logits
+-> softmax
+-> multinomial sample
+-> append token
+```
+
+生成阶段不更新参数；它只是在用训练好的 autoregressive LM 反复续写。
+
+### 今日收口
+
+`nanoGPT` 的核心不是模块名，而是这条 shape 稳定的 hidden-state 加工链：
+
+```text
+(B,T) token ids
+-> (B,T,n_embd) hidden states
+-> repeated transformer blocks
+-> (B,T,vocab_size) next-token logits
+```
+
+下一步如果继续推进，应优先把本地 `code/transformer.py` 从占位骨架补成“边看边注释”的可运行版本，而不是继续扩论文范围。
