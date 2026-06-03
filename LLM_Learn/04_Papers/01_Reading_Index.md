@@ -4,11 +4,39 @@
 
 > `start-my-day` 默认从这里挑选 paper slot。完成后手动打勾或移动顺序。
 > 如果 `04_Papers/99_Overrides/YYYY-MM-DD.md` 存在，指定日期优先读 override，不使用本队列。
+> LLM 扩展论文的完整 TOREAD 清单位于：[[02_TOREAD_LLM_Papers]]
 
-### 2026-W23：LLM 经典论文收口队列
+### 2026-W23：LLM 经典论文收口队列（已读 / 收口中）
 
-- [ ] Scaling Instruction-Finetuned Language Models (FLAN): 多任务 instruction tuning 与未见任务泛化
+- [x] Scaling Laws for Neural Language Models: 参数量 / 数据量 / compute 和 loss 的可预测关系
+- [x] Training Compute-Optimal Large Language Models (Chinchilla): 固定 compute 下参数和 token 如何配平
+- [x] Training Language Models to Follow Instructions with Human Feedback (InstructGPT): SFT + RM + RLHF 的 assistant 对齐范式
+- [x] Chain-of-Thought Prompting Elicits Reasoning in Large Language Models: few-shot CoT 释放推理过程
+- [x] Scaling Instruction-Finetuned Language Models (FLAN): 多任务 instruction tuning 与未见任务泛化
 - [ ] LLM 经典论文 takeaways 汇总：Scaling Laws / Chinchilla / InstructGPT / CoT / FLAN
+
+### LLM 端到端扩展队列（额外 10-15 篇，不计入已读核心 5 篇）
+
+> 本队列服务 `tokenizer -> nanoGPT -> post-training -> reasoning/tool/context/runtime` 的端到端闭环。按兴趣和主线需要逐步读，不要求本周全部完成。
+> 完整分组、链接和阅读顺序见：[[02_TOREAD_LLM_Papers]]
+
+- [ ] Tokenizer / BPE：跟做 Karpathy tokenizer 视频与最小 BPE 实现
+- [ ] Llama 2：现代 open LLM 的 pretraining / SFT / RLHF / safety 工程报告
+- [x] Direct Preference Optimization (DPO)：从 PPO/RLHF 到 preference optimization 的简化路线
+- [x] Self-Consistency：CoT 多路径采样与答案投票
+- [ ] DeepSeek-R1：reasoning RL / verifiable reward / distillation
+- [x] ReAct：reasoning + acting，连接 tool use / agent / environment interaction
+- [ ] Toolformer：模型学习何时调用工具、传什么参数、如何使用结果
+- [ ] Retrieval-Augmented Generation (RAG)：外部知识检索和生成结合
+- [ ] RoPE / ALiBi：位置编码与长度外推直觉
+- [ ] Transformer-XL：固定上下文限制与 recurrence memory
+- [ ] Position Interpolation：RoPE 模型上下文扩展基础
+- [ ] YaRN：高效 RoPE context window extension
+- [ ] LongRoPE：更长上下文扩展路线
+- [ ] LoRA / QLoRA：参数高效微调和量化微调
+- [ ] FlashAttention / FlashAttention-2：attention IO 优化与训练/推理效率
+- [ ] PagedAttention / vLLM：KV cache serving 优化
+- [ ] RULER / Needle-in-a-Haystack：长上下文“能放进去”和“能用起来”的评估差异
 
 ### 2026-W24 起：Robot Learning 队列
 
