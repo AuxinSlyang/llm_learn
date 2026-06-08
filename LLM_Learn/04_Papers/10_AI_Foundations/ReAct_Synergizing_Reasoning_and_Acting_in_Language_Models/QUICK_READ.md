@@ -92,7 +92,7 @@ ReAct 不是只让模型“想”，也不是只让模型“做”，而是让�
 
 ## Method
 
-待读时重点确认：
+初读时重点确认：
 
 ```text
 prompt with ReAct examples

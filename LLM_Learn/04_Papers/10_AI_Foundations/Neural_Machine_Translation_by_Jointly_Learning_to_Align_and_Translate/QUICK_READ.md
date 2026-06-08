@@ -2,7 +2,7 @@
 type: paper_note
 title: Neural Machine Translation by Jointly Learning to Align and Translate
 category: 10_AI_Foundations
-status: reading
+status: quick_read_done
 read_mode: Structured Read
 phase: 2026-05 / Transformer prelude
 source_url: https://arxiv.org/abs/1409.0473

@@ -2,7 +2,7 @@
 type: paper_note
 title: Training Compute-Optimal Large Language Models
 category: 10_AI_Foundations
-status: queue
+status: quick_read_done
 read_mode: Quick Read
 phase: 2026-05 / post-GPT lineage
 source_url: https://arxiv.org/abs/2203.15556
@@ -111,3 +111,9 @@ subjects:
 - 小模型实验也不要只问“模型再大点会不会更好”，还要问“当前 token 数是否足够把这个模型训充分”。
 - 评估模型时不能只看参数规模，要同时看训练 token 数、compute budget、是否 undertrained。
 - 对推理系统来说，Chinchilla 方向很重要：在相同能力下，更小但训练更充分的模型可能带来更低 inference/fine-tuning 成本。
+
+## 阅读记录
+
+| 日期 | 阅读模式 | 进度 | 产出 |
+|---|---|---|---|
+| 2026-05-31 | Quick Read | done | 形成 `fixed compute -> N/D tradeoff -> undertrained model` 主线 |

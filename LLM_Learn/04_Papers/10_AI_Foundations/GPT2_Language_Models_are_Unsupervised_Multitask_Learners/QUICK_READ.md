@@ -2,7 +2,7 @@
 type: paper_note
 title: Language Models are Unsupervised Multitask Learners
 category: 10_AI_Foundations
-status: queue
+status: quick_read_done
 read_mode: Quick Read
 phase: 2026-05 / GPT lineage
 source_url: https://cdn.openai.com/better-language-models/language-models.pdf
@@ -41,4 +41,4 @@ local_pdf: GPT2_Language_Models_are_Unsupervised_Multitask_Learners.pdf
 
 | 日期 | 阅读模式 | 进度 | 产出 |
 |---|---|---|---|
-| 2026-05-27 | Quick Read | planned | GPT 设计演化第二站：无监督多任务 / 零样本 |
+| 2026-05-28 | Quick Read | done | GPT 设计演化第二站：`larger LM -> zero-shot task framing` |

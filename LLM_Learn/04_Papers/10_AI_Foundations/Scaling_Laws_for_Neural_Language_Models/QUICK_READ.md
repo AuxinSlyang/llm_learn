@@ -2,7 +2,7 @@
 type: paper_note
 title: Scaling Laws for Neural Language Models
 category: 10_AI_Foundations
-status: queue
+status: quick_read_done
 read_mode: Quick Read
 phase: 2026-05 / post-GPT lineage
 source_url: https://arxiv.org/abs/2001.08361
@@ -60,3 +60,9 @@ local_pdf: Scaling_Laws_for_Neural_Language_Models.pdf
 
 - 训练侧的幂律/预算结论，决定了“同等 loss 目标下模型会更大、token 会更少/更早停”的倾向；这会直接改变部署侧的 `prefill/decode` 计算占比、KV cache 压力与 `TTFT/TPOT/throughput` 的权衡假设。
 - 你后续读 Chinchilla 时，只需要问一个问题：**compute-optimal 的 `N` 与 `D` 配比如何被修正**，以及这对 inference 侧的“同等能力点的模型大小/上下文长度压力”意味着什么。
+
+## 阅读记录
+
+| 日期 | 阅读模式 | 进度 | 产出 |
+|---|---|---|---|
+| 2026-05-31 | Quick Read | done | 形成 `N/D/C -> loss power law -> compute budget planning` 主线 |

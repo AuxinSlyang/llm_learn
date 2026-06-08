@@ -10,6 +10,16 @@
 
 不追求每天完整精读一篇。默认先做 structured pass，先抓论文位置、问题、方法结构和证据，再决定是否精读。
 
+## 新 Session 启动入口
+
+新开论文阅读 session 时，优先读：
+
+1. [[00_Paper_Session_Context]]：当前论文主线、已读关键论文、下一篇论文。
+2. [[01_Reading_Index]]：队列状态和当前 paper slot。
+3. 当前 sprint / paper note，例如 [[CV_Foundation_Sprint_2026-W24]] 或具体论文的 `QUICK_READ.md`。
+
+这样新 session 不需要依赖聊天历史，也能接上当前主线。
+
 ## 标准 6-Pass 流程
 
 | Pass | 目标 | 输出 |

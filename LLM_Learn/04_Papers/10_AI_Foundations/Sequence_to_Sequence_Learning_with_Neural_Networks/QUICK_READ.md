@@ -2,7 +2,7 @@
 type: paper_note
 title: Sequence to Sequence Learning with Neural Networks
 category: 10_AI_Foundations
-status: reading
+status: quick_read_done
 read_mode: Structured Read
 phase: 2026-05 / Transformer prelude
 source_url: https://arxiv.org/abs/1409.3215
@@ -70,5 +70,5 @@ local_pdf: Sequence_to_Sequence_Learning_with_Neural_Networks.pdf
 | 日期 | 阅读模式 | 进度 | 产出 |
 |---|---|---|---|
 | 2026-05-24 | Structured Read | planned | 理解 encoder-decoder seq2seq 作为 Transformer 前传 |
-| 2026-05-25 | Structured Read | in_progress | 补入 RNN / LSTM 前置 takeaway，准备继续读 encoder-decoder 主链路 |
-| 2026-05-25 | Quick Read | in_progress | 形成 Seq2Seq 作为句子级 paired supervision + conditioned decoder LM 的核心理解 |
+| 2026-05-25 | Structured Read | done | 补入 RNN / LSTM 前置 takeaway，理解 encoder-decoder 主链路 |
+| 2026-05-25 | Quick Read | done | 形成 Seq2Seq 作为句子级 paired supervision + conditioned decoder LM 的核心理解 |

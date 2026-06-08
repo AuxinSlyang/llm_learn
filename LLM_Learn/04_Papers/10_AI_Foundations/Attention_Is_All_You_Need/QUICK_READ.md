@@ -2,7 +2,7 @@
 type: paper_note
 title: Attention Is All You Need
 category: 10_AI_Foundations
-status: queue
+status: quick_read_done
 read_mode: Structured Read
 phase: 2026-05 / nanoGPT closure
 linked_project: [[embodied-ai-mini-stack]]
@@ -253,4 +253,4 @@ position 3: predict <EOS>
 
 | 日期 | 阅读模式 | 进度 | 产出 |
 |---|---|---|---|
-| 2026-05-21 | Structured Read | planned | 对应到 `nanogpt-from-scratch/notes/transformer.md` |
+| 2026-05-21 | Structured Read | done | 建立 Transformer 模块主线，并对齐到 `nanogpt-from-scratch/notes/transformer.md` |

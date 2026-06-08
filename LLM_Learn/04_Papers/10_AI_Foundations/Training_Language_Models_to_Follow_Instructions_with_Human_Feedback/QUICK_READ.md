@@ -2,7 +2,7 @@
 type: paper_note
 title: Training language models to follow instructions with human feedback
 category: 10_AI_Foundations
-status: queue
+status: quick_read_done
 read_mode: Quick Read
 phase: 2026-05 / post-GPT lineage
 source_url: https://arxiv.org/abs/2203.02155
@@ -262,3 +262,9 @@ subjects:
 - SFT 本质还是 CE 训练，只是数据从普通文本变成高质量 `prompt -> answer` 示范。
 - RM/RLHF 解决的是“单个示范不够表达偏好”的问题：同一 prompt 可以有多个合理回答，排序数据更适合表达人类对质量的细粒度判断。
 - 论文最重要的认知转变：能力、听话、好用、安全不是同一件事；更大模型不自动更对齐。
+
+## 阅读记录
+
+| 日期 | 阅读模式 | 进度 | 产出 |
+|---|---|---|---|
+| 2026-05-31 | Quick Read | done | 形成 `base LM -> SFT -> RM -> PPO/RLHF` post-training 主线 |

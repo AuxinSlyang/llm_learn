@@ -2,7 +2,7 @@
 type: paper_note
 title: Chain-of-Thought Prompting Elicits Reasoning in Large Language Models
 category: 10_AI_Foundations
-status: queue
+status: quick_read_done
 read_mode: Quick Read
 phase: 2026-05 / post-GPT lineage
 source_url: https://arxiv.org/abs/2201.11903
@@ -36,3 +36,9 @@ local_pdf: Chain_of_Thought_Prompting_Elicits_Reasoning_in_Large_Language_Models
 - CoT prompting 本身更像一个发现/探针，而不是生产级完整方案：示例难选、prompt 敏感、只在大模型上明显有效，且生成的 reasoning path 不保证 faithful 或正确。
 - 对后续 LLM 推理能力的真正影响是：它把“显式中间推理过程”确立为可利用的行为格式，后续可以进入 reasoning SFT、synthetic CoT data、verifier / PRM、tool use、self-consistency 和 reasoning RL。
 - 学习上不再继续深挖 CoT 原论文细节；保留这个 takeaway，后续统一阅读 CoT 系列论文时再看 self-consistency、STaR、process supervision、ReAct / tool use 和 reasoning RL。
+
+## 阅读记录
+
+| 日期 | 阅读模式 | 进度 | 产出 |
+|---|---|---|---|
+| 2026-05-31 | Quick Read | done | 形成 `few-shot examples -> intermediate reasoning -> answer` 主线 |

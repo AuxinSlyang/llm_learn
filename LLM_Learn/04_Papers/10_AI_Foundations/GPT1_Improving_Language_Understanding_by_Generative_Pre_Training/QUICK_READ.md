@@ -2,7 +2,7 @@
 type: paper_note
 title: Improving Language Understanding by Generative Pre-Training
 category: 10_AI_Foundations
-status: queue
+status: quick_read_done
 read_mode: Quick Read
 phase: 2026-05 / GPT lineage
 source_url: https://cdn.openai.com/research-covers/language-unsupervised/language_understanding_paper.pdf
@@ -81,4 +81,4 @@ local_pdf: GPT1_Improving_Language_Understanding_by_Generative_Pre_Training.pdf
 
 | 日期 | 阅读模式 | 进度 | 产出 |
 |---|---|---|---|
-| 2026-05-27 | Quick Read | planned | GPT 设计演化第一站：预训练 + 微调 |
+| 2026-05-28 | Quick Read | done | GPT 设计演化第一站：`generative pretraining -> supervised fine-tuning` |
