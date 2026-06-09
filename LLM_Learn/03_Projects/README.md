@@ -10,6 +10,7 @@
 
 - `micrograd/`：自动微分、反向传播、最小神经网络直觉
 - `makemore/`：从字符级语言模型进入神经网络训练主线
+- `tokenizer-from-scratch/`：从 Unicode / UTF-8 / BPE / token ids 进入 nanoGPT 输入链路
 - `nanogpt-from-scratch/`：从 `bigram -> transformer -> GPT` 建立 LLM 主链路直觉
 
 ### 机器人 / 具身智能基础线
@@ -17,6 +18,7 @@
 - `robotics-foundations/`：机器人系统、控制、仿真、ROS2、具身智能系统的总入口
 - `modern-robotics/`：《Modern Robotics》教材和配套课程的专题学习入口
 - `embodied-ai-mini-stack/`：面向具身智能软件工程师 JD 的一年作品主线，覆盖仿真、数据闭环、Robot Learning、runtime、eval、replay 和 failure analysis
+- `so-arm101-lerobot-first-loop/`：3000 元以内 SO-ARM101 + LeRobot 真实机器人学习首闭环
 
 ## 收录原则
 

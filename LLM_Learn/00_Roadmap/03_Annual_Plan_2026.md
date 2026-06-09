@@ -55,9 +55,11 @@ Robot Learning Full-Stack 主线
 ## 学习执行原则
 
 - 每个阶段只有一个主课程或主实验，不同时完整刷多门课。
+- 每个阶段必须有一个可动手推进的项目；课程、论文和笔记都要服务这个项目的下一个动作。
 - 每周至少留下一个可检查证据：笔记、代码、曲线、实验表、失败分析或 JD mapping。
 - 论文只作为当前阶段解释器，不随机追热点。
 - 实验优先形成闭环：`sim/task -> obs/action -> policy -> train/eval -> log/replay -> runtime -> failure analysis`。
+- 看课不是阶段目标本身；看课过程中要同步推进项目里的代码、实验、数据、硬件、日志或报告。
 - 月末复盘必须对照月计划，决定下月是继续、降难还是换入口。
 
 ## 上半年实际回顾
@@ -76,7 +78,7 @@ H1 的价值不是“已经学完”，而是把语言模型基础、系统工�
 
 | 月份 | 主模块 | 主资源 | 阶段产出 | 对短期职业目标的帮助 |
 |---|---|---|---|---|
-| 2026-06 | M1：路线切换 + 最小 RL 闭环 | nanoGPT、Gymnasium、Stable-Baselines3 | `nanoGPT 主链路总结 v0`、`Robot Learning Full-Stack 路线 v0`、`MuJoCo PPO report v0` | 证明能把 LLM 基础收口，并启动 policy 训练-评估闭环 |
+| 2026-06 | M1：路线切换 + 实物机器人首闭环预备 | nanoGPT、SO-ARM101、LeRobot、LingBot-VLA walkthrough，Gymnasium/MuJoCo 兜底 | `nanoGPT 主链路总结 v0`、`LLM phase 1 总结 v0`、`SO-ARM101 + LeRobot 首闭环 bring-up 记录`、`robot data schema v0` | 证明能把 LLM 基础收口，并尽早接触真实机器人硬件、示教数据、评估和 failure loop |
 | 2026-07 | M2：机器人本体语言 I | Modern Robotics Ch.1-3 | `frame / SO(3) / SE(3) / configuration notes`、`state-action schema v0` | 看懂机器人状态、坐标系和动作表达 |
 | 2026-08 | M3：机器人本体语言 II | Modern Robotics Ch.4-6 | `FK/IK/Jacobian demo`、`MR notes v0` | 具备和机器人算法/控制同学沟通的基础语言 |
 | 2026-09 | M4：控制 / 动力学入口 | MIT Underactuated 精选、MuJoCo control | `control baseline note`、`latency/jitter/robustness note` | 支撑 policy runtime 的稳定性、低延迟和故障分析 |
@@ -88,7 +90,7 @@ H1 的价值不是“已经学完”，而是把语言模型基础、系统工�
 
 - [ ] `nanoGPT 主链路总结 v0`：讲清 `token -> embedding -> attention -> block -> logits -> loss/generate`。
 - [ ] `Robot Learning Full-Stack 路线 v0`：明确课程、论文、硬件、实验和 JD 映射。
-- [ ] `MuJoCo/Gymnasium + PPO 最小闭环 report v0`：包含训练脚本、reward 曲线、eval 和失败样例。
+- [ ] `SO-ARM101 + LeRobot 首闭环 report v0`：包含采购/组装/校准/teleop/record/replay/train/eval/failure note；若硬件阻塞，用 `Gymnasium/MuJoCo + PPO smoke test` 兜底。
 - [ ] `state/action/trajectory schema v0`：用机器人系统语言描述 obs/action/reward/log。
 - [ ] `Modern Robotics notes v0`：frame、pose、twist、FK、IK、Jacobian。
 - [ ] `control baseline note`：PD/LQR/MPC awareness、latency、jitter、stability。
@@ -105,7 +107,7 @@ H1 的价值不是“已经学完”，而是把语言模型基础、系统工�
 
 - [ ] 能讲清 robot learning 闭环：`obs -> action -> reward -> policy -> eval -> log/replay -> data loop`。
 - [ ] 能讲清机器人状态、坐标系、FK/IK/Jacobian 在系统中的作用。
-- [ ] 能跑通至少一个 Gymnasium/MuJoCo policy 训练-评估闭环，并解释 reward 曲线和失败样例。
+- [ ] 能跑通至少一个真实或仿真的 robot learning 闭环；优先是真实 SO-ARM101 的 `teleop -> dataset -> replay/train -> eval -> failure note`，硬件阻塞时用 Gymnasium/MuJoCo PPO 兜底。
 - [ ] 能解释视觉 observation 如何变成 policy 输入，以及 camera/depth/calibration/data format 的位置。
 - [ ] 能解释 policy runtime 的关键工程问题：latency、timeout、action clipping、fallback、watchdog、logging。
 - [ ] 能说明 LLM / VLA / 多模态能力如何作为机器人语言智能和高层任务分解模块接入，而不是替代机器人系统。
@@ -117,7 +119,7 @@ H1 的价值不是“已经学完”，而是把语言模型基础、系统工�
 |---|---|
 | 课程开太多 | 每月只保一个主课程，其他只做支撑材料 |
 | nanoGPT 收尾拖太久 | 只保主链路总结，不继续展开大规模 LLM 论文 |
-| MuJoCo/PPO 环境卡住 | 先用 Gymnasium classic-control 或 CPU MuJoCo，留下最小可跑证据 |
+| 真实硬件到货或校准卡住 | 先做 LeRobot/LingBot-VLA walkthrough、dataset schema mapping 和 Gymnasium/MuJoCo smoke test，保持项目证据不断档 |
 | Modern Robotics 数学推导卡住 | 第一遍不死磕证明，先建立系统直觉和代码 demo |
 | CS231n 扩散成纯 CV 路线 | 只看机器人 observation 需要的视觉表示、数据格式和延迟问题 |
 | Robot Learning 论文读散 | 每篇只回答 task、obs/action、policy/data/loss/reward、eval/runtime |

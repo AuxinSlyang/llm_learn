@@ -11,6 +11,10 @@
 - 数据规模、embodiment heterogeneity 和 eval 怎么处理
 - 如果产品化，需要怎样的 runtime / fallback / data loop
 
+当前快速地图：
+
+- [[VLA_VLM_Foundation_Map]]：VLM -> VLA -> robot runtime 的第一版谱系。
+
 默认阅读顺序：
 
 1. RT-1
@@ -19,4 +23,3 @@
 4. Octo
 5. OpenVLA
 6. PI0
-

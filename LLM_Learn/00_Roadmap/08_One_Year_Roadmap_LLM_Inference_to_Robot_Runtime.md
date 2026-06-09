@@ -32,22 +32,25 @@ LLM / AI Infra / Runtime 能力
 - KV cache、prefill/decode、batching、latency 指标帮助分析 robot runtime 中的推理延迟和资源风险。
 - ONNX / TensorRT / quantization / profiling 帮助未来端侧部署和 policy inference 优化。
 - DB / 存储 / 系统工程经验可以迁移到 robot data loop、logging、replay、eval harness、observability 和 reliability。
+- vLLM / TensorRT-LLM 代表真实推理工程能力：KV cache、batching、kernel/graph 优化、显存、吞吐、延迟和部署边界。它们后续必须学习，但学习入口应来自 VLA / robot runtime 的实际部署问题。
 
 ## 学习边界
 
-- 不把 vLLM / SGLang / TensorRT-LLM 源码阅读作为 2026 H2 上位主线。
+- 不把 vLLM / SGLang / TensorRT-LLM 源码阅读作为独立上位主线，但要把它们作为 `VLA / robot policy runtime` 的核心工程能力逐步打磨。
 - 不构建独立 `LLM inference mini-stack` 作为年度主作品。
 - 不因为 LLM Infra 更熟悉就抢走 Robot Learning Full-Stack 主线。
 - 需要时只取服务 VLA / policy runtime / edge inference 的最小知识。
+- 推理优化采用项目牵引方式：先记录真实 robot policy/VLA runtime 的 latency、资源、接口和 failure，再决定是否补 batching、KV cache、quantization、ONNX/TensorRT 或 serving 细节。
 
 ## 支撑线材料节奏
 
 | 时间 | 材料 | 只取什么 | 输出 |
 |---|---|---|---|
 | 2026-06 | nanoGPT | `training -> generate -> runtime` 主链路 | `nanoGPT 主链路总结 v0` |
+| 2026-06 ~ 2026-07 | SO-ARM101 + LeRobot | policy inference 输入/输出、动作频率、日志、eval latency | `runtime_log_schema_v0`、`policy_runtime_interface_v0` |
 | 2026-H2 | CS336 精选 | language model system map、training/inference 边界 | `CS336 支撑线 checklist` |
-| 2026-H2 | vLLM / serving 精选 | prefill、decode、KV cache、latency 指标 | `VLA/policy runtime latency note` |
-| 2026-H2 | ONNX / TensorRT / quantization | edge inference、模型导出、runtime 优化 awareness | `edge inference support note` |
+| 2026-H2 | vLLM / serving 精选 | prefill、decode、KV cache、PagedAttention、continuous batching、latency/throughput trade-off | `vllm_serving_note_v0`、`VLA/policy runtime latency note` |
+| 2026-H2 | TensorRT-LLM / ONNX / TensorRT / quantization | engine build、graph/kernel optimization、模型导出、端侧/边缘部署、profiling | `tensorrt_llm_deploy_note_v0`、`edge inference support note` |
 | 2027-H1 | VLA runtime papers | action interface、推理延迟、数据闭环 | `VLA -> policy runtime mapping` |
 
 ## 必须掌握的问题
@@ -55,6 +58,8 @@ LLM / AI Infra / Runtime 能力
 - Transformer inference 和 training loop 的差异。
 - Prefill / decode 的计算和显存特征。
 - KV cache 为什么会影响长上下文和多模态推理。
+- vLLM 为什么要做 PagedAttention / continuous batching，它解决的是吞吐、显存碎片还是并发调度问题。
+- TensorRT-LLM / TensorRT 的核心价值在哪里：图优化、kernel fusion、低精度、engine build、部署约束。
 - TTFT / TPOT / throughput / latency / tail latency 如何定义。
 - ONNX Runtime / TensorRT / FP16 / INT8 在端侧部署中的位置。
 - VLA / LLM 作为高层任务理解与规划模块时，如何与低层 policy runtime 分层。

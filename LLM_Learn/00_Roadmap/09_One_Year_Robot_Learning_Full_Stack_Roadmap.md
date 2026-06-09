@@ -47,15 +47,27 @@ sim/task -> observation/action -> train policy -> eval -> log/replay -> runtime 
 ## 学习原则
 
 - 每个阶段只有一门主课，不同时完整刷多门课。
+- 每个阶段必须有一个动手项目作为主线；课程只是推进项目时补知识的方式。
 - 论文只作为当前阶段的解释器，不随机追热点。
 - 每个阶段必须有一个可展示产出：笔记、代码、曲线、报告、mapping。
+- 每次看课后都要落到项目动作：补一个脚本、跑一次实验、解释一个数据字段、修一个环境、更新一条 failure note，或写一段 report。
 - LLM / AI Infra 不丢弃，但降级为机器人 policy runtime / VLA runtime 的支撑能力。
+
+## 项目牵引原则
+
+年度路线按项目推进，而不是按课程推进：
+
+```text
+项目问题 -> 需要补的课程/论文 -> 当周实验或笔记 -> 项目证据
+```
+
+阶段项目可以很小，但不能没有动手对象。课程学习只回答项目里的具体问题，例如 `这个 observation/action 是什么`、`为什么 eval 失败`、`这个控制量对应哪个 joint`、`policy runtime 需要什么日志`。
 
 ## 12 个月总表
 
 | 时间 | 主模块 | 主公开课 / 主资源 | 论文穿插 | 硬件 / 系统补充 | 阶段产出 | 对 JD1 的帮助 |
 |---|---|---|---|---|---|---|
-| M1 | 最小 RL 闭环 | Gymnasium + Stable-Baselines3 官方教程 | PPO、DAgger 轻读 | Linux headless、conda/docker、训练曲线 | `MuJoCo PPO report v0` | 证明能跑通 policy 训练-评估 |
+| M1 | 实物机器人首闭环 | SO-ARM101 + LeRobot，LingBot-VLA walkthrough，Gymnasium/MuJoCo 兜底 | ACT、DAgger 轻读，PPO 只作仿真兜底 | 端口、校准、teleop、record/replay、dataset schema、训练日志 | `SO-ARM101 + LeRobot first loop report v0` | 证明能接触真实机器人硬件、示教数据、policy 训练/评估和 failure loop |
 | M2-M3 | 机器人本体 | Modern Robotics | locomotion / robot control 综述 | URDF、joint、motor、encoder、control frequency | `MR notes + FK/IK/Jacobian demo` | 看懂机器人身体、状态和动作空间 |
 | M4 | 控制 / 动力学 | MIT Underactuated Robotics 精选 | LQR、MPC、legged control | 实时控制、latency、jitter、稳定性 | `control baseline note` | 支撑低延迟执行和鲁棒性分析 |
 | M5-M6 | 视觉感知 | Stanford CS231n 精选 | ResNet、ViT、CLIP、视觉表征 | camera/depth、calibration、数据格式 | `robot perception map` | 对齐感知-决策-执行链路 |
@@ -83,7 +95,7 @@ sim/task -> observation/action -> train policy -> eval -> log/replay -> runtime 
 
 论文队列按阶段进入：
 
-- M1-M2：PPO、DAgger、Gymnasium/MuJoCo 基础论文或文档。
+- M1-M2：LeRobot/SO-ARM101 文档、ACT/DAgger 基础、Gymnasium/MuJoCo 兜底材料。
 - M5-M6：ResNet、ViT、CLIP、DINO/representation。
 - M7-M8：BC、DAgger、SAC、RMA、Diffusion Policy。
 - M9-M11：ACT、RT-1、RT-2、OpenVLA、Octo、π0、system/runtime 论文。
@@ -100,14 +112,14 @@ sim/task -> observation/action -> train policy -> eval -> log/replay -> runtime 
 
 ## 30 天第一闭环
 
-目标：先跑通最小 robot learning 闭环，不等待所有理论学完。
+目标：先跑通最小 robot learning 闭环，不等待所有理论学完。2026-06-08 修订后，第一闭环优先选择有实物反馈的 `SO-ARM101 + LeRobot`，因为真实硬件会更早暴露端口、校准、摄像头、示教数据、replay、评估和 failure loop 问题；`Gymnasium/MuJoCo + PPO` 作为硬件未到或环境阻塞时的兜底线。
 
 | 周 | 内容 | 产出 |
 |---|---|---|
-| W1 | Gymnasium/MuJoCo + Stable-Baselines3 PPO 跑 `Pendulum` / `InvertedPendulum` | 训练脚本 + reward 曲线 |
-| W2 | 换到 `HalfCheetah` / `Hopper`，跑固定 seed eval | `eval.py` + success/reward 表 |
-| W3 | 加 noise / reward 改动 / domain randomization 小实验 | 对比图 + 失败样例 |
-| W4 | 写实验报告并映射 JD1 | `MuJoCo PPO report v0` |
+| W1 | SO-ARM101/LeRobot 项目启动：采购决策、官方文档 walkthrough、LingBot-VLA 视频/repo first scan、bring-up checklist；硬件未到时做 LeRobot/Gymnasium 环境 smoke test | `bring-up checklist` + `BOM final` + `robot data schema first note` |
+| W2 | 真实硬件 bring-up：组装、端口、电机 ID、校准、teleoperation、录制 3-5 条 episode、replay 1 条；硬件阻塞时改做仿真 smoke test | `E001_hardware_bringup` + `E002_dataset_recording` + replay 记录 |
+| W3 | 数据与第一版 policy：固定 `push-to-zone` 或简单 pick-and-place，录 30-50 条示教，训练 ACT/BC v0，做 10 次 eval | `ACT train v0` + `real eval table` + `failure taxonomy` |
+| W4 | 补数据迭代与报告：根据失败类型补 10-20 条数据，训练 v1 或写 blocker report，并映射 JD1 / VLA runtime | `first_loop_report_v0` + `LingBot-VLA schema mapping` |
 
 ## 阶段结束标准
 
@@ -122,6 +134,7 @@ sim/task -> observation/action -> train policy -> eval -> log/replay -> runtime 
 ## 不做事项
 
 - 不在第一月直接上 Isaac Lab 作为主入口；现有 V100 不适合现代 Isaac Sim/Lab 主力运行。
+- 不把 `LingBot-VLA 4B full post-training` 作为第一月验收目标；第一月只要求 schema mapping、open-loop 可行性或 blocker report。
 - 不同时完整刷 CS231n、Modern Robotics、CS285。
 - 不把论文阅读变成主线；论文必须服务课程和实验。
 - 不把 LLM inference 彻底丢掉；它作为 VLA/policy runtime 的系统能力保留。
