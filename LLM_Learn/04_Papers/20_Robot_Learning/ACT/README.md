@@ -2,10 +2,10 @@
 type: paper_note
 title: Learning Fine-Grained Bimanual Manipulation with Low-Cost Hardware (ALOHA / ACT)
 category: Robot Learning / Imitation Learning
-status: queue
+status: downloaded
 read_mode: Structured Read
-phase: 2026-09
-linked_project: [[embodied-ai-mini-stack]]
+phase: 2026-W24
+linked_project: [[so-arm101-lerobot-first-loop]]
 arxiv: 2304.13705
 source_url: https://arxiv.org/abs/2304.13705
 pdf_url: https://arxiv.org/pdf/2304.13705
