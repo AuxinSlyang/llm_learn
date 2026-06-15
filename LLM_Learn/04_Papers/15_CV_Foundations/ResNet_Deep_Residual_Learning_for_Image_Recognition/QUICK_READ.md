@@ -8,7 +8,7 @@ pdf_url: https://arxiv.org/pdf/1512.03385
 local_pdf: ./ResNet_Deep_Residual_Learning_for_Image_Recognition.pdf
 track: CV foundation
 read_mode: Structured Read
-status: quick_read_done
+status: guided_read_done
 created: 2026-06-09
 completed: 2026-06-15
 ---
@@ -169,6 +169,143 @@ image -> ResNet -> image feature -> projection -> image embedding
 ### One-Sentence Takeaway
 
 ResNet 的历史意义是把 VGG 的“深度有用”推进到“深度可以继续扩展并稳定优化”：用 identity shortcut 让新增层学习 residual，而不是强迫一串非线性层从零学习完整映射。
+
+## 2026-06-15 Guided Read Recap
+
+### Introduction
+
+Introduction 的论证链非常完整：
+
+```text
+VGG / Inception 等工作说明 depth matters
+-> 直接堆更深 plain network 不一定更好
+-> 旧问题 vanishing / exploding gradients 已被 initialization / BN 部分缓解
+-> 新问题是 degradation problem：更深 plain net 的 training error 也变高
+-> 理论上深网可以复制浅网并让新增层做 identity
+-> 如果实际更差，说明不是表达能力问题，而是 optimization / learnability 问题
+-> residual learning 让 identity 解更容易被 SGD 找到
+```
+
+这里的关键理解是：
+
+```text
+existence != learnability
+```
+
+一个好解在数学上存在，不代表 plain deep net 的优化器容易找到它。
+
+### Identity / Residual / Shortcut
+
+`identity` 在 ResNet 里不是一种图像特征，而是固定映射：
+
+```text
+I(x) = x
+```
+
+其中 `x` 是当前 block 的 feature representation / feature map，不一定是原始图片。identity shortcut 的意义是让已有 feature 原样通过。
+
+`residual` 是相对当前输入还需要补上的差值：
+
+```text
+F(x) = H(x) - x
+H(x) = x + F(x)
+```
+
+所以一个 ResNet block 可以直接理解为：
+
+```text
+ResNet block = x + CNN_block(x)
+```
+
+更严格地说：
+
+```text
+y = F(x, {W_i}) + x
+```
+
+其中 `F(x, {W_i})` 是可训练的 residual branch，`x` 是 parameter-free / always-open identity shortcut。
+
+### Why It Helps
+
+plain deep net 的新增层如果想“不做事”，需要一串 `conv + BN + ReLU` 学出：
+
+```text
+H(x) = x
+```
+
+这理论上可表达，但训练上不一定容易。
+
+ResNet 里新增层如果没用，只需：
+
+```text
+F(x) = 0
+y = x
+```
+
+所以 ResNet 的核心不是增加表达能力，而是让“新增层至少不伤害已有 representation”更容易。
+
+可以把深层 ResNet 看成：
+
+```text
+x_{l+1} = x_l + F_l(x_l)
+```
+
+也就是从 layer-by-layer rewriting 变成 identity-centered iterative refinement。
+
+### Section 3 Core
+
+Section 3 的骨架：
+
+- `3.1 Residual Learning`：如果能学 `H(x)`，也能学 `H(x)-x`；二者表达能力相近，但 ease of learning 不同。
+- `3.2 Identity Mapping by Shortcuts`：用 `y = F(x, {W_i}) + x` 实现 residual block；shortcut 不增加参数和主要计算量。
+- `3.3 Network Architectures`：用 VGG-style `3x3 conv` plain net 做 baseline，再插入 shortcuts 得到 residual net。
+- `3.4 Implementation`：ImageNet 训练细节沿用 AlexNet/VGG 范式，使用 BN、SGD、scale augmentation、crop / flip。
+
+Figure 3 的读法：
+
+```text
+VGG-19: reference
+34-layer plain: 直接堆深的 baseline
+34-layer residual: 同一个 plain baseline + shortcuts
+```
+
+ResNet 不是重建一个完全不同的网络，而是在 plain CNN 上系统性加入 residual shortcut。
+
+### Shortcut Options
+
+维度一致时：
+
+```text
+y = F(x) + x
+```
+
+维度不一致时，论文比较三种 shortcut：
+
+- `A`: identity shortcut + zero padding。最省、无参数，但新增 channel 没有 shortcut 信息。
+- `B`: 只在维度变化处用 `1x1 projection`。实用选择，ResNet-50/101/152 采用。
+- `C`: 所有 shortcut 都用 projection。参数更多，效果只略好。
+
+结论：
+
+```text
+identity / residual mechanism 是关键；
+projection 主要用于 shape matching，不是 degradation problem 的本质解法。
+```
+
+### Section 4 Core Evidence
+
+实验主要证明四件事：
+
+- plain network 直接加深会出现 degradation problem。
+- ResNet 避免 degradation：ResNet-34 优于 plain-34，也优于 ResNet-18。
+- ResNet 在 ImageNet 上能继续扩展到 50/101/152 层并持续受益。
+- ResNet-101 替换 Faster R-CNN 的 VGG-16 backbone 后，detection 也提升，说明它学到的是更强 visual representation。
+
+最终 takeaway：
+
+```text
+ResNet 让 depth 从“有用但难训”变成“可以大规模稳定扩展”。
+```
 
 ## Follow-Up
 

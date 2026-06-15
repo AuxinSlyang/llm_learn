@@ -487,24 +487,27 @@ camera image
 - `AlexNet`：background scan done。核心是 `ImageNet + deep CNN + GPU + ReLU + augmentation/dropout + end-to-end training`。
 - `VGG`：structured quick read done。核心是 `depth matters`，`3x3 conv` stack 让深度增加参数可控并形成强 visual backbone。
 
-### 当前
+### 已完成：ResNet
 
-当前下一篇：`ResNet - Deep Residual Learning for Image Recognition`
+`ResNet - Deep Residual Learning for Image Recognition` 已在 2026-06-15 完成 guided structured read。
 
-ResNet 本轮只回答：
+ResNet 本轮已经回答：
 
-- 什么是 degradation problem？
-- 为什么 plain deep network 不是简单“更深就更好”？
-- `y = F(x) + x` 为什么让深层网络更容易优化？
-- ResNet 和后续 ViT / CLIP / VLA visual encoder 的关系是什么？
+- `degradation problem`：更深 plain net 不只是 test error 变差，training error 也变高。
+- plain deep network 不是简单“更深就更好”：更大解空间不代表 SGD 更容易找到好解。
+- `y = F(x) + x` 的意义：identity shortcut 保留当前 feature，residual branch 只学 `H(x)-x`。
+- ResNet 和后续 ViT / CLIP / VLA visual encoder 的关系：ResNet 是深层 CNN backbone 的优化里程碑，ViT 之后转向 patch tokens / attention，但仍继承 residual/skip 的深层优化思想。
 
-已读 ResNet Abstract / Introduction 的第一性理解：
+ResNet guided read 的第一性理解：
 
 ```text
 VGG 证明 depth matters。
 ResNet 问：继续堆层是否就够？
 答案：不是。plain deeper network 会出现 training error 反而更高的 degradation problem。
 Residual learning 让新增层只学习 F(x)=H(x)-x，并通过 identity shortcut 保留 x。
+ResNet block 可以直观理解为 x + CNN_block(x)，但 x 是当前 feature representation，不一定是原始图片。
+identity 是 I(x)=x 的固定映射，不是图像特征本身。
+Section 4 证明了 plain depth 会退化、ResNet 避免退化、ResNet-50/101/152 能继续从 depth 中受益。
 ```
 
 ### 下一步
@@ -512,8 +515,7 @@ Residual learning 让新增层只学习 F(x)=H(x)-x，并通过 identity shortcu
 建议顺序：
 
 ```text
-ResNet
--> ViT
+ViT
 -> Vision Transformers Need Registers
 -> CLIP / BLIP-2 / LLaVA 回看或补桥
 ```
@@ -626,8 +628,7 @@ state + action -> future state
 
 ### 近期可能看
 
-- ResNet：当前。
-- ViT：ResNet 后。
+- ViT：下一篇。重点是 image patches as tokens、class token、position embedding、数据规模和 CNN inductive bias 差异。
 - Vision Transformers Need Registers：ViT 后的解释性支线。
 - CLIP / BLIP-2 / LLaVA：如果 ViT 后需要桥到 VLM，可回看并补齐。
 - LingBot-VLA / SmolVLA：硬件数据闭环跑通后做 engineering walkthrough。
@@ -670,7 +671,7 @@ state + action -> future state
 - `LeRobot`：从 code map 进入真实命令记录和 project coding scaffold。
 - `Dataset`：录制 3-5 条 episode，replay 1 条。
 - `LLM closure`：tokenizer / BPE 一页总结；nanoGPT 主链路总结。
-- `CV`：ResNet structured read；再进入 ViT。
+- `CV`：ResNet guided structured read 已完成；下一步进入 ViT，再做 `LeNet -> AlexNet -> VGG -> Inception -> ResNet -> ViT` 小结。
 - `VLA`：等 LeRobot record/replay 有证据后，回到 ACT / LingBot / SmolVLA。
 
 ## 当前下一步
@@ -678,8 +679,8 @@ state + action -> future state
 如果下一个 session 是论文阅读：
 
 ```text
-读 ResNet Section 3: Deep Residual Learning
-重点看 F(x)+x, shortcut connection, dimension matching, plain vs residual comparison
+读 ViT: An Image is Worth 16x16 Words
+重点看 patch embedding, class token, position embedding, transformer encoder, data scale, ResNet -> ViT 的范式变化
 ```
 
 如果下一个 session 是项目执行：
@@ -696,4 +697,3 @@ state + action -> future state
 运行 start-my-day
 但保持 W25 唯一主线：hardware validation -> teleop -> record -> replay -> coding scaffold
 ```
-

@@ -51,7 +51,7 @@
 - [ ] LeNet-5：Gradient-Based Learning Applied to Document Recognition；PDF 已下载，早期 CNN 完整形态
 - [x] AlexNet：ImageNet / deep CNN / data + GPU + ReLU，理解现代 CV 起点；background scan done
 - [x] VGG：depth / small conv / simple backbone，理解深度和结构简洁性；structured quick read done
-- [x] ResNet：residual connection 和 CNN backbone 基础；2026-06-15 half-hour quick read done，后续只需补代码/shape 精读
+- [x] ResNet：residual connection 和 CNN backbone 基础；2026-06-15 guided structured read done，后续只需补代码/shape 精读
 - [ ] GoogLeNet / Inception：multi-scale feature / compute efficiency，理解多尺度和算力约束；defer after ResNet if needed
 - [ ] ViT：image patches as tokens，理解 visual tokens
 - [ ] Vision Transformers Need Registers：ViT attention / feature map artifact，可解释性边界；后续 30-45m 支撑线阅读，不抢 SO-ARM101 主线
@@ -123,7 +123,7 @@
 | AlexNet | 现代深度 CNN / ImageNet 起点 | background scan done |
 | VGG | 小卷积堆叠和 depth 直觉 | structured quick read done |
 | GoogLeNet / Inception | 多尺度特征和计算效率 | downloaded / background scan |
-| ResNet | residual connection 和深层 CNN backbone | quick read done; code/shape follow-up |
+| ResNet | residual connection 和深层 CNN backbone | guided read done; code/shape follow-up |
 | ViT | image patches as tokens，视觉 Transformer | downloaded / structured read later |
 | Vision Transformers Need Registers | register tokens 修复 ViT attention / feature map artifact，校准 attention visualization 的解释边界 | queued / follow-up support |
 | Vision Banana / Image Generators are Generalist Vision Learners | 生成式视觉模型作为 generalist vision learner，观察是否形成 CV 的 GPT-style 统一接口 | follow-up after SO-ARM101 first loop |
