@@ -79,15 +79,27 @@ If the workspace is a Git repository and the user has not explicitly disabled co
 Rules:
 
 - Always inspect `git status --short` before staging.
-- Stage only files created or modified by this close-out run, plus directly related Daily / paper / workflow notes. Do not stage unrelated working-tree changes.
+- Before staging, read the target Daily Note's `今日学习证据`, `今日输入`, `今日对应文件或命令`, and close-out sections to identify all learning materials that belong to that date.
+- A normal daily commit must include the target Daily Note and all same-day learning artifacts evidenced by that Daily Note: project notes, experiment logs, paper `QUICK_READ.md` files, reading indexes, local workflow notes, and directly related PDFs/images when they are part of the learning record.
+- Do not commit only the Daily Note when same-day learning materials are still unstaged. Either stage the related materials with the daily commit, or explicitly record why a file is excluded.
+- If uncommitted materials span multiple days, split them by Daily Note evidence and attach each group to the corresponding `daily: YYYY-MM-DD` commit. For an existing local daily commit, prefer a fixup/autosquash or amend workflow so the final history has the materials merged into the right daily commit.
+- Stage only files created or modified by this close-out run, plus directly related Daily / project / paper / workflow notes and same-day learning artifacts. Do not stage unrelated working-tree changes.
 - If unrelated changes already exist, leave them unstaged and mention them briefly.
 - If there are no staged changes, do not create an empty commit.
 
 Commit order:
 
-1. Normal day close: commit daily changes with `daily: YYYY-MM-DD`.
+1. Normal day close: commit daily changes and all same-day learning artifacts with `daily: YYYY-MM-DD`.
 2. If weekly close also ran, then commit weekly/monthly-plan handoff changes separately with `weekly: YYYY-Www`.
 3. If monthly close also ran, then commit month-close changes separately with `monthly: YYYY-MM`.
+
+Daily material split checklist:
+
+- `Daily Note`: target date only, unless intentionally backfilling a missed day.
+- `Project artifacts`: experiment logs, BOM/checklists, code maps, dataset/schema/failure notes, reports, and command scaffolds evidenced by the target Daily Note.
+- `Paper artifacts`: paper notes, reading plans, reading indexes, downloaded PDFs, figures, and paper-session context created or advanced for that date.
+- `Workflow artifacts`: skill/template/workflow notes changed to support that day's learning workflow.
+- `Exclude`: `.obsidian/workspace.json`, `.DS_Store`, unrelated old Daily Notes, and broad historical cleanup unless the Daily Note explicitly says they are part of today's work.
 
 Examples:
 
