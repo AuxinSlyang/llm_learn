@@ -1,9 +1,27 @@
+---
+type: paper_note
+title: "Diffusion Policy: Visuomotor Policy Learning via Action Diffusion"
+short_name: Diffusion Policy
+arxiv_id: "2303.04137"
+url: https://arxiv.org/abs/2303.04137
+pdf_url: https://arxiv.org/pdf/2303.04137
+local_pdf: ./Diffusion_Policy_Visuomotor_Policy_Learning_via_Action_Diffusion.pdf
+track: robot learning / action generation
+read_mode: Awareness
+status: downloaded
+created: 2026-06-09
+---
+
 # Diffusion Policy QUICK_READ
 
-- Paper：Diffusion Policy: Visuomotor Policy Learning via Action Diffusion（待补 arXiv）
+- Paper：Diffusion Policy: Visuomotor Policy Learning via Action Diffusion
 - 主题：Robot Learning / Imitation Learning
 - 阅读模式：Classic Scan（20-40m）
 - 输出标准：一句 takeaway + 一个和 mini-stack 的连接（接口/数据/评估/部署）
+
+## 2026-W24 Position
+
+Diffusion Policy 重要，但本周不抢 ACT / LeRobot / assembly 时间。等 SO-ARM101 有第一批 episode 后，再用它理解复杂动作分布和 action sequence generation。
 
 ## 读前问题（2-3min）
 
@@ -30,4 +48,3 @@
 
 - 需要精读的段落（指到 section）：
 - 想复现/最小验证的点（可写 TODO）：
-

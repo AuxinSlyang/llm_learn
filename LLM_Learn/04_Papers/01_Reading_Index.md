@@ -5,6 +5,7 @@
 > `start-my-day` 默认从这里挑选 paper slot。完成后手动打勾或移动顺序。
 > 如果 `04_Papers/99_Overrides/YYYY-MM-DD.md` 存在，指定日期优先读 override，不使用本队列。
 > LLM 扩展论文的完整 TOREAD 清单位于：[[02_TOREAD_LLM_Papers]]
+> 新 session 先读：[[00_Paper_Session_Context]]
 
 ### 2026-W23：LLM 经典论文收口队列（已读 / 收口中）
 
@@ -13,7 +14,7 @@
 - [x] Training Language Models to Follow Instructions with Human Feedback (InstructGPT): SFT + RM + RLHF 的 assistant 对齐范式
 - [x] Chain-of-Thought Prompting Elicits Reasoning in Large Language Models: few-shot CoT 释放推理过程
 - [x] Scaling Instruction-Finetuned Language Models (FLAN): 多任务 instruction tuning 与未见任务泛化
-- [ ] LLM 经典论文 takeaways 汇总：Scaling Laws / Chinchilla / InstructGPT / CoT / FLAN
+- [x] LLM 经典论文 takeaways 汇总：Scaling Laws / Chinchilla / InstructGPT / CoT / FLAN（见 [[03_Read_Status_Review_2026-06-07]]）
 
 ### LLM 端到端扩展队列（额外 10-15 篇，不计入已读核心 5 篇）
 
@@ -21,22 +22,62 @@
 > 完整分组、链接和阅读顺序见：[[02_TOREAD_LLM_Papers]]
 
 - [ ] Tokenizer / BPE：跟做 Karpathy tokenizer 视频与最小 BPE 实现
-- [ ] Llama 2：现代 open LLM 的 pretraining / SFT / RLHF / safety 工程报告
+- [x] Llama 2：现代 open LLM 的 pretraining / SFT / RLHF / safety 工程报告
 - [x] Direct Preference Optimization (DPO)：从 PPO/RLHF 到 preference optimization 的简化路线
 - [x] Self-Consistency：CoT 多路径采样与答案投票
 - [ ] DeepSeek-R1：reasoning RL / verifiable reward / distillation
 - [x] ReAct：reasoning + acting，连接 tool use / agent / environment interaction
-- [ ] Toolformer：模型学习何时调用工具、传什么参数、如何使用结果
-- [ ] Retrieval-Augmented Generation (RAG)：外部知识检索和生成结合
-- [ ] RoPE / ALiBi：位置编码与长度外推直觉
+- [x] Toolformer：模型学习何时调用工具、传什么参数、如何使用结果
+- [x] Retrieval-Augmented Generation (RAG)：外部知识检索和生成结合
+- [x] RoPE / ALiBi：位置编码与长度外推直觉
 - [ ] Transformer-XL：固定上下文限制与 recurrence memory
 - [ ] Position Interpolation：RoPE 模型上下文扩展基础
 - [ ] YaRN：高效 RoPE context window extension
 - [ ] LongRoPE：更长上下文扩展路线
 - [ ] LoRA / QLoRA：参数高效微调和量化微调
+- [ ] Distributed Training / Parallelism：data/model/tensor/pipeline parallelism + ZeRO/FSDP，AI Infra 支撑线，见 [[Distributed_Training_Parallelism_Reading_Map]]
 - [ ] FlashAttention / FlashAttention-2：attention IO 优化与训练/推理效率
 - [ ] PagedAttention / vLLM：KV cache serving 优化
 - [ ] RULER / Needle-in-a-Haystack：长上下文“能放进去”和“能用起来”的评估差异
+- [ ] Transformers are Inherently Succinct：Transformer succinctness / expressivity 理论支撑线；后续 30-60m scan，不抢 SO-ARM101 主线
+
+### CV / Multimodal bridge 队列（服务 VLM/VLA，不切换主线）
+
+- 当前执行计划：[[CV_Foundation_Sprint_2026-W24]]
+- 读法校准：硬件工具未到的等待期可以完整读一轮代表性 CV foundation 论文，但只服务 `robot observation -> visual backbone / visual tokens -> VLM/VLA`，不扩成完整 CV 全科。
+- 2026-06-14 口头校准：VGG 已收尾，下一篇优先读 ResNet；GoogLeNet / Inception 作为 compute-aware architecture 支线后补，不阻塞 ResNet / ViT。
+
+- [ ] CNN Primer：convolution / locality / weight sharing / feature map / pooling，AlexNet 前置概念
+- [ ] LeNet-5：Gradient-Based Learning Applied to Document Recognition；PDF 已下载，早期 CNN 完整形态
+- [x] AlexNet：ImageNet / deep CNN / data + GPU + ReLU，理解现代 CV 起点；background scan done
+- [x] VGG：depth / small conv / simple backbone，理解深度和结构简洁性；structured quick read done
+- [x] ResNet：residual connection 和 CNN backbone 基础；2026-06-15 half-hour quick read done，后续只需补代码/shape 精读
+- [ ] GoogLeNet / Inception：multi-scale feature / compute efficiency，理解多尺度和算力约束；defer after ResNet if needed
+- [ ] ViT：image patches as tokens，理解 visual tokens
+- [ ] Vision Transformers Need Registers：ViT attention / feature map artifact，可解释性边界；后续 30-45m 支撑线阅读，不抢 SO-ARM101 主线
+- [ ] CLIP：contrastive image-text pretraining / open vocabulary visual representation
+- [ ] BLIP-2：frozen image encoder + Q-Former + frozen LLM
+- [ ] LLaVA：visual instruction tuning
+- [ ] YOLO family：real-time object detection；PDF 已下载，作为后续 robot perception / data labeling / failure analysis / object-centric task 的实用模块，不替代 VLA。
+- [ ] Diffusion Models for Generative Vision：DDPM / DDIM / Score SDE / Latent Diffusion；只做 awareness scan，理解 image generation 和 Diffusion Policy 的桥。
+- [ ] RT-2：VLM 输出 action-as-token
+- [ ] LingBot-VLA：LeRobot-style VLA 工程流程
+- [ ] SmolVLA：LeRobot community data、小模型、异步推理和 affordable robotics
+- [ ] LeRobot：SO-ARM101 项目软件栈入口
+- [ ] Vision Banana / Image Generators are Generalist Vision Learners：生成式视觉统一范式，SO-ARM101 首闭环后作为 CV foundation 专题阅读
+
+### VLA 第一阶段核心队列（SO-ARM101 对齐）
+
+> 详细分层见：[[VLA_First_Stage_Reading_Plan]]
+
+- [ ] ACT：第一阶段最现实的 imitation learning policy，优先和 LeRobot 训练链路对应
+- [ ] XLeRobot：SO101 双臂 / 移动底盘 / 社区工程参考，先扫 bring-up 和硬件流程
+- [ ] LingBot-VLA：LeRobot-style VLA 工程流程，重点看 dataset/config/eval/deploy
+- [ ] SmolVLA：小模型、consumer hardware、异步推理和 affordable robotics
+- [ ] OpenVLA：开源 7B VLA、Open X 数据、fine-tune/deploy 路线
+- [ ] PI0：flow matching action expert 和连续动作 VLA
+- [ ] PI0-FAST：FAST action tokenizer，理解 autoregressive VLA 动作表示
+- [ ] PI0.5：异构数据 co-training 与 open-world generalization
 
 ### 2026-W24 起：Robot Learning 队列
 
@@ -57,20 +98,35 @@
 | 材料 | 价值 | 状态 |
 |---|---|---|
 | The Bitter Lesson | 判断 AI 系统长期趋势，不迷信手工规则 | 已有 insight，可回看 |
-| Finding Structure in Time | 理解简单 RNN / Elman network 如何表示时间和记忆 | Transformer 前传 |
-| Long Short-Term Memory | 理解 LSTM 如何缓解 RNN 长距离依赖问题 | Transformer 前传 |
-| Sequence to Sequence Learning with Neural Networks | 理解 Transformer 前的 encoder-decoder seq2seq 框架 | Transformer 前传 |
-| Neural Machine Translation by Jointly Learning to Align and Translate | 理解 attention 如何解决 fixed-length vector 瓶颈 | Transformer 前传 |
-| Attention Is All You Need | Transformer / attention 基础 | nanoGPT 收口后可回看 |
-| GPT-1: Improving Language Understanding by Generative Pre-Training | 理解 decoder-only Transformer 如何变成通用预训练语言模型 | GPT 演化 |
-| GPT-2: Language Models are Unsupervised Multitask Learners | 理解规模化 LM 如何出现 zero-shot / 无监督多任务能力 | GPT 演化 |
-| GPT-3: Language Models are Few-Shot Learners | 理解 in-context learning / few-shot prompting 如何成为新范式 | GPT 演化 |
-| Scaling Laws for Neural Language Models | 理解参数量 / 数据量 / compute 和 loss 的可预测关系 | 2026-05-29 快速通读 |
-| Training Compute-Optimal Large Language Models (Chinchilla) | 理解固定 compute 下参数和 token 如何配平 | 2026-05-29 快速通读 |
-| InstructGPT / RLHF | 理解 base LM 如何通过 SFT + RM + RLHF 变得更会跟随指令 | 2026-05-29 快速通读 |
-| Chain-of-Thought Prompting | 理解中间推理步骤如何释放大模型复杂任务能力 | 2026-05-29 快速通读 |
-| Scaling Instruction-Finetuned Language Models (FLAN) | 理解多任务 instruction tuning 如何提升未见任务泛化 | 2026-05-29 快速通读 |
+| Finding Structure in Time | 理解简单 RNN / Elman network 如何表示时间和记忆 | skimmed / 前传直觉已建立 |
+| Long Short-Term Memory | 理解 LSTM 如何缓解 RNN 长距离依赖问题 | skimmed / 前传直觉已建立 |
+| Sequence to Sequence Learning with Neural Networks | 理解 Transformer 前的 encoder-decoder seq2seq 框架 | Quick Read done |
+| Neural Machine Translation by Jointly Learning to Align and Translate | 理解 attention 如何解决 fixed-length vector 瓶颈 | Quick Read done |
+| Attention Is All You Need | Transformer / attention 基础 | Structured Read done，可回看 nanoGPT 映射 |
+| Transformers are Inherently Succinct | 从 succinctness 角度理解 Transformer 为什么能紧凑表达复杂模式 | queued / follow-up theory scan |
+| GPT-1: Improving Language Understanding by Generative Pre-Training | 理解 decoder-only Transformer 如何变成通用预训练语言模型 | Quick Read done |
+| GPT-2: Language Models are Unsupervised Multitask Learners | 理解规模化 LM 如何出现 zero-shot / 无监督多任务能力 | Quick Read done |
+| GPT-3: Language Models are Few-Shot Learners | 理解 in-context learning / few-shot prompting 如何成为新范式 | Quick Read done |
+| Scaling Laws for Neural Language Models | 理解参数量 / 数据量 / compute 和 loss 的可预测关系 | Quick Read done |
+| Training Compute-Optimal Large Language Models (Chinchilla) | 理解固定 compute 下参数和 token 如何配平 | Quick Read done |
+| InstructGPT / RLHF | 理解 base LM 如何通过 SFT + RM + RLHF 变得更会跟随指令 | Quick Read done |
+| Chain-of-Thought Prompting | 理解中间推理步骤如何释放大模型复杂任务能力 | Quick Read done |
+| Scaling Instruction-Finetuned Language Models (FLAN) | 理解多任务 instruction tuning 如何提升未见任务泛化 | Quick Read done |
+| Distributed Training / Parallelism Reading Map | data/model/tensor/pipeline parallelism、ZeRO/FSDP，支撑 LLM/VLA training infra 直觉 | queued / AI Infra support |
 | ResNet / ViT | CV 表征基础 | CS231n/CV 入口阶段选读 |
+| Vision Transformers Need Registers | ViT attention / feature map artifact，可解释性边界 | queued / follow-up support |
+
+### 15 CV Foundations
+
+| 材料 | 价值 | 状态 |
+|---|---|---|
+| AlexNet | 现代深度 CNN / ImageNet 起点 | background scan done |
+| VGG | 小卷积堆叠和 depth 直觉 | structured quick read done |
+| GoogLeNet / Inception | 多尺度特征和计算效率 | downloaded / background scan |
+| ResNet | residual connection 和深层 CNN backbone | quick read done; code/shape follow-up |
+| ViT | image patches as tokens，视觉 Transformer | downloaded / structured read later |
+| Vision Transformers Need Registers | register tokens 修复 ViT attention / feature map artifact，校准 attention visualization 的解释边界 | queued / follow-up support |
+| Vision Banana / Image Generators are Generalist Vision Learners | 生成式视觉模型作为 generalist vision learner，观察是否形成 CV 的 GPT-style 统一接口 | follow-up after SO-ARM101 first loop |
 
 ### 20 Robot Learning
 
@@ -86,6 +142,7 @@
 |---|---|---|
 | RT-1 | language-conditioned robot policy 早期系统化路线 | 2026-11 |
 | RT-2 | VLM knowledge transfer to robotic action | 2026-11 |
+| SmolVLA | affordable / efficient VLA, LeRobot community data | W24 awareness |
 | Octo | open generalist robot policy | 2026-11/12 |
 | OpenVLA | open VLA model and deployment awareness | 2026-11/12 |
 | PI0 | general robot policy frontier awareness | 2026-11/12 |
@@ -95,8 +152,15 @@
 | 材料 | 价值 | 建议时间 |
 |---|---|---|
 | Open X-Embodiment | robot data scale, heterogeneity, embodiment gap | 2026-10/11 |
-| LeRobot | practical dataset / policy / eval stack | 2026-10 |
+| LeRobot | practical dataset / policy / eval stack | W24 P0 |
 | RoboMimic / robosuite materials | imitation learning dataset and benchmark awareness | 2026-09/10 |
+
+### 50 World Models
+
+| 材料 | 价值 | 建议时间 |
+|---|---|---|
+| World Models | latent dynamics / imagination 经典入口 | SO-ARM101 有数据闭环后 |
+| DreamerV3 | model-based RL / latent world model | 后续 simulation / planning 阶段 |
 
 ## 读完后的沉淀标准
 
