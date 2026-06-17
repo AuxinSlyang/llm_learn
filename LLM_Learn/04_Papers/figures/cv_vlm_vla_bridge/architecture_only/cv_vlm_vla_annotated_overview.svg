@@ -1,0 +1,127 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1800" height="1800" viewBox="0 0 1800 1800">
+  <defs>
+    <style>
+      .bg { fill: #f7f8fa; }
+      .title { font: 700 44px -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #111827; }
+      .subtitle { font: 400 24px -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #4b5563; }
+      .stage { font: 700 24px -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #111827; }
+      .paper { font: 700 21px -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #0f172a; }
+      .body { font: 400 18px -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #374151; }
+      .small { font: 400 16px -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #4b5563; }
+      .tag { font: 700 16px -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #374151; }
+      .box { fill: #ffffff; stroke: #d1d5db; stroke-width: 2; rx: 18; }
+      .cv { fill: #eff6ff; stroke: #93c5fd; }
+      .tok { fill: #eefdf5; stroke: #86efac; }
+      .vlm { fill: #fff7ed; stroke: #fdba74; }
+      .robot { fill: #f5f3ff; stroke: #c4b5fd; }
+      .vla { fill: #fef2f2; stroke: #fca5a5; }
+      .runtime { fill: #f1f5f9; stroke: #94a3b8; }
+      .takeaway { fill: #ffffff; stroke: #cbd5e1; stroke-width: 2; rx: 16; }
+      .arrow { stroke: #64748b; stroke-width: 3; fill: none; marker-end: url(#arrowhead); }
+      .thin { stroke: #94a3b8; stroke-width: 2; fill: none; marker-end: url(#arrowhead); }
+    </style>
+    <marker id="arrowhead" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto">
+      <path d="M2,2 L10,6 L2,10 Z" fill="#64748b"/>
+    </marker>
+  </defs>
+
+  <rect class="bg" x="0" y="0" width="1800" height="1800"/>
+
+  <text class="title" x="70" y="88">CV to VLM to VLA：第一阶段学习总图</text>
+  <text class="subtitle" x="70" y="132">这张图不是论文原图拼接，而是把读过的论文压成一条接口演化线。</text>
+  <text class="subtitle" x="70" y="170">核心问题：image 如何变成 visual tokens，如何接入 language，最后如何变成 robot action。</text>
+
+  <rect class="box cv" x="70" y="235" width="520" height="455"/>
+  <text class="stage" x="105" y="280">1. CV Backbone</text>
+  <text class="small" x="105" y="314">图像如何从像素变成层级视觉特征</text>
+  <text class="paper" x="105" y="370">LeNet-5</text>
+  <text class="body" x="235" y="370">端到端 CNN：conv / subsampling / classifier</text>
+  <text class="paper" x="105" y="425">AlexNet</text>
+  <text class="body" x="235" y="425">ImageNet-scale + GPU，让 deep CNN 成立</text>
+  <text class="paper" x="105" y="480">VGG</text>
+  <text class="body" x="235" y="480">规则 3x3 conv 堆深度，depth matters</text>
+  <text class="paper" x="105" y="535">ResNet</text>
+  <text class="body" x="235" y="535">F(x)+x，缓解 deep plain net 优化退化</text>
+  <text class="tag" x="105" y="630">接口结果</text>
+  <text class="small" x="195" y="630">camera image -> hierarchical visual features</text>
+
+  <rect class="box tok" x="640" y="235" width="520" height="455"/>
+  <text class="stage" x="675" y="280">2. Visual Tokens</text>
+  <text class="small" x="675" y="314">图像变成 Transformer 可处理的序列</text>
+  <text class="paper" x="675" y="372">ViT</text>
+  <text class="body" x="760" y="372">An Image is Worth 16x16 Words</text>
+  <text class="body" x="675" y="432">224x224x3 image</text>
+  <text class="body" x="675" y="470">-> 16x16 patches</text>
+  <text class="body" x="675" y="508">-> patch embeddings</text>
+  <text class="body" x="675" y="546">-> class token + position embedding</text>
+  <text class="body" x="675" y="584">-> Transformer encoder</text>
+  <text class="tag" x="675" y="630">接口结果</text>
+  <text class="small" x="765" y="630">image -> patch tokens -> visual encoder</text>
+
+  <rect class="box vlm" x="1210" y="235" width="520" height="455"/>
+  <text class="stage" x="1245" y="280">3. VLM Bridge</text>
+  <text class="small" x="1245" y="314">视觉如何对齐语言，并进入 LLM</text>
+  <text class="paper" x="1245" y="370">CLIP</text>
+  <text class="body" x="1365" y="370">image/text dual encoder</text>
+  <text class="body" x="1365" y="400">contrastive alignment</text>
+  <text class="paper" x="1245" y="455">BLIP-2</text>
+  <text class="body" x="1365" y="455">frozen image encoder -> Q-Former</text>
+  <text class="body" x="1365" y="485">-> projection -> frozen LLM</text>
+  <text class="paper" x="1245" y="540">LLaVA</text>
+  <text class="body" x="1365" y="540">CLIP vision encoder + projector</text>
+  <text class="body" x="1365" y="570">+ LLM instruction tuning</text>
+  <text class="tag" x="1245" y="630">接口结果</text>
+  <text class="small" x="1335" y="630">visual features -> LLM-readable context</text>
+
+  <rect class="box robot" x="70" y="855" width="700" height="450"/>
+  <text class="stage" x="105" y="900">4. Robot Imitation Learning</text>
+  <text class="small" x="105" y="934">真实机器人数据如何采集，policy 如何输出动作</text>
+  <text class="paper" x="105" y="995">ALOHA</text>
+  <text class="body" x="230" y="995">low-cost teleoperation</text>
+  <text class="body" x="230" y="1028">leader/follower + multi-view RGB + joint state</text>
+  <text class="paper" x="105" y="1095">ACT</text>
+  <text class="body" x="230" y="1095">Action Chunking with Transformers：o_t -> a_t:t+k</text>
+  <text class="body" x="230" y="1128">CVAE latent z 建模 demonstration style</text>
+  <text class="body" x="230" y="1161">temporal ensemble 平滑重叠 chunk 输出</text>
+  <text class="tag" x="105" y="1240">接口结果</text>
+  <text class="small" x="195" y="1240">images + robot state -> action chunk policy</text>
+
+  <rect class="box vla" x="820" y="855" width="470" height="450"/>
+  <text class="stage" x="855" y="900">5. VLA</text>
+  <text class="small" x="855" y="934">VLM 不只输出 text，而是输出 robot action</text>
+  <text class="paper" x="855" y="1000">RT-2</text>
+  <text class="body" x="930" y="1000">Vision-Language-Action Models</text>
+  <text class="body" x="855" y="1060">image + language instruction</text>
+  <text class="body" x="855" y="1098">-> action tokens</text>
+  <text class="body" x="855" y="1136">-> detokenized robot action</text>
+  <text class="tag" x="855" y="1240">接口结果</text>
+  <text class="small" x="945" y="1240">VLM output space -> robot control</text>
+
+  <rect class="box runtime" x="1340" y="855" width="390" height="450"/>
+  <text class="stage" x="1375" y="900">6. LeRobot 落地</text>
+  <text class="small" x="1375" y="934">近期不要空转论文，要回到首闭环</text>
+  <text class="paper" x="1375" y="1000">SO-ARM101</text>
+  <text class="paper" x="1375" y="1035">LeRobot</text>
+  <text class="body" x="1375" y="1095">teleop</text>
+  <text class="body" x="1375" y="1133">record / replay</text>
+  <text class="body" x="1375" y="1171">train baseline</text>
+  <text class="body" x="1375" y="1209">eval / failure log</text>
+  <text class="tag" x="1375" y="1240">接口结果</text>
+  <text class="small" x="1465" y="1240">dataset -> runtime loop</text>
+
+  <path class="arrow" d="M590 462 C610 462, 620 462, 640 462"/>
+  <path class="arrow" d="M1160 462 C1180 462, 1190 462, 1210 462"/>
+  <path class="thin" d="M900 690 C820 760, 650 810, 455 855"/>
+  <path class="thin" d="M1470 690 C1330 760, 1115 805, 1055 855"/>
+  <path class="arrow" d="M770 1080 C792 1080, 798 1080, 820 1080"/>
+  <path class="arrow" d="M1290 1080 C1310 1080, 1320 1080, 1340 1080"/>
+
+  <text class="small" x="560" y="780">near-term robot policy path</text>
+  <text class="small" x="1150" y="780">VLM-to-VLA path</text>
+
+  <rect class="takeaway" x="70" y="1420" width="1660" height="210"/>
+  <text class="stage" x="110" y="1470">第一阶段总 takeaway</text>
+  <text class="body" x="110" y="1520">不是“图片天然等于语言”，而是接口逐步统一：</text>
+  <text class="body" x="110" y="1565">image -> visual tokens -> language-aligned embeddings -> LLM-compatible context -> action policy / action tokens</text>
+  <text class="body" x="110" y="1610">所以本阶段读论文的目的，是为 LeRobot / SO-ARM101 的 observation、dataset、policy、runtime、eval/failure loop 建立概念底座。</text>
+</svg>

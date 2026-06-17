@@ -16,6 +16,8 @@
 
 - `00_Reading_Workflow.md`：每天怎么读、读到什么程度、如何回写 Daily
 - `01_Reading_Index.md`：当前论文队列、分类和阅读顺序
+- `CV_to_VLM_to_VLA_Bridge_Map.md`：从 LeNet / VGG / ResNet / ViT 到 CLIP / BLIP-2 / LLaVA / ALOHA / RT-2 的桥接复盘入口
+- `CV_to_VLM_to_VLA_First_Stage_Summary.md`：第一阶段闭环总结，从 CV backbone 到 VLM bridge、ALOHA/ACT、RT-2 和 LeRobot 接口
 - `10_AI_Foundations/`：AI 基础经典思想
 - `20_Robot_Learning/`：IL / RL / manipulation policy
 - `30_VLA_and_Foundation_Policies/`：VLA / generalist robot policy
@@ -28,4 +30,3 @@
 - 周末：只有主线任务完成后，才安排论文精读
 
 paper slot 不抢晚上主学习时间。晚上主学习仍然服务当前 Weekly / Monthly 的硬产出。
-
