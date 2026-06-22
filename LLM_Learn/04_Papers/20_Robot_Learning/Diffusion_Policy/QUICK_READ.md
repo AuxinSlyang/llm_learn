@@ -1,50 +1,63 @@
 ---
 type: paper_note
-title: "Diffusion Policy: Visuomotor Policy Learning via Action Diffusion"
+title: Diffusion Policy: Visuomotor Policy Learning via Action Diffusion
 short_name: Diffusion Policy
+authors:
+  - Cheng Chi
+  - Zhenjia Xu
+  - Siyuan Feng
+  - Eric Cousineau
+  - Yilun Du
+  - Benjamin Burchfiel
+  - Russ Tedrake
+  - Shuran Song
 arxiv_id: "2303.04137"
 url: https://arxiv.org/abs/2303.04137
-pdf_url: https://arxiv.org/pdf/2303.04137
+project_page: https://diffusion-policy.cs.columbia.edu/
 local_pdf: ./Diffusion_Policy_Visuomotor_Policy_Learning_via_Action_Diffusion.pdf
-track: robot learning / action generation
-read_mode: Awareness
+track: robot learning / imitation learning / diffusion action generation
+read_mode: Structured Read
 status: downloaded
-created: 2026-06-09
+created: 2026-06-22
 ---
 
-# Diffusion Policy QUICK_READ
+# Diffusion Policy - QUICK READ
 
-- Paper：Diffusion Policy: Visuomotor Policy Learning via Action Diffusion
-- 主题：Robot Learning / Imitation Learning
-- 阅读模式：Classic Scan（20-40m）
-- 输出标准：一句 takeaway + 一个和 mini-stack 的连接（接口/数据/评估/部署）
+## Why now
 
-## 2026-W24 Position
+Diffusion Policy 是把 diffusion 从 image generation 迁移到 robot action sequence generation 的核心论文，用来解释 pi0 为什么要关注 continuous action generation。
 
-Diffusion Policy 重要，但本周不抢 ACT / LeRobot / assembly 时间。等 SO-ARM101 有第一批 episode 后，再用它理解复杂动作分布和 action sequence generation。
+## 本轮只回答
 
-## 读前问题（2-3min）
+- policy 生成的对象是什么：single action 还是 future action sequence？
+- condition 是什么：image / state / observation history？
+- conditional denoising 具体如何变成 robot policy？
+- receding horizon control 怎么避免一次性执行整段动作？
+- 为什么 diffusion 能处理 multimodal action distribution？
 
-- 我想用这篇论文回答什么：为什么要用 diffusion 来建模动作序列？它解决了“动作多模态 / 长时序 / 复杂分布”的什么痛点？
-- 我希望带走什么：一个能落到工程的“推理成本 & 控制频率”视角：prefill/decode 类比不成立时，policy runtime 该怎么测、怎么降难。
+## 一句话预期 takeaway
 
-## Classic Scan 记录（20-40m）
+Diffusion Policy 把 visuomotor policy 表示成条件去噪过程：给定 observation，把 noisy future action sequence 逐步去噪成可执行的 action sequence。
 
-- 1 句话讲清 Diffusion Policy：
-- 它解决的核心 pain：
-- 模型/训练骨架（只写步骤，不抄公式）：
-  1.
-  2.
-  3.
-- inference 关键成本点（latency / steps / frequency）：
-- 实验/结果最值得看的 1 点：
+## 和 pi0 的连接
 
-## 今日 Takeaway（必填）
+```text
+Diffusion Policy:
+  observation + noisy action sequence
+  -> denoising
+  -> clean action sequence
 
-- takeaway：
-- 对未来 mini-stack 的接口要求（runner / replay / safety / metrics）：
+pi0:
+  image + language + state + noisy action chunk
+  -> flow/action expert
+  -> continuous action chunk
+```
 
-## 后续动作（可选）
+## 待读后填充
 
-- 需要精读的段落（指到 section）：
-- 想复现/最小验证的点（可写 TODO）：
+- observation:
+- action representation:
+- denoising target:
+- receding horizon:
+- multimodal action distribution:
+- SO-ARM101 / LeRobot connection:

@@ -108,6 +108,17 @@ OpenVLA Section 4 暴露的工程支撑项统一记录在：`30_VLA_and_Foundati
 | P1 | FSDP / ZeRO | https://arxiv.org/abs/1910.02054 | 理解参数、梯度、optimizer state sharding 如何支撑 7B+ VLA training |
 | P2 | HuggingFace AutoModel | HuggingFace docs | 理解模型加载、配置、权重复用和生态集成 |
 
+### D2. MoE / Sparse Expert Routing
+
+> 定位：MoE 是 LLM / VLM / VLA 扩容、训练效率、推理调度和 expert routing 的重要支撑线。它暂不抢 `SO-ARM101 / pi0` 主线，但后续理解 sparse compute、serving、routing、capacity、load balancing、expert parallelism 时需要补。
+
+| 优先级 | 论文 / 材料 | 链接 | 价值 |
+|---|---|---|---|
+| P1 | Outrageously Large Neural Networks: The Sparsely-Gated Mixture-of-Experts Layer | https://arxiv.org/abs/1701.06538 | MoE 经典入口：理解 sparse gating、expert、capacity 和 load balancing 的基本问题 |
+| P1 | Switch Transformers: Scaling to Trillion Parameter Models with Simple and Efficient Sparsity | https://arxiv.org/abs/2101.03961 | 现代 MoE 简化路线：top-1 routing、expert capacity、训练稳定性和大规模稀疏模型 |
+| P2 | GShard: Scaling Giant Models with Conditional Computation and Automatic Sharding | https://arxiv.org/abs/2006.16668 | MoE + 自动分片 / 分布式训练，连接 expert parallelism 和大模型系统 |
+| P2 | Mixtral of Experts | https://arxiv.org/abs/2401.04088 | 开源 MoE LLM 工程报告，理解 inference-time active parameters 和 sparse expert routing |
+
 ### E. Transformer Theory / Interpretability Support
 
 | 优先级 | 论文 / 材料 | 链接 | 价值 |

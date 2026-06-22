@@ -36,6 +36,7 @@
 - [ ] LongRoPE：更长上下文扩展路线
 - [ ] LoRA / QLoRA：参数高效微调和量化微调
 - [ ] Distributed Training / Parallelism：data/model/tensor/pipeline parallelism + ZeRO/FSDP，AI Infra 支撑线，见 [[Distributed_Training_Parallelism_Reading_Map]]
+- [ ] MoE / Sparse Expert Routing：Sparsely-Gated MoE、Switch Transformer、GShard、Mixtral；理解 sparse compute / routing / expert parallelism，不抢 SO-ARM101 主线
 - [ ] FlashAttention / FlashAttention-2：attention IO 优化与训练/推理效率
 - [ ] PagedAttention / vLLM：KV cache serving 优化
 - [ ] RULER / Needle-in-a-Haystack：长上下文“能放进去”和“能用起来”的评估差异

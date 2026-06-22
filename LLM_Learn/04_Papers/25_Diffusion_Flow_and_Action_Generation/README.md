@@ -40,12 +40,13 @@ Diffusion 容易横跨多个目录：
 
 | 顺序 | 材料 | 本地入口 | 读法 | 只回答什么 |
 |---|---|---|---|---|
-| 1 | DDPM | `../15_CV_Foundations/Diffusion_Models_for_Generative_Vision/QUICK_READ.md` | Awareness | forward noising / reverse denoising 是什么 |
+| 1 | DDPM | `DDPM_Denoising_Diffusion_Probabilistic_Models/QUICK_READ.md` | Awareness | forward noising / reverse denoising 是什么 |
 | 2 | DDIM | `../15_CV_Foundations/Diffusion_Models_for_Generative_Vision/QUICK_READ.md` | Scan | 为什么 sampling 可以加速 |
 | 3 | Score SDE | `../15_CV_Foundations/Diffusion_Models_for_Generative_Vision/QUICK_READ.md` | Awareness | score / continuous-time 视角是什么 |
-| 4 | Flow Matching / Rectified Flow | 待建 | Bridge | 为什么 pi0 选择 flow matching action expert |
+| 4 | Flow Matching / Rectified Flow | `Flow_Matching_for_Generative_Modeling/QUICK_READ.md` | Bridge | 为什么 pi0 选择 flow matching action expert |
 | 5 | Latent Diffusion | `../15_CV_Foundations/Diffusion_Models_for_Generative_Vision/QUICK_READ.md` | Awareness | 为什么 latent space diffusion 更工程可行 |
 | 6 | Diffusion Policy | `../20_Robot_Learning/Diffusion_Policy/QUICK_READ.md` | Structured Read | 如何把 observation-conditioned denoising 变成 robot policy |
+| 6.5 | 3D Diffusion Policy | `3D_Diffusion_Policy/QUICK_READ.md` | Later Scan | 3D observation 如何接 diffusion action generation |
 | 7 | pi0 | `../30_VLA_and_Foundation_Policies/PI0/QUICK_READ.md` | Structured Read | flow action expert 和 continuous action horizon |
 | 8 | pi0-FAST | `../30_VLA_and_Foundation_Policies/PI0_FAST/QUICK_READ.md` | Scan | FAST action tokenizer 如何连接 continuous action 与 autoregressive VLA |
 
