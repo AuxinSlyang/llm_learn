@@ -20,8 +20,11 @@
 - `CV_to_VLM_to_VLA_First_Stage_Summary.md`：第一阶段闭环总结，从 CV backbone 到 VLM bridge、ALOHA/ACT、RT-2 和 LeRobot 接口
 - `10_AI_Foundations/`：AI 基础经典思想
 - `20_Robot_Learning/`：IL / RL / manipulation policy
+- `25_Diffusion_Flow_and_Action_Generation/`：Diffusion / flow / action generation 独立追踪线，连接生成式视觉、Diffusion Policy、pi0
 - `30_VLA_and_Foundation_Policies/`：VLA / generalist robot policy
 - `40_Data_and_Eval/`：机器人数据、数据集、评测和闭环
+- `50_World_Models/`：world model / latent dynamics / planning 支撑线
+- `60_Systems/`：经典存储、分布式系统、分布式计算和 AI Infra systems 支撑线
 
 ## start-my-day 使用规则
 

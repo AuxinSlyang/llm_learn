@@ -21,7 +21,7 @@ Diffusion models: noise -> image, or noisy image -> clean image
 Diffusion Policy: noisy action sequence -> action sequence
 ```
 
-本模块只做 awareness scan，不插队 `CNN -> LeNet-5 -> AlexNet -> ResNet -> ViT -> CLIP` 主线。
+本模块只做 awareness scan，不插队 `CNN -> LeNet-5 -> AlexNet -> ResNet -> ViT -> CLIP` 主线。Diffusion 后续统一追踪入口见：`../../25_Diffusion_Flow_and_Action_Generation/README.md`。
 
 ## Core Intuition
 
@@ -48,6 +48,50 @@ random noise -> repeated denoising -> generated image
 | 4 | Improved DDPM | `2102.09672` | 改进 likelihood / sample quality / sampling speed 的工程路线。 |
 | 5 | Latent Diffusion Models | `2112.10752` | Stable Diffusion 系列关键思想：在 latent space 里做 diffusion，降低高分辨率生成成本。 |
 | 6 | Diffusion Policy | `2303.04137` | 机器人桥接：把 action sequence generation 建模成条件扩散。 |
+
+## 2026-06-18 校准：Diffusion / Flow 作为 VLA Action Generation 支撑线
+
+用户校准：除了 LoRA / QLoRA / vLLM / DeepSeek-R1 / FlashAttention 这条 LLM 工程线，也要把 diffusion 系列经典论文纳入后续分析。这里不新开完整 diffusion 专题，先作为 `pi0 / Diffusion Policy / robot action generation` 的支撑线。
+
+### 推荐第一轮顺序
+
+| 顺序 | 材料 | 读法 | 只回答什么 |
+|---|---|---|---|
+| 1 | DDPM | 30-45m awareness | forward noising / reverse denoising 是什么，为什么可以从 noise 生成样本 |
+| 2 | DDIM | 20-30m scan | 为什么 sampling 可以更快，为什么不必严格按长 Markov chain |
+| 3 | Score SDE | 30-45m awareness | score / continuous-time / SDE 视角如何统一 diffusion |
+| 4 | Flow Matching / Rectified Flow 方向 | 30-45m bridge | 为什么 pi0 会用 flow matching action expert；它和 diffusion denoising 有什么关系 |
+| 5 | Latent Diffusion | 30-45m awareness | 为什么在 latent space 做 diffusion 更工程可行，和 Stable Diffusion 的关系 |
+| 6 | Diffusion Policy | structured read | 如何把 `observation + noisy action sequence -> denoised action sequence` 用作 robot policy |
+
+### 和当前 VLA 主线的关系
+
+```text
+OpenVLA / RT-2:
+  action-as-token / language-model-style output
+
+pi0:
+  VLM backbone + flow matching action expert
+
+pi0-FAST:
+  continuous action sequence -> action tokens
+
+Diffusion Policy:
+  observation-conditioned action sequence denoising
+```
+
+第一轮目标不是推公式，而是能解释三种 action generation 表达：
+
+- tokenized action：把 action 当成 token 预测。
+- diffusion action：从 noisy action sequence 逐步去噪。
+- flow action：学习从简单分布到 action distribution 的连续变换路径。
+
+### 暂不做
+
+- 不训练 Stable Diffusion。
+- 不复现 DDPM / DDIM。
+- 不深挖 ELBO、SDE 推导、score matching 公式细节。
+- 不让 diffusion 抢 `OpenVLA / pi0 / pi0-FAST / LeRobot` 当前阅读主线。
 
 ## Official Links
 

@@ -45,6 +45,12 @@ created: 2026-06-11
 | MIT Underactuated Robotics | https://underactuated.csail.mit.edu/index.html | SO-ARM101 首闭环后，开始关心 dynamics/control/failure recovery 时 |
 | MIT OCW Underactuated Robotics | https://ocw.mit.edu/courses/6-832-underactuated-robotics-spring-2022/ | 后续作为 control / dynamics 深水区，不进入 W24 |
 
+## P3：日常消遣 / Robot Learning 旁听
+
+| Source | 定位 | 使用边界 |
+|---|---|---|
+| CMU 16-831 机器人学习导论 | Robot Learning 概念旁听，作为长期兴趣材料 | 不占用 SO-ARM101 / LeRobot 主体学习时间；不进入 Weekly Top 3；只在碎片时间看，每次最多留 3 行 takeaway |
+
 ## W24 建议视频槽
 
 | 日期 | 视频槽 | 输出 |

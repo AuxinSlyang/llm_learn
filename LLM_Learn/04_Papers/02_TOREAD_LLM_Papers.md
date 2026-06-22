@@ -40,6 +40,33 @@ data/tokenizer -> pretraining -> SFT/instruction tuning -> preference optimizati
 
 ## 后续扩展队列
 
+## 2026-06-18 校准：VLA 工程落地相关 LLM 支撑线
+
+OpenVLA 把 `VLM -> VLA` 这件事落到了模型结构、fine-tuning、quantization 和 serving 上。后续 LLM 论文补充不应随机扩散，而应优先服务 `VLA / policy runtime / robot data loop`。
+
+### 近期优先级
+
+| 顺序 | 论文 / 材料 | 为什么现在补 | 输出标准 |
+|---|---|---|---|
+| 1 | LoRA | OpenVLA 直接讨论 parameter-efficient fine-tuning；LoRA 是入口 | 能讲清冻结 base model、低秩 adapter、训练参数量为什么下降 |
+| 2 | QLoRA | 解释 4-bit quantized base model + LoRA 如何降低 fine-tuning 显存门槛 | 能讲清 quantization + LoRA 的组合和工程限制 |
+| 3 | PagedAttention / vLLM | 后续 VLA server/client 需要理解 KV cache、显存分页、吞吐/延迟 trade-off | 能把 serving 指标连接到 robot runtime latency |
+| 4 | FlashAttention / FlashAttention-2 | 训练/推理效率支撑线，解释 attention IO bottleneck | 能讲清为什么不是只看 FLOPs，还要看 HBM IO |
+| 5 | DeepSeek-R1 | post-training / reasoning RL 支撑线，理解 SFT/RLHF 之后的 verifiable reward / RL 路线 | 能讲清 reasoning RL 和 VLA/RL 的类比边界 |
+
+### 和 OpenVLA 的连接
+
+```text
+OpenVLA fine-tuning -> LoRA / QLoRA
+OpenVLA serving -> quantization / vLLM / PagedAttention
+VLA training efficiency -> FlashAttention / parallelism
+VLA high-level reasoning / task decomposition -> DeepSeek-R1 / reasoning RL, but not low-level robot control
+```
+
+边界：这条线是 `VLA / policy runtime` 支撑线，不重新切回纯 LLM Infra 主线。
+
+OpenVLA Section 4 暴露的工程支撑项统一记录在：`30_VLA_and_Foundation_Policies/OpenVLA/OpenVLA_Engineering_Support_Checklist.md`。
+
 ### A. Post-training / Preference / Reasoning
 
 | 优先级 | 论文 / 材料 | 链接 | 价值 |
@@ -77,6 +104,9 @@ data/tokenizer -> pretraining -> SFT/instruction tuning -> preference optimizati
 | P1 | FlashAttention | https://arxiv.org/abs/2205.14135 | 理解 attention 的 IO bottleneck 和 exact attention 加速 |
 | P2 | FlashAttention-2 | https://arxiv.org/abs/2307.08691 | 理解更好的并行和 work partitioning |
 | P1 | PagedAttention / vLLM | https://arxiv.org/abs/2309.06180 | 理解 KV cache 的 paging 管理和高吞吐 serving |
+| P1 | AMP / mixed precision | PyTorch / NVIDIA docs | 理解 fp16/bf16 混合精度如何降低训练/推理成本 |
+| P1 | FSDP / ZeRO | https://arxiv.org/abs/1910.02054 | 理解参数、梯度、optimizer state sharding 如何支撑 7B+ VLA training |
+| P2 | HuggingFace AutoModel | HuggingFace docs | 理解模型加载、配置、权重复用和生态集成 |
 
 ### E. Transformer Theory / Interpretability Support
 

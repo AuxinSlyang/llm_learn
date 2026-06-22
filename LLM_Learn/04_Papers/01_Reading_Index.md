@@ -40,6 +40,7 @@
 - [ ] PagedAttention / vLLM：KV cache serving 优化
 - [ ] RULER / Needle-in-a-Haystack：长上下文“能放进去”和“能用起来”的评估差异
 - [ ] Transformers are Inherently Succinct：Transformer succinctness / expressivity 理论支撑线；后续 30-60m scan，不抢 SO-ARM101 主线
+- [ ] Transformer Is Inherently a Causal Learner：autoregressive Transformer / time-series causal discovery / gradient attribution；2026-06-22 作为 causal learner 支撑槽位保存并 structured scan
 
 ### CV / Multimodal bridge 队列（服务 VLM/VLA，不切换主线）
 
@@ -56,6 +57,8 @@
 - [ ] ViT：image patches as tokens，理解 visual tokens
 - [ ] Vision Transformers Need Registers：ViT attention / feature map artifact，可解释性边界；后续 30-45m 支撑线阅读，不抢 SO-ARM101 主线
 - [ ] CLIP：contrastive image-text pretraining / open vocabulary visual representation
+- [ ] DINOv2：self-supervised robust visual features；服务 OpenVLA 的 spatial / dense visual feature 直觉
+- [ ] SigLIP：sigmoid loss for image-text pretraining；服务 OpenVLA 的 language-aligned semantic feature 直觉
 - [ ] BLIP-2：frozen image encoder + Q-Former + frozen LLM
 - [ ] LLaVA：visual instruction tuning
 - [ ] YOLO family：real-time object detection；PDF 已下载，作为后续 robot perception / data labeling / failure analysis / object-centric task 的实用模块，不替代 VLA。
@@ -79,8 +82,19 @@
 - [ ] PI0-FAST：FAST action tokenizer，理解 autoregressive VLA 动作表示
 - [ ] PI0.5：异构数据 co-training 与 open-world generalization
 
+### Diffusion / Flow / Action Generation Track
+
+> 独立入口：[[25_Diffusion_Flow_and_Action_Generation/README]]
+
+- [ ] DDPM / DDIM / Score SDE：理解 noising / denoising / score 视角
+- [ ] Flow Matching / Rectified Flow：理解 pi0 action expert 背后的 flow 直觉
+- [ ] Latent Diffusion：理解 latent-space generation 的工程动机
+- [ ] Diffusion Policy：理解 `observation + noisy action sequence -> denoised action sequence`
+- [ ] pi0 / pi0-FAST 对照：flow action expert vs action tokenizer
+
 ### 2026-W24 起：Robot Learning 队列
 
+- [ ] RL for Robot Learning Reading Map: reward-driven improvement / continuous control / offline RL / world-model RL 支撑线；不抢 OpenVLA / pi0 主线
 - [ ] DAgger: dataset aggregation and covariate shift
 - [ ] ACT: action chunking for fine-grained manipulation
 - [ ] Diffusion Policy: action generation as conditional denoising
@@ -126,12 +140,15 @@
 | ResNet | residual connection 和深层 CNN backbone | guided read done; code/shape follow-up |
 | ViT | image patches as tokens，视觉 Transformer | downloaded / structured read later |
 | Vision Transformers Need Registers | register tokens 修复 ViT attention / feature map artifact，校准 attention visualization 的解释边界 | queued / follow-up support |
+| DINOv2 | self-supervised robust visual features，解释 OpenVLA 为什么需要 spatial / dense visual representation | queued / OpenVLA support |
+| SigLIP | image-text alignment 的 sigmoid loss 路线，解释 OpenVLA 为什么需要 language-aligned semantic visual features | queued / OpenVLA support |
 | Vision Banana / Image Generators are Generalist Vision Learners | 生成式视觉模型作为 generalist vision learner，观察是否形成 CV 的 GPT-style 统一接口 | follow-up after SO-ARM101 first loop |
 
 ### 20 Robot Learning
 
 | 论文 | 价值 | 建议时间 |
 |---|---|---|
+| RL for Robot Learning Reading Map | 把 DQN / PPO / SAC / HER / offline RL / QT-Opt / DreamerV3 接到 robot policy data loop | OpenVLA / pi0 第一轮后，作为 P2 支撑线 |
 | DAgger | 理解 BC 的分布偏移问题 | 2026-08/09 |
 | ACT / ALOHA | manipulation imitation learning 入口 | 2026-09 |
 | Diffusion Policy | robot action generation 经典路线 | 2026-09/10 |

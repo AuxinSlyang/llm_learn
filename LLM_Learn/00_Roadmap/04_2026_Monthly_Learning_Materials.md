@@ -120,3 +120,11 @@ updated: 2026-06-01
 - 不把 CS336 / vLLM / TensorRT-LLM 完全删除；它们进入 `LLM / AI Infra / Runtime 支撑线`，在 VLA、edge inference、policy runtime 需要时调用。
 - 不在第一月直接上 Isaac Lab；现有 V100 不适合作为现代 Isaac Sim/Lab 主力环境。
 - 不追论文数量；论文必须服务当前课程或实验。
+
+## Sidecar / 消遣课程雷达
+
+这些材料只作为日常低负担旁听，不占用当前 Phase 主体学习时间，不进入 Weekly Top 3，也不作为月度硬产出验收。
+
+| 材料 | 定位 | 什么时候看 | 记录要求 |
+|---|---|---|---|
+| CMU 16-831: 机器人学习导论 | Robot Learning 概念旁听 / 日常消遣 | 主线任务完成后，碎片时间或低精力时看 | 每次最多留 3 行：讲了什么、和 LeRobot / policy runtime 有什么关系、是否值得后续正式纳入 |

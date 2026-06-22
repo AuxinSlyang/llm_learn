@@ -51,6 +51,21 @@ camera image
 | 9 | BLIP-2 | frozen image encoder / Q-Former / frozen LLM | visual features 如何接到 LLM？ |
 | 10 | LLaVA | visual instruction tuning | VLM 如何从 image-text model 变成对话式视觉助手？ |
 
+## P1.2 OpenVLA Visual Encoder 支撑线
+
+OpenVLA 使用 `DINOv2 + SigLIP` fused visual encoder。这里不新开完整 self-supervised vision 专题，但需要补一轮 structured quick read，解释为什么 VLA 同时需要 spatial visual features 和 language-aligned semantic features。
+
+| Paper | 链接 | 核心概念 | 读完要能回答 |
+|---|---|---|---|
+| DINOv2: Learning Robust Visual Features without Supervision | https://arxiv.org/abs/2304.07193 | self-supervised / curated data / robust all-purpose visual features | 为什么 DINOv2 更像给机器人提供空间、局部结构和 dense visual features？ |
+| Sigmoid Loss for Language Image Pre-Training (SigLIP) | https://arxiv.org/abs/2303.15343 | image-text alignment / sigmoid pairwise loss / scalable VLM pretraining | SigLIP 相比 CLIP 改了什么？为什么它能给 VLA 提供更好的 language grounding？ |
+
+读法边界：
+
+- 先读 abstract / intro / method overview / representation claim。
+- 不深挖所有 benchmark。
+- 输出必须回接 OpenVLA：`image observation -> DINOv2/SigLIP features -> projector -> Llama 2 -> action tokens`。
+
 ## P1.5 机器人感知模块：按任务需要补
 
 | Paper / 方向 | 核心概念 | 什么时候用 |
@@ -105,7 +120,7 @@ Diffusion 这条线先回答两个问题：
 | Paper / 方向 | 为什么暂缓 |
 |---|---|
 | DETR | detection 很重要，但不是当前 VLM/VLA visual token 主线的第一层缺口。 |
-| MAE / DINO / DINOv2 | self-supervised visual representation 后续重要；先读完 supervised CNN -> ViT -> CLIP。 |
+| MAE / DINO | self-supervised visual representation 后续重要；先读完 supervised CNN -> ViT -> CLIP。DINOv2 因 OpenVLA 已提升到 P1.2 支撑线。 |
 | SAM | segmentation foundation model 很重要，但会把当前线带向 dense prediction。 |
 | Swin Transformer | hierarchical vision transformer 重要，但先用 ViT 建立最小概念。 |
 | Vision Banana / Image Generators are Generalist Vision Learners | 生成式视觉统一范式，放在 SO-ARM101 首闭环后。 |

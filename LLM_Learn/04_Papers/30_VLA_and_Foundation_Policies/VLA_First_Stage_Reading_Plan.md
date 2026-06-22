@@ -79,6 +79,106 @@ Epoch robotic manipulation compute CSV 是雷达库，不是阅读队列。
 | Reference | Robotics Models CSV | https://github.com/epoch-research/robotic-manipulation-compute/blob/main/data/Robotics%20Models.csv | 雷达库：每月 review，不变成逐篇阅读队列 |
 | Reference | ACT repo | https://github.com/Shaka-Labs/ACT | 只在训练 ACT v0 时查实现，不再作为今天阅读任务 |
 
+## 2026-06-15 用户补充 VLA 队列二次分层
+
+用户给出的资源都保留，但本周不能全部精读。按和当前 `SO-ARM101 + LeRobot` 首闭环的距离重新分层：
+
+| 层级 | 资源 | 本周读法 | 只回答什么 |
+|---|---|---|---|
+| Today P0 | `ViT` | 白天 structured read | `camera image -> patch tokens -> visual encoder -> VLA visual input` |
+| Today P0 | XLeRobot：`https://github.com/Vector-Wangel/XLeRobot` | 30-45m repo triage | 低成本双臂/移动底盘如何复用 LeRobot / SO100/SO101；有哪些 hardware / software / simulation / web control 入口 |
+| Today P0 / Week P0 | ACT repo：`https://github.com/Shaka-Labs/ACT` | 20-30m repo triage；record/replay 后再细读 | action chunking 如何接到 low-cost robot train/evaluate 流程 |
+| Week P1 | SmolVLA：`https://huggingface.co/blog/smolvla` | structured awareness | 450M 小 VLA、LeRobot community data、SO100/SO101、flow matching action expert、async inference |
+| Week P1 | pi0 / openpi：`https://github.com/Physical-Intelligence/openpi` | structured awareness | VLM backbone + action expert + flow matching action sequence；需要什么 GPU / runtime 边界 |
+| Week P1 | pi0-FAST：`https://huggingface.co/blog/pi0` | action representation scan | FAST action tokenizer：DCT + BPE 如何把连续动作序列 tokenized |
+| Later P2 | OpenVLA：`https://arxiv.org/abs/2406.09246` / `https://github.com/openvla/openvla` | 30-45m awareness，record/replay 后再读 | 7B VLA、Open X 数据、LoRA/OFT fine-tune、REST serving；本周不训练 |
+| Later P2 | pi0.5：`https://www.pi.website/blog/pi05` | 20-30m awareness | open-world generalization；等 pi0 理解后再看 |
+| Reference | Robotics Models CSV：`https://github.com/epoch-research/robotic-manipulation-compute/blob/main/data/Robotics%20Models.csv` | 每月 radar review | 看 VLA / manipulation model 生态，不进入逐篇阅读 |
+
+### 今日顺序
+
+```text
+1. ViT structured read
+2. XLeRobot repo triage
+3. ACT repo triage
+4. 回到 E001 / LeRobot 硬件证据
+```
+
+今天不读：
+
+- OpenVLA full paper / repo
+- pi0 / pi0-FAST / pi0.5 full read
+- Robotics Models CSV 逐行 review
+
+### 本周顺序
+
+```text
+ViT
+-> XLeRobot / ACT repo triage
+-> SmolVLA
+-> pi0
+-> pi0-FAST
+-> OpenVLA awareness
+-> pi0.5 awareness
+-> Robotics Models CSV monthly radar
+```
+
+关键约束：
+
+- 每读一个 VLA 材料，都必须写清：
+  - observation 是什么；
+  - action / output 是什么；
+  - data / training 是什么；
+  - eval / deployment 是什么；
+  - 和 SO-ARM101 / LeRobot 当前首闭环有什么关系。
+- 如果当天没有 E001/E002/E003 新证据，VLA 只能读 20-40m。
+- 本周 VLA 学习目标是建立 action representation 和 deployment map，不做训练。
+
+## 2026-06-15 短期两篇 VLA 选择
+
+用户校准：今天、明天最多看两篇 VLA 代表材料；后续论文只放白天或碎片时间，晚间主线回 `Robot / LeRobot / SO-ARM101`。
+
+短期只选：
+
+| 顺序 | 材料 | 为什么代表 | 读法 |
+|---|---|---|---|
+| 1 | `OpenVLA` | open-source 7B VLA，覆盖 VLA input/output contract、Open X robot demonstrations、fine-tuning、quantization / serving | 今晚读半篇或一篇，重点看 abstract / intro / model / data / deployment，不训练 |
+| 2 | `pi0` | VLM backbone + action expert + flow matching，代表连续动作生成的 robot foundation policy 路线 | 明天读，重点看 action expert、flow matching、action horizon、runtime/control frequency |
+
+暂时不读、只进 radar：
+
+- `SmolVLA`：更贴近 LeRobot / affordable robotics，但等 OpenVLA + pi0 建立范式后再作为工程化补充。
+- `pi0-FAST / FAST`：重要，但它是 action tokenization 支线；等 pi0 主文理解后再看。
+- `pi0.5`：open-world generalization 后续 awareness。
+
+两篇读完后的收束输出：
+
+```text
+ViT / CLIP / BLIP-2 / LLaVA
+-> DINOv2 / SigLIP: OpenVLA fused visual encoder support
+-> OpenVLA: open VLA contract and deployment
+-> pi0: flow/action expert and continuous action generation
+-> LeRobot / SO-ARM101: record/replay data, action schema, runtime gaps
+```
+
+## 2026-06-17 今日聚焦校准
+
+用户校准：今天目标聚焦在 `OpenVLA / pi0 / pi0-FAST`，如果时间有余再看 `DAgger`。这次校准只改变今天的阅读目标，不改变本周 `SO-ARM101 + LeRobot` 首闭环主线。
+
+| 顺序 | 材料 | 今天只回答什么 | 输出 |
+|---|---|---|---|
+| 1 | OpenVLA | open VLA input/output contract、Open X data、fine-tune / quantization / serving | `OpenVLA/QUICK_READ.md` 3-5 条 takeaway |
+| 2 | pi0 | VLM backbone、action expert、flow matching、continuous action / action horizon | `PI0/QUICK_READ.md` 3-5 条 takeaway |
+| 3 | pi0-FAST | DCT + BPE / FAST action tokenizer 如何把 continuous action sequence 变成 action tokens | `PI0_FAST/QUICK_READ.md` 2-3 条 takeaway |
+| Optional | DAgger | BC covariate shift 和 dataset aggregation 为什么服务 failure-driven data loop | `DAgger/QUICK_READ.md` 一句话定位 |
+
+今日边界：
+
+- 不训练 OpenVLA / pi0。
+- 不读 OpenVLA / openpi / FAST 源码。
+- 不展开 SmolVLA、pi0.5、Robotics Models CSV。
+- DAgger 只在前三项完成后看，不进入最低完成线。
+
 ## 第一阶段阅读顺序
 
 ```text
@@ -117,4 +217,6 @@ assemble/calibrate
 | 数据闭环经验不足 | 先用 LeRobot record/replay 和 ACT 补 |
 | action representation 还不稳定 | 对比 ACT action chunk / RT-2 token / π0 flow matching / π0-FAST tokenizer |
 | VLA 工程部署经验不足 | LingBot-VLA / SmolVLA / OpenPI 只看 deployment path |
+| OpenVLA Section 4 工程项未补 | 看 `OpenVLA/OpenVLA_Engineering_Support_Checklist.md`，按 LoRA / quantization / FlashAttention / AMP / FSDP 顺序补 |
+| OpenVLA visual encoder 还没拆开 | 补 DINOv2 / SigLIP structured quick read：分别理解 spatial/dense visual features 和 language-aligned semantic features |
 | CV 基础较薄 | 在 SO-ARM101 首闭环后补 ResNet / ViT / CLIP / DINO/SAM/Vision Banana |

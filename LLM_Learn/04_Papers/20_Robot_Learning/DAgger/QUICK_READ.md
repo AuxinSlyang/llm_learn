@@ -5,11 +5,12 @@ short_name: DAgger
 arxiv_id: 1011.0686
 url: https://arxiv.org/abs/1011.0686
 pdf_url: https://arxiv.org/pdf/1011.0686
+local_pdf: ./DAgger_A_Reduction_of_Imitation_Learning_and_Structured_Prediction_to_No_Regret_Online_Learning.pdf
 authors: Stephane Ross; Geoffrey J. Gordon; J. Andrew Bagnell
 submitted: 2010-11-02
 last_revised: 2011-03-16
 categories: cs.LG; cs.AI; stat.ML
-status: planned_quick_scan
+status: pdf_downloaded
 ---
 
 # QUICK_READ — DAgger (1011.0686)
@@ -21,6 +22,7 @@ status: planned_quick_scan
 - arXiv：`1011.0686`
 - URL：`https://arxiv.org/abs/1011.0686`
 - PDF：`https://arxiv.org/pdf/1011.0686`
+- Local PDF：`./DAgger_A_Reduction_of_Imitation_Learning_and_Structured_Prediction_to_No_Regret_Online_Learning.pdf`
 - 日期：submitted `2010-11-02`，last revised `2011-03-16`
 - 分类：`cs.LG / cs.AI / stat.ML`
 - 官方来源：arXiv
