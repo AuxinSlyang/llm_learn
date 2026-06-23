@@ -26,7 +26,7 @@ Reference: 大清单，只用于查漏补缺
 | 材料 | 作用 | 读法 |
 |---|---|---|
 | LeRobot docs | 先跑通 SO-ARM101 的 teleop / record / replay / ACT | 跟做，不精读 |
-| ACT | 第一阶段最现实的 imitation learning policy | 精读 method + 跟 LeRobot 训练链路对应 |
+| ACT | 第一阶段最现实的 imitation learning policy | first pass done；ACT/BC v0 训练前回看 method / ablation |
 | XLeRobot | 双臂 / 移动底盘 / SO101 社区工程参考 | 先扫硬件和 bring-up 流程 |
 | LingBot-VLA | 看 LeRobot dataset/config/eval/deploy 如何接 VLA | 项目 walkthrough，暂不训练 4B |
 | SmolVLA | affordable robotics / 小 VLA / LeRobot 生态 | 重点看 runtime、数据、异步推理 |
@@ -39,7 +39,7 @@ Reference: 大清单，只用于查漏补缺
 | RT-2 | action-as-token，把 VLM 变成 VLA | 已完成第一轮 |
 | Open X-Embodiment / RT-X | 多机器人数据规模化和 embodiment gap | 待读 |
 | OpenVLA | 开源 VLA，理解 7B VLA、Open X 数据、fine-tune/deploy | 已下载，待结构化读 |
-| π0 | flow matching action expert，理解连续动作 VLA | 已下载，待结构化读 |
+| π0 | flow matching action expert，理解连续动作 VLA | first pass done；配合 Flow Matching / Diffusion Policy / pi0-FAST 回看 |
 | π0-FAST | action tokenizer，从离散 token 化走向更高效动作序列 | 待读 |
 | π0.5 | open-world generalization，异构数据 co-training | 待读 |
 
@@ -52,6 +52,8 @@ Reference: 大清单，只用于查漏补缺
 | Diffusion Policy | 连续动作生成和 action distribution 基础 | ACT 跑通后 |
 | DAgger | BC 分布偏移和 dataset aggregation | 发现 policy drift 后 |
 | Mobile ALOHA | 双臂移动操作系统参考 | 进入双臂/移动底盘阶段 |
+| Agile But Safe | safe + agile legged locomotion / reach-avoid value / recovery policy | sim2real / safe RL 专题时读 |
+| CMU 16-831 Reading Map | Robot Learning 系统课程阅读地图 | 长期课程队列，不抢 SO-ARM101 |
 
 ## Reference：大清单的定位
 
@@ -220,3 +222,4 @@ assemble/calibrate
 | OpenVLA Section 4 工程项未补 | 看 `OpenVLA/OpenVLA_Engineering_Support_Checklist.md`，按 LoRA / quantization / FlashAttention / AMP / FSDP 顺序补 |
 | OpenVLA visual encoder 还没拆开 | 补 DINOv2 / SigLIP structured quick read：分别理解 spatial/dense visual features 和 language-aligned semantic features |
 | CV 基础较薄 | 在 SO-ARM101 首闭环后补 ResNet / ViT / CLIP / DINO/SAM/Vision Banana |
+| sim2real / real2sim / safe deployment 缺口 | 新增 [[20_Robot_Learning/CMU_16_831_Robot_Learning_Reading_Map]]，从 Agile But Safe、Domain Randomization、Real2Sim or Sim2Real 开始 |

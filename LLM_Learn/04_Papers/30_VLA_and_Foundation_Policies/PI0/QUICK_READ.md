@@ -8,7 +8,7 @@ pdf_url: https://arxiv.org/pdf/2410.24164
 local_pdf: ./PI0_A_Vision_Language_Action_Flow_Model_for_General_Robot_Control.pdf
 track: robot foundation policy frontier
 read_mode: Structured Awareness
-status: selected_for_2026-06-16
+status: first_pass_done
 created: 2026-06-09
 ---
 
@@ -64,3 +64,14 @@ image / state / language
 - 不训练。
 - 不部署。
 - `pi0-FAST` 只作为 action tokenization radar：等 pi0 的 flow/action expert 理解后再补。
+
+## 2026-06-23 状态校准
+
+用户确认 `pi0` 已经看过第一轮。当前状态改为 `first_pass_done`。
+
+后续不再把它作为普通待读项重复排队；只在读下面材料时回看它：
+
+- `Flow Matching / Rectified Flow`：补 action expert 背后的 vector field 直觉。
+- `Diffusion Policy`：和 diffusion action sequence generation 做对照。
+- `pi0-FAST`：对比 continuous flow action expert 与 action tokenizer。
+- `SO-ARM101 / LeRobot` 有真实数据后：检查 `observation.images / observation.state / task / action / control frequency / latency` 是否能映射到 pi0 式接口。

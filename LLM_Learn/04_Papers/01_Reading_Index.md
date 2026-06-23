@@ -74,14 +74,29 @@
 
 > 详细分层见：[[VLA_First_Stage_Reading_Plan]]
 
-- [ ] ACT：第一阶段最现实的 imitation learning policy，优先和 LeRobot 训练链路对应
+- [x] ACT：第一阶段最现实的 imitation learning policy；first pass done，后续只在训练 ACT/BC v0 时回看 method / ablation
 - [ ] XLeRobot：SO101 双臂 / 移动底盘 / 社区工程参考，先扫 bring-up 和硬件流程
 - [ ] LingBot-VLA：LeRobot-style VLA 工程流程，重点看 dataset/config/eval/deploy
 - [ ] SmolVLA：小模型、consumer hardware、异步推理和 affordable robotics
 - [ ] OpenVLA：开源 7B VLA、Open X 数据、fine-tune/deploy 路线
-- [ ] PI0：flow matching action expert 和连续动作 VLA
+- [x] PI0：flow matching action expert 和连续动作 VLA；first pass done，后续配合 Flow Matching / Diffusion Policy / pi0-FAST 回看
 - [ ] PI0-FAST：FAST action tokenizer，理解 autoregressive VLA 动作表示
 - [ ] PI0.5：异构数据 co-training 与 open-world generalization
+
+### CMU 16-831 / Sim2Real / Safe Locomotion Track
+
+> 独立入口：[[20_Robot_Learning/CMU_16_831_Robot_Learning_Reading_Map]]
+> 这条线用于系统补齐 Robot Learning 课程框架、sim2real / real2sim、safe RL、legged locomotion 和 world model。它是长期学习计划，不抢 SO-ARM101 首闭环。
+
+- [ ] CMU 16-831 Spring 2024：Introduction to Robot Learning 课程阅读地图
+- [ ] Agile But Safe：Learning Collision-Free High-Speed Legged Locomotion，safe + agile legged locomotion 入口
+- [ ] Real2Sim or Sim2Real：Robotics Visual Insertion using Deep RL and Real2Sim Policy Adaptation
+- [ ] Domain Randomization：Sim2Real 的经典入口
+- [ ] Champion-Level Drone Racing：高性能 sim2real / real-world deployment 案例
+- [ ] Safe Robot Learning Survey：safe RL / safe robot learning 总览
+- [ ] Data-Driven Safety Filters：安全过滤器 / runtime safety 支撑
+- [ ] RMA / Teacher-Student / Neural-Fly：adaptation and transferable robot learning
+- [ ] Dreamer / TD-MPC / PETS / MBPO：model-based RL / world model / planning 主线
 
 ### Diffusion / Flow / Action Generation Track
 
@@ -97,14 +112,14 @@
 
 - [ ] RL for Robot Learning Reading Map: reward-driven improvement / continuous control / offline RL / world-model RL 支撑线；不抢 OpenVLA / pi0 主线
 - [ ] DAgger: dataset aggregation and covariate shift
-- [ ] ACT: action chunking for fine-grained manipulation
+- [x] ACT: action chunking for fine-grained manipulation；first pass done
 - [ ] Diffusion Policy: action generation as conditional denoising
 - [ ] RT-1: scalable real-world robot learning with language-conditioned policies
 - [ ] RT-2: VLM-to-VLA transfer from web knowledge to robot control
 - [ ] Open X-Embodiment: cross-robot data and RT-X style generalization
 - [ ] Octo: open generalist robot policy
 - [ ] OpenVLA: open vision-language-action model
-- [ ] PI0: flow-based general robot policy
+- [x] PI0: flow-based general robot policy；first pass done
 
 ## 分类
 
@@ -151,8 +166,11 @@
 |---|---|---|
 | RL for Robot Learning Reading Map | 把 DQN / PPO / SAC / HER / offline RL / QT-Opt / DreamerV3 接到 robot policy data loop | OpenVLA / pi0 第一轮后，作为 P2 支撑线 |
 | DAgger | 理解 BC 的分布偏移问题 | 2026-08/09 |
-| ACT / ALOHA | manipulation imitation learning 入口 | 2026-09 |
+| ACT / ALOHA | manipulation imitation learning 入口 | first pass done; ACT/BC v0 时回看 |
 | Diffusion Policy | robot action generation 经典路线 | 2026-09/10 |
+| CMU 16-831 Reading Map | robot learning 系统课程入口：IL/RL/model-based/offline/sim2real/safe/foundation robotics | active long-term queue |
+| Agile But Safe | safe + agile legged locomotion，reach-avoid value / recovery policy / sim2real deployment | queued / safe locomotion |
+| Real2Sim or Sim2Real | visual insertion 的 real2sim policy adaptation，对比 sim2real 路线 | queued / sim2real-real2sim |
 
 ### 30 VLA And Foundation Policies
 
@@ -163,7 +181,7 @@
 | SmolVLA | affordable / efficient VLA, LeRobot community data | W24 awareness |
 | Octo | open generalist robot policy | 2026-11/12 |
 | OpenVLA | open VLA model and deployment awareness | 2026-11/12 |
-| PI0 | general robot policy frontier awareness | 2026-11/12 |
+| PI0 | general robot policy frontier awareness | first pass done; paired with Flow Matching / pi0-FAST |
 
 ### 40 Data And Eval
 

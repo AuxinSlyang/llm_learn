@@ -582,7 +582,7 @@ vision encoder output
 - `LingBot-VLA`：downloaded。LeRobot-style VLA engineering stack，项目 walkthrough。
 - `SmolVLA`：downloaded。affordable / efficient VLA，LeRobot community data，async inference。
 - `OpenVLA`：downloaded。open VLA，Open X 数据，fine-tune/deploy awareness。
-- `pi0`：downloaded。flow matching action expert，continuous action VLA frontier。
+- `pi0`：first pass done。flow matching action expert，continuous action VLA frontier；后续配合 Flow Matching / Diffusion Policy / pi0-FAST 回看。
 - `Octo`：downloaded。open generalist robot policy。
 
 第一阶段 VLA 阅读顺序：
@@ -632,7 +632,7 @@ state + action -> future state
 - Vision Transformers Need Registers：ViT 后的解释性支线。
 - CLIP / BLIP-2 / LLaVA：如果 ViT 后需要桥到 VLM，可回看并补齐。
 - LingBot-VLA / SmolVLA：硬件数据闭环跑通后做 engineering walkthrough。
-- ACT：teleop/record/replay 之后，进入训练 ACT/BC v0 时回看 method。
+- ACT：first pass done；teleop/record/replay 之后，进入训练 ACT/BC v0 时只回看 method / ablation / toy example。
 
 ### 支撑线，暂不抢主线
 
@@ -645,11 +645,14 @@ state + action -> future state
 - Position Interpolation / YaRN / LongRoPE / RULER：long context。
 - Distributed Training / Parallelism：data/model/tensor/pipeline parallelism、ZeRO/FSDP、Megatron/GPipe 等。
 - Transformers are Inherently Succinct：Transformer expressivity / theory。
+- CMU 16-831 Robot Learning Reading Map：系统补齐 IL/RL/model-based/offline/sim2real/safe/foundation robotics。
+- Agile But Safe：safe + agile legged locomotion，reach-avoid value / recovery policy / sim2real deployment。
+- Real2Sim or Sim2Real：visual insertion 的 real2sim policy adaptation，对照 sim2real。
 
 ### 雷达，不进入当前阶段
 
 - OpenVLA full fine-tuning。
-- pi0 / pi0-FAST / pi0.5 深读。
+- pi0-FAST / pi0.5 深读。
 - Open X full data system。
 - World Models / DreamerV3。
 - DETR / SAM / DINO / MAE / Swin。

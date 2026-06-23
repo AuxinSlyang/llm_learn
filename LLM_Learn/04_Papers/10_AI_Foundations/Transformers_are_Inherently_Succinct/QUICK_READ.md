@@ -10,8 +10,8 @@ local_pdf: ./Transformers_are_Inherently_Succinct.pdf
 venue: ICLR 2026
 award: ICLR 2026 Outstanding Paper
 track: AI foundations / transformer theory / expressivity
-read_mode: Follow-up Theory Scan
-status: queued
+read_mode: Theory Scan
+status: selected_for_2026-06-23
 created: 2026-06-11
 ---
 
@@ -93,5 +93,16 @@ Transformer theory / expressivity
 
 - [x] PDF 已下载到本地
 - [x] Quick read note 已创建
-- [ ] 后续安排 30-60m theory scan
+- [x] 2026-06-23 已提升为今日 theory scan 主槽
 - [ ] 读完后写一句 mini-stack connection
+
+## 2026-06-23 优先级校准
+
+今天把它设为理论主读，因为它才是 ICLR 2026 Outstanding Paper；`Transformer Is Inherently a Causal Learner` 保留为 causal / world-model radar。
+
+本轮只读：
+
+1. `succinctness` 和普通 `expressivity` 的区别。
+2. 为什么 fixed-precision Transformer 可以比 LTL、RNN / SSM、finite automata 更紧凑。
+3. 为什么这种紧凑表达能力会让 verification 变得困难。
+4. 这对 `tokenized vision / action chunk / robot trajectory` 的启发是什么。

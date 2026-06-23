@@ -8,7 +8,7 @@ pdf_url: https://arxiv.org/pdf/2304.13705
 local_pdf: ./ACT_Learning_Fine_Grained_Bimanual_Manipulation_with_Low_Cost_Hardware.pdf
 track: robot learning / imitation learning
 read_mode: Project Must Read
-status: downloaded
+status: first_pass_done
 created: 2026-06-09
 ---
 
@@ -66,3 +66,14 @@ eval / failure 怎么记录？
 - 已读：Abstract、Introduction、Related Work、Section 3 ALOHA、Section 4 ACT 主结构。
 - 已理解：open-loop vs closed-loop、joint space vs task space、FK/IK、action chunking、temporal ensemble、CVAE `z`、ACT 的 Transformer encoder-decoder 架构。
 - 下次继续：用 toy example 走一遍 ACT training/inference；再看实验和 ablation，确认 action chunk、temporal ensemble、CVAE 各自贡献。
+
+## 2026-06-23 状态校准
+
+用户确认 `ACT / ALOHA` 已经看完第一轮。当前状态改为 `first_pass_done`。
+
+后续不再把它作为“待读主论文”重复排队；只有在 SO-ARM101 / LeRobot 有真实 E002/E003 数据、准备训练 ACT/BC v0 时，再回看：
+
+- training / inference toy example
+- experiments and ablations
+- action chunk size / temporal ensemble / CVAE latent `z`
+- 和 LeRobot dataset / runner / eval 的真实字段映射
