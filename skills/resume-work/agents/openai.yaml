@@ -1,0 +1,4 @@
+interface:
+  display_name: "Resume Work"
+  short_description: "Resume llm-learner work across machines"
+  default_prompt: "Use $resume-work to sync GitHub, read the latest work diary and TODO context, and continue the llm-learner workspace without losing state."

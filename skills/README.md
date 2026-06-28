@@ -10,3 +10,8 @@
 - 新增 skill 时，目录结构应为 `skills/<skill-name>/SKILL.md`
 - 长期知识内容不沉淀在 skills 里，skills 只描述“如何工作”；学习成果应回到 `LLM_Learn/`
 - `LLM_Learn/10_Workflows/skills/` 属于历史 / 过渡副本，后续新增或维护优先以顶层 `skills/` 为准
+
+当前关键入口：
+- `start-my-day`：每天生成学习计划
+- `end-of-this-week`：周复盘与下周计划
+- `resume-work`：两端协作时先同步 GitHub，再读取工作日记 / TODO / 当前路线，接上上一次工作

@@ -2,15 +2,28 @@
 set -euo pipefail
 
 ROOT_DIR="$(cd -- "$(dirname -- "$0")/../.." && pwd)"
+REPO_DIR="$(cd -- "$ROOT_DIR/.." && pwd)"
 TARGET_DIR="${HOME}/.codex/skills"
 
 install_skill() {
   local name="$1"
-  local src="$ROOT_DIR/10_Workflows/skills/$name"
+  local src=""
+  if [[ -f "$REPO_DIR/skills/$name/SKILL.md" ]]; then
+    src="$REPO_DIR/skills/$name"
+  elif [[ -f "$ROOT_DIR/10_Workflows/skills/$name/SKILL.md" ]]; then
+    src="$ROOT_DIR/10_Workflows/skills/$name"
+  else
+    printf 'Missing skill: %s\n' "$name" >&2
+    return 1
+  fi
   local dst="$TARGET_DIR/$name"
 
-  mkdir -p "$dst/agents"
+  mkdir -p "$dst"
   cp "$src/SKILL.md" "$dst/SKILL.md"
+  if [[ -f "$src/agents/openai.yaml" ]]; then
+    mkdir -p "$dst/agents"
+    cp "$src/agents/openai.yaml" "$dst/agents/openai.yaml"
+  fi
 }
 
 mkdir -p "$TARGET_DIR"
@@ -36,5 +49,7 @@ interface:
 policy:
   allow_implicit_invocation: true
 EOF
+
+install_skill "resume-work"
 
 printf 'Installed skills into %s\n' "$TARGET_DIR"
