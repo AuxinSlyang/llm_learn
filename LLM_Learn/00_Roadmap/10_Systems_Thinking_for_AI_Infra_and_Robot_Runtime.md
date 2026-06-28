@@ -15,12 +15,12 @@ linked_files:
 
 这条线用于沉淀经典存储系统、分布式系统、分布式计算系统里的可迁移思考。
 
-它不是新的上位主线，也不是 TokaDB 主业务日志。它服务当前长期目标：
+2026-06-28 修订：基于 DeepSeek `高性能分布式存储工程师` / AI Core Storage 岗位判断，这条线从普通支撑线升级为近期职业第一跳主线。它仍然不是 TokaDB 主业务日志，也不取消机器人长期目标；它服务新的三级跳路径：
 
 ```text
-Robot Learning Full-Stack
-+ AI Infra / Runtime support
-+ 系统工程底座
+AI Core Storage / KVCache Storage
+-> LLM Inference / KVCache / Serving Runtime
+-> Robot Runtime / VLA Runtime / Robot Data Loop
 ```
 
 核心问题：
@@ -95,13 +95,20 @@ Robot Learning Full-Stack
 - Timeout / fallback / watchdog：机器人系统里的安全边界。
 - Observability：日志、metrics、trace 如何服务 failure taxonomy 和数据闭环。
 
+### DeepSeek Storage Route
+
+- KVCache storage：生命周期、prefix cache、eviction、SSD offload、tail latency、failure recovery。
+- AI training storage：分布式文件系统、对象存储、数据读取加速、checkpoint/restart。
+- High-performance IO：page cache、direct IO、io_uring、SPDK、NVMe、RDMA、zero-copy。
+- Storage engine design：RocksDB / LSM、FoundationDB、ClickHouse 中可迁移的简洁设计范式。
+
 ## 和当前主线的边界
 
-- 当周 Top 3 仍以 Robot Learning / SO-ARM101 / LeRobot / policy runtime 为准。
-- Systems Thinking 默认进入支撑槽位，不抢 daily mainline。
-- 如果某条系统思考能直接帮助当前项目，例如 `episode replay`、`checkpoint`、`eval harness`，可以升级为当天支撑任务。
-- 如果某个系统专题连续多周成为主任务，再考虑单独开 workspace 或阶段项目。
+- 2026-07 起，DeepSeek Storage / KVCache Storage 是近期 P0；Robot Learning / SO-ARM101 / Unitree 降级为长期探索副线。
+- Systems Thinking 可以进入 daily mainline，但必须服务 AI Core Storage / KVCache / inference runtime，不记录 TokaDB 主业务流水账。
+- 如果某条系统思考能直接帮助机器人，例如 `episode replay`、`checkpoint`、`eval harness`，保留为长期回接点，不抢近期职业第一跳。
+- 如果 AI Core Storage 连续多周成为主任务，可以围绕 `DeepSeek_AI_Core_Storage_JD_Mapping` 和 `KVCache_Storage_System_Map` 建立阶段项目。
 
 ## 一句话回锚
 
-> 系统思考不是偏离具身智能主线，而是把已有存储 / 分布式系统能力转化为 AI Infra、Robot Runtime 和数据闭环的工程判断力。
+> 系统思考不是偏离长期机器人目标，而是先把已有存储 / 分布式系统能力转化为 AI Core Storage 和 LLM inference runtime，再在更合适的时机回接 Robot Runtime 和 VLA 数据闭环。

@@ -1,10 +1,10 @@
 ---
 type: annual_plan
 year: 2026
-target_role: Embodied AI Systems Builder / Robot Full-Stack Engineer -> Roboticist
-scenario_anchor: Robot Learning Full-Stack + Robot Runtime + LLM/AI Infra support
+target_role: AI Core Storage -> LLM Inference Runtime -> Robot/VLA Runtime
+scenario_anchor: DeepSeek Storage + KVCache + Inference Runtime, with Robot/VLA Runtime as long-term North Star
 time_budget: 8-14h/week (32-56h/month)
-active_roadmap: "[[09_One_Year_Robot_Learning_Full_Stack_Roadmap]]"
+active_roadmap: "[[11_DeepSeek_Storage_to_Inference_to_Robot_Runtime_Roadmap]]"
 linked_files:
   - "[[00_North_Star]]"
   - "[[01_Learning_Philosophy]]"
@@ -15,20 +15,39 @@ linked_files:
   - "[[07_One_Year_Interview_Roadmap_Embodied_AI_Software]]"
   - "[[08_One_Year_Roadmap_LLM_Inference_to_Robot_Runtime]]"
   - "[[09_One_Year_Robot_Learning_Full_Stack_Roadmap]]"
+  - "[[10_Systems_Thinking_for_AI_Infra_and_Robot_Runtime]]"
+  - "[[11_DeepSeek_Storage_to_Inference_to_Robot_Runtime_Roadmap]]"
 ---
 
 # 2026 Annual Plan
 
 > 这份文件回答的问题：**2026 年我具体怎么走？**
-> 更新频率：月级；当前权威修订时间：2026-06-01。
+> 更新频率：月级；当前权威修订时间：2026-06-28。
+
+## 2026-06-28 当前权威修订
+
+2026-H2 的近期主线改为：
+
+```text
+DeepSeek Storage / AI Core Storage
+-> LLM KVCache / inference runtime
+-> long-term Robot/VLA Runtime
+```
+
+执行含义：
+
+- 近期第一跳不再是直接切机器人，而是夯实分布式存储，做好 TokaDB 工作，同时准备 2026-09/10 进入 DeepSeek / AI Core Storage。
+- 学习主线收敛到 `TokaDB / RocksDB / brpc / ByteStore / 3FS / KVCache / RDMA / SPDK / io_uring`。
+- 机器人 / 具身智能保留为长期 North Star 和低频探索，不再作为 2026-Q3/Q4 的求职主战场。
+- 旧的 Robot Learning Full-Stack 路线保留为长期参考；当前 active roadmap 改为 [[11_DeepSeek_Storage_to_Inference_to_Robot_Runtime_Roadmap]]。
 
 ## 2026 年定位
 
 短期职业目标：
 
 ```text
-具身智能系统构建者
--> 具身智能软件 / Robot Learning Infra / Policy Runtime / 机器人全栈工程入口
+AI Core Storage / 高性能分布式存储
+-> DeepSeek Storage / KVCache Storage / Training Data Storage
 ```
 
 长期能力目标：
@@ -41,16 +60,16 @@ linked_files:
 当前执行主线：
 
 ```text
-Robot Learning Full-Stack 主线
-+ LLM / AI Infra / Runtime 支撑线
+DeepSeek Storage / KVCache / LLM Inference Runtime 主线
++ Robot/VLA Runtime 长期支撑线
 ```
 
 执行含义：
 
-- `Robot Learning Full-Stack` 是 2026-06 起的上位主线。
-- `具身智能软件 / Robot Learning Infra / Policy Runtime` 是最现实第一跳。
-- `深度强化学习算法 / Robot Learning` 是长期算法目标，需要通过仿真、控制、RL/IL、runtime 和项目证据逐步逼近。
-- `LLM / 多模态 / AI Infra` 不再作为独立转岗主叙事，而是作为 VLA、policy runtime、edge inference、语言任务分解和多机器人协作的支撑能力。
+- `DeepSeek Storage / AI Core Storage` 是 2026-Q3/Q4 的近期上位主线。
+- `TokaDB / RocksDB / brpc / ByteStore / 3FS / KVCache / RDMA / SPDK / io_uring` 是近期学习和面试证据来源。
+- `LLM / KVCache / 推理系统` 是第二跳入口，进入 AI core infra 后逐步靠近 inference runtime。
+- `Robot Learning / VLA / 具身智能` 保留为长期目标，等待更合适的行业与个人时机。
 
 ## 学习执行原则
 
@@ -71,6 +90,7 @@ Robot Learning Full-Stack 主线
 | 方向重定义 | 2026-04-27 | 从单一 LLM 工程叙事转向具身智能 / 机器人系统 | 长期目标升级 |
 | 职业路径试探 | 2026-05-27 | 曾把 LLM Inference Infra 设为职业第一跳 | 该路径现实但会弱化机器人主线 |
 | Unitree JD 校准 | 2026-06-01 | 重新对齐具身智能软件 / Robot Learning Infra / Policy Runtime | 当前权威路线切回 Robot Learning Full-Stack |
+| DeepSeek Storage 校准 | 2026-06-28 | 根据 DeepSeek 高性能分布式存储 JD，重新确认 AI Core Storage 是近期第一跳 | 当前权威路线切到 DeepSeek Storage -> KVCache -> Inference -> Robot/VLA Runtime |
 
 H1 的价值不是“已经学完”，而是把语言模型基础、系统工程背景和机器人长期目标重新放到同一条路线里。
 
@@ -79,52 +99,51 @@ H1 的价值不是“已经学完”，而是把语言模型基础、系统工�
 | 月份 | 主模块 | 主资源 | 阶段产出 | 对短期职业目标的帮助 |
 |---|---|---|---|---|
 | 2026-06 | M1：路线切换 + 实物机器人首闭环预备 | nanoGPT、SO-ARM101、LeRobot、LingBot-VLA walkthrough，Gymnasium/MuJoCo 兜底 | `nanoGPT 主链路总结 v0`、`LLM phase 1 总结 v0`、`SO-ARM101 + LeRobot 首闭环 bring-up 记录`、`robot data schema v0` | 证明能把 LLM 基础收口，并尽早接触真实机器人硬件、示教数据、评估和 failure loop |
-| 2026-07 | M2：机器人本体语言 I | Modern Robotics Ch.1-3 | `frame / SO(3) / SE(3) / configuration notes`、`state-action schema v0` | 看懂机器人状态、坐标系和动作表达 |
-| 2026-08 | M3：机器人本体语言 II | Modern Robotics Ch.4-6 | `FK/IK/Jacobian demo`、`MR notes v0` | 具备和机器人算法/控制同学沟通的基础语言 |
-| 2026-09 | M4：控制 / 动力学入口 | MIT Underactuated 精选、MuJoCo control | `control baseline note`、`latency/jitter/robustness note` | 支撑 policy runtime 的稳定性、低延迟和故障分析 |
-| 2026-10 | M5：视觉感知入口 | CS231n 精选 | `robot perception map`、`vision data pipeline note` | 理解视觉 observation 如何进入决策和 policy |
-| 2026-11 | M6：感知到 runtime 桥接 | CS231n 精选、policy runtime notes | `perception-to-policy runtime bridge`、`dataset schema v0` | 把感知、数据格式、推理延迟和机器人系统连接起来 |
-| 2026-12 | M7：Robot Learning 入口 + 年终作品化 | CS285 精选、BC/PPO/DAgger | `BC/PPO experiment v0`、`policy runtime mini-stack draft`、`2027 plan` | 形成可展示的 robot learning infra / policy runtime 证据 |
+| 2026-07 | M2 revised：DeepSeek Storage 基础框架 | TokaDB 复盘、RocksDB、3FS、KVCache、vLLM/PagedAttention | `DeepSeek JD mapping`、`RocksDB_LSM_Refresh`、`3FS_Architecture_First_Pass`、`KVCache_Storage_System_Map` | 建立 AI Core Storage 面试语言 |
+| 2026-08 | M3 revised：系统深水 | brpc、ByteStore、3FS IO path、RDMA/SPDK/io_uring | `brpc_Systems_Model`、`ByteStore_Shared_Storage_Map`、`3FS_IO_Path`、`IO_Path_RDMA_SPDK` | 把本地工作经验转成 DeepSeek Storage 证据 |
+| 2026-09 | M4 revised：面试化 | 系统设计、mock interview、简历叙事 | AI Core Storage 简历、5 个系统故事、4-6 次 mock | 开始 DeepSeek / 同类岗位市场测试 |
+| 2026-10 | M5 revised：正式窗口 | DeepSeek Storage / AI Core Storage 投递与面试 | 面试复盘、系统设计补强、材料迭代 | 如果准备稳定，进入正式面试节奏 |
+| 2026-11 | M6 revised：Inference Runtime Bridge | KVCache、serving scheduler、long context、MoE serving | `KVCache_to_Inference_Runtime_Map` | 为进入后向推理系统第二跳做准备 |
+| 2026-12 | M7 revised：年度复盘 | AI Core Storage / Inference / Robot Runtime 路线复盘 | `2027 DeepSeek/AI Infra plan`、机器人低频探索总结 | 决定是否继续投递 / 入职 / 内部转向 |
 
 ## 2026 年度关键产出
 
-- [ ] `nanoGPT 主链路总结 v0`：讲清 `token -> embedding -> attention -> block -> logits -> loss/generate`。
-- [ ] `Robot Learning Full-Stack 路线 v0`：明确课程、论文、硬件、实验和 JD 映射。
-- [ ] `SO-ARM101 + LeRobot 首闭环 report v0`：包含采购/组装/校准/teleop/record/replay/train/eval/failure note；若硬件阻塞，用 `Gymnasium/MuJoCo + PPO smoke test` 兜底。
-- [ ] `state/action/trajectory schema v0`：用机器人系统语言描述 obs/action/reward/log。
-- [ ] `Modern Robotics notes v0`：frame、pose、twist、FK、IK、Jacobian。
-- [ ] `control baseline note`：PD/LQR/MPC awareness、latency、jitter、stability。
-- [ ] `robot perception map`：camera/depth、CNN/ViT、detection/segmentation、数据格式和延迟。
-- [ ] `dataset schema + eval harness v0`：episode metadata、seed、metrics、replay、failure category。
-- [ ] `BC/PPO experiment v0`：至少一个可复现实验和对比报告。
-- [ ] `policy runtime mini-stack draft`：policy load、obs preprocessing、action clipping、timeout、logging、replay。
-- [ ] `JD mapping v1`：把具身智能软件 / Robot Learning Infra / Policy Runtime 要求映射到项目证据。
-- [ ] `2027 plan`：决定是否进入更强 Robot Learning、ROS2/real robot、Isaac Lab/VLA 或岗位测试阶段。
+- [ ] `DeepSeek_AI_Core_Storage_JD_Mapping_v0`：逐条映射 KVCache storage、分布式文件系统、对象存储、RDMA、io_uring/SPDK、RocksDB/FoundationDB/ClickHouse 到当前能力差距。
+- [ ] `TokaDB_Transferable_Systems_Review_v0`：把零拷贝、共享存储、data path、性能分析、故障恢复抽象成可面试系统能力。
+- [ ] `RocksDB_LSM_Refresh`：讲清 WAL、memtable、SST、compaction、snapshot、iterator、WAF/RAF/SAF。
+- [ ] `brpc_Systems_Model_Note`：讲清 bthread、RPC latency、zero-copy attachment、backpressure、bvar/observability。
+- [ ] `ByteStore_Shared_Storage_Map_v0`：讲清 namespace、metadata、placement、replication、recovery、性能隔离。
+- [ ] `3FS_Architecture_First_Pass`：讲清 client、metadata、storage service、FoundationDB、CRAQ、USRBIO/FUSE、dataloader/checkpoint/KVCache。
+- [ ] `3FS_IO_Path_RDMA_SSD_Note`：讲清 RDMA、SSD/NVMe、USRBIO/FUSE、CPU copy、queue depth、tail latency。
+- [ ] `KVCache_Storage_System_Map_v0`：讲清 prefill/decode、block/page、prefix reuse、eviction、offload、HBM/DRAM/SSD/remote tier。
+- [ ] `vLLM_PagedAttention_KVCache_Scan`：讲清 PagedAttention 的 block table、fragmentation、sharing、serving scheduler 和 storage boundary。
+- [ ] `IO_Path_io_uring_SPDK_RDMA_Note_v0`：讲清 kernel bypass、polling、memory registration、NVMe/RDMA data path。
+- [ ] `AI Core Storage 简历叙事 + 5 个系统故事`：零拷贝、共享存储、RocksDB/LSM、3FS、KVCache storage design。
+- [ ] `2027 DeepSeek / AI Infra plan`：根据 2026-Q4 面试/入职情况，决定继续投递、入职后学习计划或推理系统第二跳计划。
 
 ## 2026 年终自检标准
 
 到 2026-12-31，如果下面这些基本成立，说明 2026 走得稳：
 
-- [ ] 能讲清 robot learning 闭环：`obs -> action -> reward -> policy -> eval -> log/replay -> data loop`。
-- [ ] 能讲清机器人状态、坐标系、FK/IK/Jacobian 在系统中的作用。
-- [ ] 能跑通至少一个真实或仿真的 robot learning 闭环；优先是真实 SO-ARM101 的 `teleop -> dataset -> replay/train -> eval -> failure note`，硬件阻塞时用 Gymnasium/MuJoCo PPO 兜底。
-- [ ] 能解释视觉 observation 如何变成 policy 输入，以及 camera/depth/calibration/data format 的位置。
-- [ ] 能解释 policy runtime 的关键工程问题：latency、timeout、action clipping、fallback、watchdog、logging。
-- [ ] 能说明 LLM / VLA / 多模态能力如何作为机器人语言智能和高层任务分解模块接入，而不是替代机器人系统。
-- [ ] 有一套可展示材料：README、实验脚本、指标图、失败分析、JD mapping。
+- [ ] 能讲清为什么 DeepSeek Storage 是当前最现实第一跳，而不是直接切机器人。
+- [ ] 能把 TokaDB 工作抽象成 AI Core Storage 能力：zero-copy、shared storage、data path、tail latency、failure recovery。
+- [ ] 能做一次 `设计支撑大模型推理的 KVCache 存储系统` 的完整系统设计。
+- [ ] 能讲清 3FS 的系统边界、metadata / consistency、IO path、RDMA/SSD、KVCache 使用方式。
+- [ ] 能讲清 RocksDB / FoundationDB / ClickHouse 等系统的设计范式，而不是只背概念。
+- [ ] 能讲清 brpc、ByteStore、RDMA、SPDK、io_uring 在 AI storage 链路中的位置。
+- [ ] 有一套可展示材料：JD mapping、系统 notes、设计草图 / benchmark、简历叙事、mock 复盘。
 
 ## 风险与降难策略
 
 | 风险 | 降难策略 |
 |---|---|
-| 课程开太多 | 每月只保一个主课程，其他只做支撑材料 |
-| nanoGPT 收尾拖太久 | 只保主链路总结，不继续展开大规模 LLM 论文 |
-| 真实硬件到货或校准卡住 | 先做 LeRobot/LingBot-VLA walkthrough、dataset schema mapping 和 Gymnasium/MuJoCo smoke test，保持项目证据不断档 |
-| Modern Robotics 数学推导卡住 | 第一遍不死磕证明，先建立系统直觉和代码 demo |
-| CS231n 扩散成纯 CV 路线 | 只看机器人 observation 需要的视觉表示、数据格式和延迟问题 |
-| Robot Learning 论文读散 | 每篇只回答 task、obs/action、policy/data/loss/reward、eval/runtime |
-| AI Infra 抢回主线 | 只保留与 VLA / policy runtime / edge inference 相关的部分 |
-| 机器人目标变成口号 | 每月必须留下一个机器人系统或 robot learning 证据 |
+| DeepSeek Storage 准备泛化成系统杂学 | 每月只保 `TokaDB/RocksDB/brpc/ByteStore/3FS/KVCache/IO path` 相关产出 |
+| LLM 论文继续泛读 | 只读 KVCache、serving、inference runtime、shared storage 直接相关材料 |
+| 机器人兴趣抢回近期主线 | 机器人保留 P2 低频探索，不进入 2026-Q3/Q4 求职验收 |
+| TokaDB 工作和转岗准备割裂 | 每周抽象一个可迁移系统点，沉淀到面试故事 |
+| RDMA/SPDK/io_uring 太底层 | 第一轮只追性能边界和系统位置，不追 expert 级实现 |
+| 3FS 读成代码流水账 | 按 architecture、metadata/consistency、IO path、KVCache 四轮阅读 |
+| 9 月准备不足 | 9 月先市场测试和 mock，10 月再作为正式窗口 |
 
 ## 与 Roadmap 其他文件的关系
 
@@ -134,8 +153,10 @@ H1 的价值不是“已经学完”，而是把语言模型基础、系统工�
 - [[05_Career_Strategy_2026_2030]]：解释**职业上怎么在 3-5 年内决策**。
 - [[06_Embodied_AI_Software_Engineer_Learning_Curve]]：保留具身智能软件工程师能力曲线。
 - [[07_One_Year_Interview_Roadmap_Embodied_AI_Software]]：保留岗位准备材料。
-- [[08_One_Year_Roadmap_LLM_Inference_to_Robot_Runtime]]：作为 LLM / AI Infra / runtime 支撑线，不作为当前上位主线。
-- [[09_One_Year_Robot_Learning_Full_Stack_Roadmap]]：当前权威的一年 Robot Learning Full-Stack 路线。
+- [[08_One_Year_Roadmap_LLM_Inference_to_Robot_Runtime]]：作为第二跳 `LLM Inference Runtime` 的支撑路线。
+- [[09_One_Year_Robot_Learning_Full_Stack_Roadmap]]：保留为长期机器人参考路线，不作为近期执行主线。
+- [[10_Systems_Thinking_for_AI_Infra_and_Robot_Runtime]]：当前系统能力主线。
+- [[11_DeepSeek_Storage_to_Inference_to_Robot_Runtime_Roadmap]]：当前权威路线。
 - 本文件：解释**2026 年怎么排时间和验收产出**。
 - `07_MonthlyPlans/2026/`：每月执行细节。
 - `02_WeeklyNotes/`：每周执行。

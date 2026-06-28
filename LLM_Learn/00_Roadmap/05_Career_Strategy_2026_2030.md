@@ -2,8 +2,8 @@
 type: career_strategy
 time_window: 2026-2030
 current_role: DB / Storage Kernel Engineer
-target_direction: Embodied AI Systems Builder / Robot Full-Stack Engineer -> Roboticist
-updated: 2026-06-01
+target_direction: AI Core Storage -> LLM Inference Runtime -> Robot/VLA Runtime -> Roboticist
+updated: 2026-06-28
 linked_files:
   - "[[00_North_Star]]"
   - "[[02_Capability_Map]]"
@@ -13,6 +13,8 @@ linked_files:
   - "[[07_One_Year_Interview_Roadmap_Embodied_AI_Software]]"
   - "[[08_One_Year_Roadmap_LLM_Inference_to_Robot_Runtime]]"
   - "[[09_One_Year_Robot_Learning_Full_Stack_Roadmap]]"
+  - "[[10_Systems_Thinking_for_AI_Infra_and_Robot_Runtime]]"
+  - "[[11_DeepSeek_Storage_to_Inference_to_Robot_Runtime_Roadmap]]"
 ---
 
 # Career Strategy 2026-2030
@@ -21,9 +23,45 @@ linked_files:
 
 ## 当前判断
 
+## 2026-06-28 当前权威修订
+
 ### 一句话结论
 
-当前不应该裸辞或立刻大跨度跳到纯机器人算法岗位；应该保留字节 DB / 存储内核岗位作为基本盘，同时用未来一年优先建立 `Robot Learning Full-Stack / Policy Runtime / Robot Learning Infra` 的作品证据。`LLM / AI Infra / Runtime` 继续保留，但定位为 VLA / robot policy runtime / edge inference 的支撑线。
+近期职业第一跳调整为：
+
+```text
+TokaDB / DB Storage 基本盘
+-> DeepSeek / AI Core Storage / 高性能分布式存储
+-> LLM Inference / KVCache / serving runtime
+-> Robot/VLA Runtime / 具身智能系统
+```
+
+当前不应该直接跳机器人，也不应该泛泛学 LLM。应该先把分布式存储做到足够强：很好地完成 TokaDB 工作，同时围绕 DeepSeek Storage JD 准备 2026-09/10 面试窗口。
+
+### 三步走
+
+1. **2026-Q3/Q4：分布式存储第一跳**
+   - 重点系统：TokaDB、RocksDB、brpc、ByteStore、3FS、KVCache、RDMA、SPDK、io_uring。
+   - 目标：9 月市场测试，10 月正式面试窗口。
+   - 输出：JD mapping、3FS first pass、KVCache storage design、RocksDB/LSM refresh、brpc/ByteStore/TokaDB transferable review。
+
+2. **2027-2028：DeepSeek / AI Core Storage**
+   - 目标：在 DeepSeek 或同级 AI Core Storage 团队工作 1-2 年，学习真实训练/推理数据链路、KVCache storage、分布式文件系统、对象存储、RDMA/SSD data path。
+   - 方向：从 storage owner 逐渐靠近 inference runtime / serving。
+
+3. **2028-2030+：Inference Runtime -> Robot/VLA Runtime**
+   - 目标：在 LLM inference / KVCache / serving / runtime 方向深扎 3-4 年，同时保留机器人 / VLA 的长期学习。
+   - 切入条件：当机器人岗位已经需要成熟的 VLA runtime、data loop、edge-cloud inference、可靠性和部署系统时，再考虑加入机器人/具身智能核心团队。
+
+### 近期不做
+
+- 不把机器人作为 2026-Q3/Q4 的短期求职主线。
+- 不再扩散泛 LLM、CV、VLA、Diffusion、Robot Learning 论文，除非直接服务 KVCache / inference / storage。
+- 不把 TokaDB 工作和 DeepSeek 准备割裂；TokaDB 的零拷贝、共享存储、性能分析和系统设计经验是核心竞争力。
+
+### 一句话结论
+
+历史判断是保留 DB / 存储基本盘并建立 Robot Learning Full-Stack 作品证据。2026-06-28 后，近期第一跳进一步收敛为 `DeepSeek Storage / AI Core Storage`；机器人保留为长期 North Star，不作为近期主战场。
 
 ### 当前状态
 
@@ -35,9 +73,9 @@ linked_files:
 
 ### 职业定位
 
-目标不是把自己清零成“纯机器人算法研究员”，也不是永久停在通用 LLM Infra，而是分两层迁移：
+目标不是把自己清零成“纯机器人算法研究员”，也不是永久停在通用 DB / Storage，而是分三层迁移：
 
-> 短期成为懂系统工程、机器人软件闭环和 policy runtime 的具身智能系统构建者；长期成长为能打通机器人本体、感知、控制、学习、runtime 和数据闭环的机器人全栈工程师 / roboticist。
+> 短期成为 AI Core Storage / 高性能分布式存储工程师；中期转向 LLM Inference / KVCache / serving runtime；长期在合适时机回接 Robot/VLA Runtime，成长为机器人全栈工程师 / roboticist。
 
 更具体的目标角色：
 
@@ -88,9 +126,9 @@ linked_files:
 
 ### 核心策略
 
-> Robotics-first, systems-backed.
+> Storage-first, inference-bridged, robotics-long-term.
 
-未来一年以 Robot Learning Full-Stack 为上位主线，因为它最贴近长期目标和 Unitree JD；DB / 存储 / 系统工程背景不丢弃，而是迁移到 policy runtime、robot data/eval infra、低延迟链路、日志回放、可靠性和 edge inference 这些工程问题上。
+未来 3-4 个月以 DeepSeek Storage / AI Core Storage 为上位主线，因为它最贴近当前 DB / 存储 / 分布式系统背景；随后用 1-2 年在 AI Core Storage 中贴近真实 LLM 训练/推理系统，再用 3-4 年深化 inference runtime / KVCache / serving 能力，最后在更合适的行业时机进入机器人 / 具身智能系统。
 
 ### 时间预算
 
@@ -103,16 +141,18 @@ linked_files:
 
 ## 2026：建立 Robot Learning Full-Stack 职业证据
 
+> 2026-06-28 修订：本节历史标题保留，但 2026-H2 的实际执行重心已改为 DeepSeek Storage / AI Core Storage 面试准备。Robot Learning 作品降级为长期探索副线。
+
 ### 年度定位
 
-2026 年不做裸辞或激进跳槽决策，先用 H2 建立具身智能软件 / Robot Learning Infra / Policy Runtime 的能力和作品证据。
+2026 年不做裸辞或激进跳槽决策，先用 H2 建立 DeepSeek Storage / AI Core Storage 的面试证据，并把 TokaDB 工作经验抽象成可迁移系统能力。
 
 核心问题：
 
-- 我能否把 DB / 系统能力迁移到机器人中的 runtime、数据闭环、评测、日志、回放、可靠性和性能问题？
-- 我能否跑通最小 Gymnasium/MuJoCo policy 训练-评估闭环，而不是只读 robot learning 论文？
-- 我能否讲清机器人状态、动作、感知、policy、eval、runtime 的完整链路？
-- 我能否说明 LLM / VLA / AI Infra 如何支撑机器人语言智能和 policy runtime，而不是偏离机器人主线？
+- 我能否把 TokaDB 的零拷贝 / 共享存储 / data path / 性能分析经验，迁移成 AI Core Storage 面试证据？
+- 我能否讲清 RocksDB / brpc / ByteStore / 3FS / KVCache / RDMA / SPDK / io_uring 的核心抽象和边界？
+- 我能否做一次完整的 `KVCache 存储系统设计`？
+- 我能否解释为什么先去 DeepSeek Storage，而不是直接去机器人？
 
 ### 学习主线
 

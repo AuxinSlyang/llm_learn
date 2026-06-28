@@ -7,6 +7,39 @@
 > LLM 扩展论文的完整 TOREAD 清单位于：[[02_TOREAD_LLM_Papers]]
 > 新 session 先读：[[00_Paper_Session_Context]]
 
+## 2026-Q3 Active Queue：AI Core Storage / KVCache / Shared Storage
+
+> 2026-06-28 路线修订：默认 paper slot 从泛 LLM / VLA / Robot Learning 收敛到 `LLM KVCache + 共享存储 + 3FS + IO path`。机器人、CV、Diffusion、VLA 队列保留但暂停，不作为近期默认选择。
+> 详细入口见：[[60_Systems/AI_Core_Storage_and_KVCache/README]]
+
+### P0：DeepSeek Storage 主样本
+
+- [ ] 3FS / Fire-Flyer File System：AI training / inference workload 下的 SSD + RDMA shared storage；重点读 README、Design Notes、USRBIO、metadata / storage / FUSE 边界。
+- [ ] Fire-Flyer AI-HPC：理解 DeepSeek AI-HPC、3FS、3FS-KV、KV Context Caching on Disk 的系统背景。
+- [ ] FoundationDB：理解 3FS metadata 背后的 transactional key-value store、unbundled architecture、deterministic simulation。
+- [ ] CRAQ：理解 Chain Replication with Apportioned Queries 如何在强一致下提升 read throughput。
+
+### P0：KVCache / LLM Serving
+
+- [ ] PagedAttention / vLLM：KV cache block/page 管理、fragmentation、sharing、continuous batching。
+- [ ] LMCache：跨 vLLM / SGLang engine 的 KV cache offload、reuse、movement、control API。
+- [ ] Mooncake：prefill-decode disaggregation、CPU/DRAM/SSD/NIC 组成 disaggregated KVCache pool、KVCache-centric scheduler。
+- [ ] CacheGen：KV cache compression / streaming，理解网络传输和 context loading delay。
+
+### P1：Storage Engine / IO Path
+
+- [ ] RocksDB / LSM：WAL、memtable、SST、compaction、snapshot、iterator、WAF/RAF/SAF。
+- [ ] RocksDB retrospective / FAST paper：理解 RocksDB 在大规模应用中的设计优先级演化。
+- [ ] io_uring / SPDK / NVMe / RDMA：优先读官方 docs / design docs，目标是讲清 syscall、copy、interrupt、polling、queue depth、memory registration。
+- [ ] FUSE / kernel I/O stack：理解 3FS FUSE / USRBIO 的性能与可维护性边界。
+
+### P2：暂停但保留
+
+- [ ] Modern Robotics / Unitree / SO-ARM101：长期机器人 North Star 保留；近期只做每周轻量探索或 blocker/report。
+- [ ] VLA / pi0 / Diffusion Policy：保留为未来 robot/VLA runtime 回接；近期不主动新增。
+- [ ] CV / Multimodal foundation：保留为长期视觉支撑；近期不主动新增。
+- [ ] 泛 LLM post-training / reasoning / agent：只在和 DeepSeek storage / inference 明确相关时阅读。
+
 ### 2026-W23：LLM 经典论文收口队列（已读 / 收口中）
 
 - [x] Scaling Laws for Neural Language Models: 参数量 / 数据量 / compute 和 loss 的可预测关系
