@@ -20,6 +20,12 @@
 - GitHub：`https://github.com/deepseek-ai/3FS`
 - Paper：`https://arxiv.org/abs/2507.10551`
 
+语言 / 代码事实：
+
+- 3FS 是 C++ 为主的生产级系统，不适合作为 Rust 主练习项目。
+- 仓库里有 Rust workspace，当前主要包含 `src/client/trash_cleaner`、`src/storage/chunk_engine`、`src/lib/rs/hf3fs-usrbio-sys` 等局部组件。
+- Rust 主线放在 mini-lsm、SlateDB、Tonbo、TiKV/Neon 这类项目更自然；3FS 主线放在 shared storage / metadata / IO path / RDMA / CRAQ。
+
 ## 研读目标
 
 不是把 3FS 当普通开源项目浏览，而是用它反推 DeepSeek Storage 岗位能力：
@@ -114,10 +120,12 @@ AI workload
 ## 时间安排
 
 ```text
-2026-W27：README + design overview + 组件图
-2026-W28：metadata / consistency / FoundationDB / CRAQ
-2026-W29：IO path / RDMA / SSD / FUSE / USRBIO
-2026-W30：KVCache / LMCache / vLLM / 面试系统设计题
+2026-W36：ByteStore IO path first pass，先建立本地共享存储对照物
+2026-W37：3FS README + design overview + 组件图 + IO path skeleton
+2026-W38：ByteStore vs 3FS metadata / consistency / FoundationDB / CRAQ
+2026-W39：io_uring / SPDK / RDMA core path，回填两套系统
+2026-W40：ByteStore & 3FS IO Path 月度收口
+2026-W41+：KVCache / LMCache / vLLM / 面试系统设计题
 ```
 
 ## 面试化产出

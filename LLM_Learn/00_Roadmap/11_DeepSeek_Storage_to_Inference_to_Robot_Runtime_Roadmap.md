@@ -20,9 +20,10 @@ linked_files:
 接下来不再把短期目标放在直接切机器人，而是走三步：
 
 ```text
-1. 夯实分布式存储基本盘，做好 TokaDB 工作，同时准备 2026-09/10 切入 DeepSeek AI Core Storage
-2. 在 DeepSeek / AI Core Storage 工作 1-2 年，学习 3FS、KVCache、训练/推理存储和核心 AI Infra
-3. 再用 3-4 年在推理系统 / KVCache / serving / runtime 方向深扎，等待合适时机进入机器人 / 具身智能系统
+1. 夯实分布式存储基本盘，做好 TokaDB 工作，用 2026-H2 完整准备 DeepSeek-style AI Core Storage
+2. 2027-01/02 开始正式面试，2027-03 拿完年终奖后决策，2027-04 争取进入 DeepSeek 或同级 AI Core Storage / LLM Infra 团队
+3. 在 DeepSeek / AI Core Storage 工作 1-2 年，学习 3FS、KVCache、训练/推理存储和核心 AI Infra
+4. 再用 3-4 年在推理系统 / KVCache / serving / runtime 方向深扎，等待合适时机进入机器人 / 具身智能系统
 ```
 
 长期 North Star 仍是机器人全栈工程师 / roboticist；近期第一跳改为更现实、更能复用当前优势的 `AI Core Storage / 高性能分布式存储`。
@@ -40,13 +41,13 @@ linked_files:
 时间窗：
 
 ```text
-2026-07 ~ 2026-10
+2026-07 ~ 2027-04
 ```
 
 目标：
 
 - 很好地完成 TokaDB 当前工作，把实际工程经验转成可迁移系统能力。
-- 准备 DeepSeek `高性能分布式存储工程师`，9 月开始市场测试，10 月作为较稳的正式窗口。
+- 准备 DeepSeek `高性能分布式存储工程师` 或同级 AI Core Storage / LLM Infra 岗位，2027-01/02 开始正式面试，2027-04 作为理想入职窗口。
 - 建立 `TokaDB -> RocksDB/brpc/ByteStore/3FS -> KVCache storage` 的能力叙事。
 
 核心系统：
@@ -149,25 +150,56 @@ RDMA
 - CV / VLA / diffusion / robot learning，除非直接服务 robot runtime 长期回接。
 - 大量机器人硬件 / Modern Robotics 深挖，保留低频探索即可。
 
-## 7-10 月执行计划
+## 2026-H2 到 2027-Q1 执行计划
 
-### 2026-07：基础框架
+### 2026-07：TokaDB TabletServer + mini-lsm/RocksDB 核心
 
-- `DeepSeek_AI_Core_Storage_JD_Mapping_v0`
+- `TabletServer_Request_Path_Map`
+- `TabletServer_Read_Write_Path_Map`
+- `Replica_Lifecycle_Open_Close_Recover_Map`
+- `TinyLSM_Month1_Project_Review`
 - `RocksDB_LSM_Refresh`
-- `3FS_Architecture_First_Pass`
-- `KVCache_Storage_System_Map_v0`
-- `vLLM_PagedAttention_KVCache_Scan`
 
-### 2026-08：系统深水
+### 2026-08：ByteStore 初窥 + RocksDB 深入 + brpc/bthread 深入
 
 - `TokaDB_Transferable_Systems_Review_v0`
-- `brpc_Systems_Model_Note`
 - `ByteStore_Shared_Storage_Map_v0`
-- `3FS_IO_Path_RDMA_SSD_Note`
-- `IO_Path_io_uring_SPDK_RDMA_Note_v0`
+- `RocksDB_Deep_Dive_Note`
+- `brpc_bthread_Model_Note`
+- `TokaDB_Locks_ThreadPool_Backpressure_Map`
 
-### 2026-09：面试化
+### 2026-09：ByteStore & 3FS IO Path
+
+- `ByteStore_IO_Path_Map`
+- `3FS_Architecture_First_Pass`
+- `ByteStore_3FS_Metadata_Consistency_Comparison`
+- `IO_Path_io_uring_SPDK_RDMA_Note_v0`
+- `ByteStore_3FS_IO_Path_Comparison`
+- `3FS_IO_Path_RDMA_SSD_Note`
+
+### 2026-10：KVCache Storage 接入
+
+- `KVCache_Storage_System_Map_v0`
+- `LMCache_KVCache_Layer_Note`
+- `Mooncake_DistServe_Disaggregation_Note`
+- `KVCache_Storage_System_Design_v0`
+
+### 2026-11：Inference Runtime 深入
+
+- `vLLM_PagedAttention_KVCache_Scan`
+- `LLM_Inference_Request_Path_v0`
+- `SGLang_RadixCache_Note`
+- `LLM_Inference_System_First_Pass`
+
+### 2026-12：DeepSeek + 外部系统变化
+
+- `DeepSeek_V2_MLA_MoE_Note`
+- `DeepSeek_V3_System_Note`
+- `DeepSeek_R1_Inference_Workload_Note`
+- `MoE_Long_Context_Serving_Note`
+- `External_Inference_System_Trends_2026Q4`
+
+### 2027-01：综合分析 + 面试材料生产
 
 - AI Core Storage 简历叙事。
 - 5 个系统故事：
@@ -177,11 +209,18 @@ RDMA
   - 3FS architecture
   - KVCache storage design
 - 4-6 次 mock interview。
-- 小范围内推 / 岗位沟通。
+- 刷题节奏、系统设计、C++/IO/RDMA 补洞计划。
+- 小范围内推预沟通，春节后再集中投递。
 
-### 2026-10：正式窗口
+### 2027-02：春节后投递 + 正式面试 + 补洞
 
-- 如果 mock 反馈和材料稳定，开始正式投递 DeepSeek 或同类 AI Core Storage 岗位。
+- 春节后正式投递 DeepSeek 或同类 AI Core Storage / LLM Infra 岗位。
+- 根据面试反馈补 C++ systems、IO/RDMA、KVCache、inference runtime。
+
+### 2027-03/04：决策与入职
+
+- 2027-03 拿完年终奖后，对 offer、团队、方向、薪资和成长路径做清晰决策。
+- 2027-04 作为理想入职窗口。
 - 面试主叙事固定为：
 
 ```text

@@ -99,12 +99,12 @@ H1 的价值不是“已经学完”，而是把语言模型基础、系统工�
 | 月份 | 主模块 | 主资源 | 阶段产出 | 对短期职业目标的帮助 |
 |---|---|---|---|---|
 | 2026-06 | M1：路线切换 + 实物机器人首闭环预备 | nanoGPT、SO-ARM101、LeRobot、LingBot-VLA walkthrough，Gymnasium/MuJoCo 兜底 | `nanoGPT 主链路总结 v0`、`LLM phase 1 总结 v0`、`SO-ARM101 + LeRobot 首闭环 bring-up 记录`、`robot data schema v0` | 证明能把 LLM 基础收口，并尽早接触真实机器人硬件、示教数据、评估和 failure loop |
-| 2026-07 | M2 revised：DeepSeek Storage 基础框架 | TokaDB 复盘、RocksDB、3FS、KVCache、vLLM/PagedAttention | `DeepSeek JD mapping`、`RocksDB_LSM_Refresh`、`3FS_Architecture_First_Pass`、`KVCache_Storage_System_Map` | 建立 AI Core Storage 面试语言 |
-| 2026-08 | M3 revised：系统深水 | brpc、ByteStore、3FS IO path、RDMA/SPDK/io_uring | `brpc_Systems_Model`、`ByteStore_Shared_Storage_Map`、`3FS_IO_Path`、`IO_Path_RDMA_SPDK` | 把本地工作经验转成 DeepSeek Storage 证据 |
-| 2026-09 | M4 revised：面试化 | 系统设计、mock interview、简历叙事 | AI Core Storage 简历、5 个系统故事、4-6 次 mock | 开始 DeepSeek / 同类岗位市场测试 |
-| 2026-10 | M5 revised：正式窗口 | DeepSeek Storage / AI Core Storage 投递与面试 | 面试复盘、系统设计补强、材料迭代 | 如果准备稳定，进入正式面试节奏 |
-| 2026-11 | M6 revised：Inference Runtime Bridge | KVCache、serving scheduler、long context、MoE serving | `KVCache_to_Inference_Runtime_Map` | 为进入后向推理系统第二跳做准备 |
-| 2026-12 | M7 revised：年度复盘 | AI Core Storage / Inference / Robot Runtime 路线复盘 | `2027 DeepSeek/AI Infra plan`、机器人低频探索总结 | 决定是否继续投递 / 入职 / 内部转向 |
+| 2026-07 | M2 revised：TabletServer + LSM 核心 | TokaDB TabletServer 核心链路、mini-lsm、RocksDB/LSM、LLM serving 论文主线 | `TabletServer_Request_Path_Map`、`TinyLSM_Month1_Project_Review`、`RocksDB_LSM_Refresh` | 把本地 TokaDB 经验和 RocksDB/LSM 机制连起来 |
+| 2026-08 | M3 revised：ByteStore / RocksDB / brpc 深水 | ByteStore 初窥、RocksDB 深入、brpc/bthread、经典分布式系统论文 | `ByteStore_Shared_Storage_Map`、`RocksDB_Deep_Dive_Note`、`brpc_bthread_Model_Note` | 把存储引擎、RPC 和分布式系统基础打厚 |
+| 2026-09 | M4 revised：ByteStore & 3FS IO Path | ByteStore IO path、3FS IO path、io_uring/SPDK/RDMA、metadata/data path 对照 | `ByteStore_IO_Path_Map`、`3FS_IO_Path`、`ByteStore_3FS_IO_Path_Comparison` | 建立 AI Core Storage / shared storage 的代码级叙事 |
+| 2026-10 | M5 revised：KVCache Storage 接入 | KVCache block/page/offload、vLLM、LMCache、Mooncake、DistServe | `KVCache_Storage_System_Map`、`LMCache_KVCache_Layer_Note` | 从 storage 进入推理系统 |
+| 2026-11 | M6 revised：Inference Runtime 深入 | vLLM/SGLang request path、scheduler、continuous batching、prefix cache | `LLM_Inference_System_First_Pass`、`SGLang_RadixCache_Note` | 建立 LLM inference runtime 全图 |
+| 2026-12 | M7 revised：DeepSeek + 外部系统变化 | DeepSeek V2/V3/R1、MLA/MoE/reasoning workload、外部 inference/storage 系统趋势 | `DeepSeek_Inference_System_Reading_Map`、`External_Inference_System_Trends_2026Q4` | 为 1-2 月面试材料收口提供最新系统语境 |
 
 ## 2026 年度关键产出
 

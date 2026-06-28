@@ -35,14 +35,27 @@
 
 ## 每日 Paper Slot
 
+2026-06-28 校准：近期默认每天至少过一篇论文 / 系统材料，但阅读深度分级处理。不是每天都强行精读，而是每天必须留下一个可复用 takeaway。
+
 默认节奏：
 
 | 时间 | 内容 | 产出 |
 |---|---|---|
 | 白天碎片 20-40m | 读 1 篇论文的 abstract / intro / method overview / figures / conclusion | 一句话 takeaway + 1 个项目连接 |
-| 晚上 1.5h | 当前周主线学习 / 实验 / 笔记 | Weekly / Monthly 硬产出 |
-| 周五 20-30m | 汇总本周 3-4 篇 paper slot | 本周 paper takeaways |
-| 周末可选 | 精读当前 Phase 关键论文 | 结构化 paper note |
+| 晚上 60-90m | 完成当日 paper slot 的 structured scan 或当前周主线论文精读 | 8 行笔记 / QUICK_READ / 当日总结 |
+| 周五 20-30m | 汇总本周 5-6 篇 paper slot | 本周 paper takeaways |
+| 周末可选 | 精读当前 Phase 关键论文或补一篇漏读论文 | 结构化 paper note |
+
+每周轮转：
+
+| 星期 | 默认论文类型 |
+|---|---|
+| 周一 | 当前代码主线相邻论文：LSM / storage / serving |
+| 周二 | LLM core：training / post-training / reasoning / context |
+| 周三 | LLM serving / KVCache / scheduler |
+| 周四 | performance / kernel / attention / MoE |
+| 周五 | 经典系统 / 分布式 / storage paper，轻量 scan |
+| 周日 | 本周最重要论文 deep read 或周总结 |
 
 ## 阅读深度分级
 

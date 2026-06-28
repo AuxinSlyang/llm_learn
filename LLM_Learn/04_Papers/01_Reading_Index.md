@@ -9,8 +9,23 @@
 
 ## 2026-Q3 Active Queue：AI Core Storage / KVCache / Shared Storage
 
-> 2026-06-28 路线修订：默认 paper slot 从泛 LLM / VLA / Robot Learning 收敛到 `LLM KVCache + 共享存储 + 3FS + IO path`。机器人、CV、Diffusion、VLA 队列保留但暂停，不作为近期默认选择。
+> 2026-06-28 路线修订：默认 paper slot 从泛 LLM / VLA / Robot Learning 收敛到 `LLM core + LLM serving/KVCache + 共享存储 + 3FS + IO path`。机器人、CV、Diffusion、VLA 队列保留但暂停，不作为近期默认选择。
 > 详细入口见：[[60_Systems/AI_Core_Storage_and_KVCache/README]]
+
+### 每日论文轮转规则
+
+每天至少完成 1 篇 paper slot。默认不是每天都精读，而是按 Scan / Structured Read / Deep Read 分级推进。
+
+| 星期 | 默认方向 | 例子 |
+|---|---|---|
+| 周一 | 当前代码主线相邻论文 | Sarathi-Serve、RocksDB/LSM、Fire-Flyer |
+| 周二 | LLM core / training / post-training | GPT-3、Chinchilla、InstructGPT、DeepSeek-R1、LoRA |
+| 周三 | Serving / KVCache / scheduler | PagedAttention、Orca、DistServe、LMCache、Mooncake |
+| 周四 | Attention / kernel / MoE / context | FlashAttention、DeepSeek-V2 MLA、Switch、Mixtral、YaRN |
+| 周五 | 经典系统 / 分布式 / storage | GFS、Bigtable、Dynamo、Spanner、FoundationDB、CRAQ |
+| 周日 | 本周重点 deep read / 周总结 | 选 1 篇补深，写本周 paper takeaways |
+
+7 月不要只读 serving；每周至少保留 2 篇 LLM core / model / kernel 类论文。
 
 ### P0：DeepSeek Storage 主样本
 

@@ -1,11 +1,35 @@
 ---
 type: paper_queue
 name: TOREAD LLM Papers
-updated: 2026-06-07
-phase: LLM end-to-end closure before Robot Learning
+updated: 2026-06-28
+phase: DeepSeek Storage + KVCache + LLM Inference Systems
 ---
 
 # TOREAD LLM Papers
+
+## 2026-06-28 当前权威队列
+
+近期论文阅读从泛 LLM / VLA 支撑线收敛到：
+
+```text
+LLM big picture
+-> KVCache / serving runtime
+-> DeepSeek-style 3FS / Storage
+-> DeepSeek V2/V3/R1 inference context
+```
+
+当前执行清单见：[[60_Systems/AI_Core_Storage_and_KVCache/TOREAD_Storage_Inference_2026H2_2027Q1]]
+
+当前执行入口不再单独从 PagedAttention 开始；PagedAttention 已看过一轮，后续只在 10-11 月 KVCache / vLLM 代码阶段 revisit。
+
+7 月夜间论文从本地系统队列抽取：
+
+```text
+Sarathi-Serve / DistServe / Orca / ServerlessLLM
+-> PagedAttention revisit
+-> SGLang / RadixAttention awareness
+-> DeepSeek-V2 MLA/KVCache sections
+```
 
 > 目的：把 LLM 从 `pretraining -> tokenizer/nanoGPT -> instruction following -> reasoning/tool/context/runtime` 的通路补完整。  
 > 约束：这是 LLM 扩展阅读队列，不替代 W24 起的 Robot Learning 主线；每篇默认 Quick Read，只有直接影响代码/系统理解时再 Deep Read。
