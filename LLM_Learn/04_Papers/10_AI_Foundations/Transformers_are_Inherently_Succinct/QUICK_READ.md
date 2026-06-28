@@ -7,6 +7,10 @@ url: https://arxiv.org/abs/2510.19315
 pdf_url: https://arxiv.org/pdf/2510.19315
 openreview: https://openreview.net/forum?id=Yxz92UuPLQ
 local_pdf: ./Transformers_are_Inherently_Succinct.pdf
+authors: Pascal Bergstrasser; Ryan Cotterell; Anthony W. Lin
+submitted: 2025-10-22
+last_revised: 2026-05-15
+subjects: Formal Languages and Automata Theory (cs.FL); Machine Learning (cs.LG); Logic in Computer Science (cs.LO)
 venue: ICLR 2026
 award: ICLR 2026 Outstanding Paper
 track: AI foundations / transformer theory / expressivity
@@ -38,6 +42,14 @@ Transformer 为什么能用很紧凑的结构表达某些复杂模式？
 - OpenReview：`https://openreview.net/forum?id=Yxz92UuPLQ`
 - Local PDF：`./Transformers_are_Inherently_Succinct.pdf`
 - Venue：`ICLR 2026`
+- Submitted：`2025-10-22`
+- Last revised：`2026-05-15` (`v3`)
+- Subjects：`Formal Languages and Automata Theory (cs.FL); Machine Learning (cs.LG); Logic in Computer Science (cs.LO)`
+- Official arXiv metadata：`https://arxiv.org/abs/2510.19315`
+
+## Official arXiv Abstract Summary
+
+论文把 `succinctness` 作为 Transformer 表达能力的度量：不是只问能不能表达某类语言，而是问同样语言是否能用更小的模型描述。官方 arXiv 摘要给出的主张是：fixed-precision Transformer 对某些形式语言可以比 LTL、RNN / SSM、finite automata 更紧凑；这种紧凑性也带来 verification 难度，例如 emptiness / equivalence 这类问题达到很高复杂度。
 
 ## 当前定位
 

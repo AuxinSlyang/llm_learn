@@ -7,9 +7,12 @@ url: https://arxiv.org/abs/2501.09747
 pdf_url: https://arxiv.org/pdf/2501.09747
 project_page: https://www.physicalintelligence.company/research/fast
 local_pdf: ./FAST_Efficient_Action_Tokenization_for_Vision_Language_Action_Models.pdf
+authors: Karl Pertsch; Kyle Stachowicz; Brian Ichter; Danny Driess; Suraj Nair; Quan Vuong; Oier Mees; Chelsea Finn; Sergey Levine
+submitted: 2025-01-16
+subjects: Robotics (cs.RO); Machine Learning (cs.LG)
 track: VLA action representation
-read_mode: Action Tokenization Scan
-status: pdf_downloaded
+read_mode: Structured Read
+status: active_2026-06-24
 created: 2026-06-17
 ---
 
@@ -41,6 +44,17 @@ pi0-FAST 是 `pi0` 之后的 action representation 支线：它关注如何把�
 - 不读源码。
 - 不展开 pi0.5。
 - 不把 FAST 变成新的 action tokenizer 专题；今天只服务 action representation matrix。
+
+## Official arXiv Metadata
+
+- arXiv ID：`2501.09747`
+- Title：`FAST: Efficient Action Tokenization for Vision-Language-Action Models`
+- Authors：Karl Pertsch, Kyle Stachowicz, Brian Ichter, Danny Driess, Suraj Nair, Quan Vuong, Oier Mees, Chelsea Finn, Sergey Levine
+- Submitted：`2025-01-16`
+- Subjects：`Robotics (cs.RO); Machine Learning (cs.LG)`
+- Source：`https://arxiv.org/abs/2501.09747`
+- PDF：`https://arxiv.org/pdf/2501.09747`
+- Abstract summary：论文指出 autoregressive VLA 需要把连续机器人动作离散化；常见逐维逐时刻 binning 在高频灵巧数据上效果差。FAST 用 DCT 视角压缩动作序列，并释放 FAST+ 作为通用 action tokenizer，目标是在保持 autoregressive VLA 训练方式的同时更好处理高频连续动作。
 
 ## 2026-06-23 Quick Scan
 
