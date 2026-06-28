@@ -65,6 +65,25 @@ status: active
 | P1 | InfiniGen | Structured Scan | dynamic KV cache management |
 | P1 | SGLang / RadixAttention | Scan | prefix cache / structured generation runtime |
 | P1 | PagedAttention revisit | Structured Scan | 10-11 月结合 vLLM 代码再深读 |
+| P1 | DSpark: Confidence-Scheduled Speculative Decoding with Semi-Autoregressive Generation | Structured Scan | DeepSeek speculative decoding / live serving paper；后续在 inference runtime 阶段读，不抢今晚 DeepSeek-V2 |
+
+### Speculative decoding / decoding runtime 后续包
+
+| 优先级 | 论文 / 材料 | 链接 | 读法 | 为什么读 |
+|---|---|---|---|---|
+| P0 | Fast Inference from Transformers via Speculative Decoding | https://arxiv.org/abs/2211.17192 | Structured Scan | speculative decoding 基础：draft model proposes, target model verifies |
+| P0 | Accelerating Large Language Model Decoding with Speculative Sampling | https://arxiv.org/abs/2302.01318 | Structured Scan | 和上篇一起建立 lossless speculative sampling 基本算法 |
+| P1 | SpecInfer: Accelerating Generative LLM Serving with Tree-based Speculative Inference and Verification | https://arxiv.org/abs/2305.09781 | Structured Scan | token tree + parallel verification；更接近 serving system 视角 |
+| P1 | Medusa: Simple LLM Inference Acceleration Framework with Multiple Decoding Heads | https://arxiv.org/abs/2401.10774 | Structured Scan | 不依赖独立 draft model，用多 decoding heads + tree attention |
+| P1 | EAGLE: Speculative Sampling Requires Rethinking Feature Uncertainty | https://arxiv.org/abs/2401.15077 | Scan | feature-level drafter，理解 DSpark / EAGLE 系列背景 |
+| P1 | EAGLE-2: Faster Inference of Language Models with Dynamic Draft Trees | https://arxiv.org/abs/2406.16858 | Scan | dynamic draft tree；和 DSpark confidence scheduling 对照 |
+| P1 | Break the Sequential Dependency of LLM Inference Using Lookahead Decoding | https://arxiv.org/abs/2402.02057 | Scan | 不用 draft model 的并行解码路线 |
+| P1 | Better & Faster Large Language Models via Multi-token Prediction | https://arxiv.org/abs/2404.19737 | Scan | MTP 背景；连接 DeepSeek-V3 MTP 和 speculative decoding |
+| P1 | DeepSeek-V3 Technical Report | https://arxiv.org/abs/2412.19437 | Targeted Scan | 只读 MTP / speculative decoding / inference acceleration 相关段落 |
+| P1 | DSpark: Confidence-Scheduled Speculative Decoding with Semi-Autoregressive Generation | https://github.com/deepseek-ai/DeepSpec/blob/main/DSpark_paper.pdf | Structured Scan | DeepSeek 最新 speculative decoding 系统；和 production serving 直接相关 |
+| Code | DeepSpec repository | https://github.com/deepseek-ai/DeepSpec | Code Scan | 后续看 draft model training / evaluation / DSpark implementation |
+| Code | vLLM speculative decoding docs/code | https://docs.vllm.ai/ | Code Scan | 看 serving engine 中 speculative decoding 怎么接 scheduler / batch |
+| Code | SGLang speculative decoding docs/code | https://docs.sglang.ai/ | Code Scan | 看 runtime 侧 speculative decoding 与 request scheduling 的实现边界 |
 
 ### Storage / distributed systems / IO path
 
@@ -110,6 +129,7 @@ status: active
 | 8 | SGLang: Efficient Execution of Structured Language Model Programs | https://arxiv.org/abs/2312.07104 | 2026-11 | `SGLang_RadixCache_Note` |
 | 9 | DistServe: Disaggregating Prefill and Decoding for Goodput-optimized LLM Serving | https://arxiv.org/abs/2401.09670 | 2026-10/11 | `DistServe_Prefill_Decode_Disaggregation_Note` |
 | 10 | FlexGen: High-Throughput Generative Inference of Large Language Models with a Single GPU | https://arxiv.org/abs/2303.06865 | 2026-10 | `FlexGen_Offload_Memory_Hierarchy_Note` |
+| 10b | DSpark: Confidence-Scheduled Speculative Decoding with Semi-Autoregressive Generation | https://github.com/deepseek-ai/DeepSpec/blob/main/DSpark_paper.pdf | 2026-11/12 | `DSpark_Speculative_Decoding_Note` |
 
 ## P0：DeepSeek-style Storage / 3FS / KVCache
 
