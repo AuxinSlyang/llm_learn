@@ -38,6 +38,8 @@ Diffusion 容易横跨多个目录：
 
 ## First Pass Order
 
+完整扎实版路线见：[[ROADMAP]]
+
 | 顺序 | 材料 | 本地入口 | 读法 | 只回答什么 |
 |---|---|---|---|---|
 | 1 | DDPM | `DDPM_Denoising_Diffusion_Probabilistic_Models/QUICK_READ.md` | Awareness | forward noising / reverse denoising 是什么 |
