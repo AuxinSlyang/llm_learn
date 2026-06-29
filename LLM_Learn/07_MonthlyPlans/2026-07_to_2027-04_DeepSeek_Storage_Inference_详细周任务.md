@@ -24,15 +24,15 @@ linked_plan:
 
 - 项目主线：mini-lsm 1.1 Memtable、1.2 Merge Iterator；建立 Rust 项目编译、测试、CLI 基线。
 - 代码主线：TokaDB TabletServer 入口索引：Tablet RPC / Admin RPC、ReplicaManager、Replica、ReplicaFsm、EngineFactory；同时保留 `RocksdbEngine::Open/Close` / `TokaDBEngine::Open` 作为 engine 入口。
-- 论文 / 课程：先扫本地 `TOREAD_Storage_Inference_2026H2_2027Q1` 和 `02_TOREAD_LLM_Papers`；Sarathi-Serve structured scan。
-- 输出物：`TabletServer_Request_Path_Index`、`TinyLSM_W1_Memtable_Iterator_Log`、`OSDI_LLM_Serving_Scan_W27`。
+- 论文 / 课程：`LSM in a Week.pdf` Preface / Course Overview / Write Path / Read Path；不排 Sarathi-Serve。
+- 输出物：`TabletServer_Request_Path_Index`、`TinyLSM_W1_Memtable_Iterator_Log`、`RocksDB_LSM_Refresh_v0`。
 - 验收问题：一个 TabletServer read/write/admin 请求从 RPC 入口到 Replica/FSM/Engine 的入口在哪里？mini-lsm 的 memtable / merge iterator 如何支撑 read path？
 
 ### W28：2026-07-06 ~ 2026-07-12
 
 - 项目主线：mini-lsm 1.3 Block、1.4 SST、1.5 Read Path、1.6 Write Path、1.7 Prefix Key Encoding + Bloom Filters。
 - 代码主线：TabletServer read/write path：RPC handler -> ReplicaManager -> Replica -> ReplicaFsm -> Engine；对照 RocksDB block format、Bloom/filter、block cache、iterator、WAL、WriteBatch、memtable、flush。
-- 论文 / 课程：DistServe、Orca / continuous batching structured scan。
+- 论文 / 课程：RocksDB docs / wiki 中与 block、SST、iterator、Bloom/filter、WAL、WriteBatch 直接相关的材料；不排 serving 论文。
 - 输出物：`TabletServer_Read_Write_Path_Map`、`TinyLSM_Block_SST_ReadWrite_Note`、`RocksDB_Read_Write_Path_Comparison`。
 - 验收问题：一条 write 如何从 TabletServer mutation 走到 Replica/FSM/Engine，再变成 RocksDB WriteBatch / WAL / memtable？一次 point lookup 和 range scan 如何从 memtable 走到 SST block？
 
@@ -40,7 +40,7 @@ linked_plan:
 
 - 项目主线：mini-lsm 2.1 Compaction Implementation、2.2 Simple Compaction、2.3 Tiered Compaction、2.4 Leveled Compaction。
 - 代码主线：Replica lifecycle：open / close / recover、Consensus / Journal / Snapshot / Migration 边界；对照 RocksDB leveled / universal compaction、L0 stalls、write stall、WAF/RAF/SAF。
-- 论文 / 课程：PagedAttention revisit、SGLang/RadixAttention scan。
+- 论文 / 课程：RocksDB compaction / write stall / amplification 相关文档和源码注释；不排 PagedAttention / SGLang。
 - 输出物：`Replica_Lifecycle_Open_Close_Recover_Map`、`TinyLSM_Compaction_Strategies_Note`、`RocksDB_Compaction_Deep_Dive`。
 - 验收问题：Replica 生命周期和 Engine 生命周期怎么绑定？Compaction 为什么既是 RocksDB 性能核心，也是 tail latency 风险源？
 
@@ -48,7 +48,7 @@ linked_plan:
 
 - 项目主线：mini-lsm 2.5 Manifest、2.6 WAL、2.7 Batch Write and Checksums。
 - 代码主线：TabletServer 核心链路收口；RocksDB Open/Recovery、WAL replay、MANIFEST、TokaDB close/flush/reopen；回看 close 前 flush 的意义。
-- 论文 / 课程：FlashAttention、DeepSeek-V2 MLA/KVCache sections。
+- 论文 / 课程：RocksDB recovery / MANIFEST / WAL / column family options；DeepSeek-V2 只保留为 KVCache 背景，不作为本周阅读任务。
 - 输出物：`TabletServer_Request_Path_Map`、`TinyLSM_Manifest_WAL_Recovery_Note`、`RocksDB_Open_Recovery_WAL_Note`。
 - 验收问题：crash 后如何从 manifest + WAL 恢复 memtable/SST view？TabletServer 主链路里哪些状态由 Replica/FSM 管，哪些状态由 Engine/RocksDB 管？
 

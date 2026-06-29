@@ -4,6 +4,7 @@ track: RocksDB / LSM / Rust / TokaDB
 status: active
 created: 2026-06-28
 local_repo: /home/yangshunlei/study/mini-lsm
+local_pdf: /Users/bytedance/Desktop/LSM in a Week.pdf
 upstream:
   - https://skyzh.github.io/mini-lsm/
   - https://github.com/skyzh/mini-lsm
@@ -29,6 +30,20 @@ TokaDB TabletServer core path
 ```text
 /home/yangshunlei/study/mini-lsm
 ```
+
+本地课程 PDF：
+
+```text
+/Users/bytedance/Desktop/LSM in a Week.pdf
+```
+
+PDF 概况：
+
+- 标题：`LSM in a Week`
+- 页数：133
+- 来源：`https://skyzh.github.io/mini-lsm/print.html`
+- 内容结构：Week 1 storage structure/format，Week 2 compaction and persistence，Week 3 MVCC。
+- 本月读法：先把 PDF 当作 mini-lsm 的课程说明和任务索引，不逐页精读；每次进入代码任务时再回看对应章节。
 
 开发入口：
 
@@ -72,6 +87,34 @@ mini-lsm 写机制
 ```
 
 ## 7 月执行方式
+
+## 2026-06-29 用户校准
+
+本月目标已明确为：
+
+```text
+学会 LSM 相关代码
++ TokaDB TabletServer 数据链路核心代码
++ RocksDB / LSM 相关代码学习
+```
+
+因此本文件是 7 月 P0 项目说明，而不是可选支线。执行顺序固定为：
+
+```text
+LSM in a Week / mini-lsm 机制
+-> RocksDB/LSM 生产实现对照
+-> TokaDB TabletServer 数据链路使用点
+```
+
+KVCache / 3FS / inference runtime 只保留为后续连接，不抢本月代码主线。
+
+晚间执行口径：
+
+```text
+晚上主线 = mini-lsm / LSM 代码
+顺手补 Rust = 只补代码里遇到的 ownership / iterator / Arc / Mutex / Result / tests
+DeepSeek-V2 = 课外读物，20-40m，不抢 coding block
+```
 
 ### W27：Memtable / Iterator + TokaDB Open-Close
 
@@ -216,7 +259,13 @@ Tablet RPC / Admin RPC
 
 ## 和 Rust 的连接
 
-mini-lsm 的 Rust 学习不是泛语法学习，而是围绕系统代码需要的几个点：
+mini-lsm 的 Rust 学习不是泛语法学习，而是围绕系统代码需要的几个点。建议单独维护一个轻量缺口清单：
+
+```text
+Rust_for_mini_lsm_Gap_List
+```
+
+只记录真实代码中遇到的问题，不开泛 Rust 全科。
 
 - ownership：buffer / block / iterator / handle 生命周期。
 - iterator trait object：RocksDB-style iterator 在 Rust 里如何组合。
