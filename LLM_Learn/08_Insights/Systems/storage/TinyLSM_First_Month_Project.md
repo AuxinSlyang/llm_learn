@@ -4,7 +4,7 @@ track: RocksDB / LSM / Rust / TokaDB
 status: active
 created: 2026-06-28
 local_repo: /home/yangshunlei/study/mini-lsm
-local_pdf: /Users/bytedance/Desktop/LSM in a Week.pdf
+local_pdf: /Users/bytedance/.openclaw/workspaces/llm-learner/LLM_Learn/03_Projects/mini-lsm/materials/LSM in a Week.pdf
 upstream:
   - https://skyzh.github.io/mini-lsm/
   - https://github.com/skyzh/mini-lsm
@@ -34,7 +34,7 @@ TokaDB TabletServer core path
 本地课程 PDF：
 
 ```text
-/Users/bytedance/Desktop/LSM in a Week.pdf
+/Users/bytedance/.openclaw/workspaces/llm-learner/LLM_Learn/03_Projects/mini-lsm/materials/LSM in a Week.pdf
 ```
 
 PDF 概况：

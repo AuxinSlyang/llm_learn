@@ -1,0 +1,118 @@
+diff --git a/mini-lsm-starter/src/lsm_storage.rs b/mini-lsm-starter/src/lsm_storage.rs
+index a544796..75b3dc8 100644
+--- a/mini-lsm-starter/src/lsm_storage.rs
++++ b/mini-lsm-starter/src/lsm_storage.rs
+@@ -297,8 +297,17 @@ impl LsmStorageInner {
+     }
+
+     /// Get a key from the storage. In day 7, this can be further optimized by using a bloom filter.
+-    pub fn get(&self, _key: &[u8]) -> Result<Option<Bytes>> {
+-        unimplemented!()
++    pub fn get(&self, key: &[u8]) -> Result<Option<Bytes>> {
++        let state = self.state.read().clone();
++        for memtable in std::iter::once(&state.memtable).chain(state.imm_memtables.iter()) {
++            if let Some(value) = memtable.get(key) {
++                if value.is_empty() {
++                    return Ok(None);
++                }
++                return Ok(Some(value));
++            }
++        }
++        Ok(None)
+     }
+
+     /// Write a batch of data into the storage. Implement in week 2 day 7.
+@@ -307,13 +316,24 @@ impl LsmStorageInner {
+     }
+
+     /// Put a key-value pair into the storage by writing into the current memtable.
+-    pub fn put(&self, _key: &[u8], _value: &[u8]) -> Result<()> {
+-        unimplemented!()
++    pub fn put(&self, key: &[u8], value: &[u8]) -> Result<()> {
++        let state = self.state.read().clone();
++        state.memtable.put(key, value)?;
++        if state.memtable.approximate_size() >= self.options.target_sst_size {
++            let state_lock = self.state_lock.lock();
++            let latest_state = self.state.read().clone();
++            if Arc::ptr_eq(&state.memtable, &latest_state.memtable)
++                && latest_state.memtable.approximate_size() >= self.options.target_sst_size
++            {
++                self.force_freeze_memtable(&state_lock)?;
++            }
++        }
++        Ok(())
+     }
+
+     /// Remove a key from the storage by writing an empty value.
+-    pub fn delete(&self, _key: &[u8]) -> Result<()> {
+-        unimplemented!()
++    pub fn delete(&self, key: &[u8]) -> Result<()> {
++        self.put(key, b"")
+     }
+
+     pub(crate) fn path_of_sst_static(path: impl AsRef<Path>, id: usize) -> PathBuf {
+@@ -338,7 +358,13 @@ impl LsmStorageInner {
+
+     /// Force freeze the current memtable to an immutable memtable
+     pub fn force_freeze_memtable(&self, _state_lock_observer: &MutexGuard<'_, ()>) -> Result<()> {
+-        unimplemented!()
++        let mut state = self.state.write();
++        let mut snapshot = state.as_ref().clone();
++        let frozen_memtable = snapshot.memtable.clone();
++        snapshot.imm_memtables.insert(0, frozen_memtable);
++        snapshot.memtable = Arc::new(MemTable::create(self.next_sst_id()));
++        *state = Arc::new(snapshot);
++        Ok(())
+     }
+
+     /// Force flush the earliest-created immutable memtable to disk
+diff --git a/mini-lsm-starter/src/mem_table.rs b/mini-lsm-starter/src/mem_table.rs
+index 85631c0..db382da 100644
+--- a/mini-lsm-starter/src/mem_table.rs
++++ b/mini-lsm-starter/src/mem_table.rs
+@@ -52,8 +52,13 @@ pub(crate) fn map_bound(bound: Bound<&[u8]>) -> Bound<Bytes> {
+
+ impl MemTable {
+     /// Create a new mem-table.
+-    pub fn create(_id: usize) -> Self {
+-        unimplemented!()
++    pub fn create(id: usize) -> Self {
++        Self {
++            map: Arc::new(SkipMap::new()),
++            wal: None,
++            id,
++            approximate_size: Arc::new(AtomicUsize::new(0)),
++        }
+     }
+
+     /// Create a new mem-table with WAL
+@@ -86,8 +91,10 @@ impl MemTable {
+     }
+
+     /// Get a value by key.
+-    pub fn get(&self, _key: &[u8]) -> Option<Bytes> {
+-        unimplemented!()
++    pub fn get(&self, key: &[u8]) -> Option<Bytes> {
++        self.map
++            .get(&Bytes::copy_from_slice(key))
++            .map(|entry| entry.value().clone())
+     }
+
+     /// Put a key-value pair into the mem-table.
+@@ -95,8 +102,14 @@ impl MemTable {
+     /// In week 1, day 1, simply put the key-value pair into the skipmap.
+     /// In week 2, day 6, also flush the data to WAL.
+     /// In week 3, day 5, modify the function to use the batch API.
+-    pub fn put(&self, _key: &[u8], _value: &[u8]) -> Result<()> {
+-        unimplemented!()
++    pub fn put(&self, key: &[u8], value: &[u8]) -> Result<()> {
++        self.map
++            .insert(Bytes::copy_from_slice(key), Bytes::copy_from_slice(value));
++        self.approximate_size.fetch_add(
++            key.len() + value.len(),
++            std::sync::atomic::Ordering::Relaxed,
++        );
++        Ok(())
+     }
+
+     /// Implement this in week 3, day 5; if you want to implement this earlier, use `&[u8]` as the key type.

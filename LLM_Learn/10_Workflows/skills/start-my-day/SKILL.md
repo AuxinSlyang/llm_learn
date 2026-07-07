@@ -73,6 +73,7 @@ Always produce these in priority order:
 6. Time slices matched to the available time budget
 7. A lightweight 2-3 day progression plan
 8. Concrete commands, files, or note edits when they help
+9. Session/thread title
 
 Apply these rules:
 
@@ -90,6 +91,27 @@ Apply these rules:
 - On Monday to Thursday, include one `paper slot` from `04_Papers/01_Reading_Index.md`: 20-40 minutes, one takeaway, one mini-stack connection. On Friday, prefer paper catch-up and takeaway consolidation. On weekends, paper reading is optional unless it is the week's main line.
 - If `04_Papers/99_Overrides/YYYY-MM-DD.md` exists, it takes priority over the default queue. Preserve the specified paper, arXiv ID/URL, reason, and output path in `今日论文槽位`.
 - Do not let the paper slot consume the evening main study block. Default weekday rhythm is daytime paper slot plus 90 minutes evening execution.
+
+## Session / Thread Title
+
+After deciding today's main line and writing the Daily Note, compute a concise thread title:
+
+```text
+<today mainline> YYYY-MM-DD
+```
+
+Examples:
+
+- `Rust Ch3-Ch6 + DDIA 2026-07-03`
+- `MiniLSM W1 Coding 2026-07-05`
+- `TabletServer Read/Write Path 2026-07-06`
+
+Rules:
+
+- Prefer 25-55 characters; keep the task first and the date last.
+- Use the strongest execution line, not the automation name. Avoid leaving recurring runs titled `Daily Start My Day`.
+- If a Codex thread-title tool is available, rename the current/active automation thread after write-back. If the tool requires a thread id, list recent threads and rename only the unique active thread in the same workspace/current request; if ambiguous, do not rename and include the suggested title in the final output.
+- If no thread-title tool is available, include `建议 session 标题：...` in the final output.
 
 ## Paper Override Requests
 

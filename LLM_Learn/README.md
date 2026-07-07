@@ -12,6 +12,7 @@
 
 ## 当前保留骨架
 
+- `00_Roadmap/`：长期路线、阶段地图、方向约束；只保留 5 个 active 权威入口，过时路线归档到 `_archived/`
 - `01_DailyNotes/`：日记
 - `02_WeeklyNotes/`：周计划 / 周复盘
 - `03_Projects/`：项目化 / 专题化学习对象

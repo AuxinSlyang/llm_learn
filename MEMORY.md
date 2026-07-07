@@ -10,6 +10,8 @@
 
 ## 工作节奏
 - 通过“年度计划 → 月计划 → 周计划 → 日记”的节奏，持续每天推进学习。
+- 2026-07-01 术语偏好：涉及系统控制平面/调度/指挥路径时，默认使用“控制链路”，并关注“控制链路可靠性 / 控制链路可用性”；避免随意使用 Master 这类容易带入特定架构角色的命名。
+- 2026-07-01 路线收敛：未来 6-7 个月优先冲刺 AI core storage / high-performance distributed storage / shared storage / KVCache storage，并自然连接到 inference serving/runtime；ROS2/Isaac/机器人系统暂不作为近期主线，只保持论文和趋势观察，等存储/推理系统能力成型后再系统补机器人 runtime。
 
 ## 当前知识资产结构
 - 本工作区的长期知识资产主体位于 `LLM_Learn/`。

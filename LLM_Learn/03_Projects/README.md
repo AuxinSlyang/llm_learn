@@ -12,6 +12,9 @@
 - `makemore/`：从字符级语言模型进入神经网络训练主线
 - `tokenizer-from-scratch/`：从 Unicode / UTF-8 / BPE / token ids 进入 nanoGPT 输入链路
 - `nanogpt-from-scratch/`：从 `bigram -> transformer -> GPT` 建立 LLM 主链路直觉
+- `mini-lsm/`：7 月 AI Core Storage 入口项目，用 mini-lsm 建立 LSM 机制，再对照 RocksDB / TokaDB TabletServer 数据链路
+- `systems-rust-for-storage/`：Rust 系统编程训练入口，服务 MiniLSM、KV storage engine、分布式 KV 和后续 AI Infra runtime 代码能力
+- `ddia/`：Designing Data-Intensive Applications 每日 side project，服务分布式系统、KV 存储、replication、partitioning、transaction 等基础能力
 
 ### 机器人 / 具身智能基础线
 

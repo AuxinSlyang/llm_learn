@@ -1,7 +1,7 @@
 interface:
   display_name: "Start My Day"
-  short_description: "Build today's plan from notes"
-  default_prompt: "Use $start-my-day to read today's notes, synthesize a focused plan, and update the Daily Note if needed."
+  short_description: "Build today's plan and title"
+  default_prompt: "Use $start-my-day to read today's notes, synthesize a focused plan, update the Daily Note if needed, and rename the thread with date plus today's main line when possible."
 
 policy:
   allow_implicit_invocation: true
